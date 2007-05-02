@@ -1,0 +1,46 @@
+\HeaderA{residPart-methods}{Generic function residPart in Package `TIMP'}{residPart.Rdash.methods}
+\aliasA{residPart}{residPart-methods}{residPart}
+\aliasA{residPart,kin-method}{residPart-methods}{residPart,kin.Rdash.method}
+\aliasA{residPart,spec-method}{residPart-methods}{residPart,spec.Rdash.method}
+\keyword{methods}{residPart-methods}
+\begin{Description}\relax
+Methods for function \code{residPart} in Package `TIMP' determine the 
+part of the residual vector associated with a single `part' of the
+dataset(s).
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+residPart(model, group, multimodel, thetalist, clpindepX, finished, returnX,
+rawtheta)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] Object of class \code{dat}; switches on this 
+argument. 
+\item[\code{group}] list of vector pairs (x2 index, dataset index) for which 
+the part of the residual vector is to be determined
+\item[\code{multimodel}] Object of class \code{multimodel}
+\item[\code{thetalist}] Object of class \code{multitheta}
+\item[\code{clpindepX}] Object of class \code{matrix} containing the matrix
+determined directly by the nonlinear parameters (e.g., a concentration matrix
+in the case of a kinetic model) in the case that this matrix does not depend
+on the \code{x2} index
+\item[\code{finished}] logical determining whether fitting is finished that
+triggers the storage of results
+\item[\code{returnX}] logical determining whether to just return the matrix 
+\code{X} directly dependent on nonlinear parameters; this is used in the finite
+difference derivative of \code{X} used to get standard error estimates on the 
+conditionally linear parameters. 
+\item[\code{rawtheta}] numeric vector of nonlinear parameters to be optimized 
+by \code{nls}; this is used in the finite
+difference derivative of \code{X} used to get standard error estimates on the 
+conditionally linear parameters.
+
+\end{ldescription}
+\end{Arguments}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}, \code{\LinkA{spec-class}{spec.Rdash.class}},
+\code{\LinkA{kin-class}{kin.Rdash.class}}
+\end{SeeAlso}
+

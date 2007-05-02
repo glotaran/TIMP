@@ -1,0 +1,95 @@
+
+R version 2.5.0 (2007-04-23)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> require(TIMP) 
+Loading required package: TIMP
+Loading required package: tcltk
+Loading Tcl/Tk interface ... done
+Loading required package: vcd
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+Loading required package: fields
+fields is loaded use help(fields) for an overview of this library
+Loading required package: gplots
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+Loading required package: splines
+[1] TRUE
+> 
+> ## simulate a 501 x 501 matrix of data
+> 
+> times <- seq(50, 350, by=.6)
+> wavenum <- seq(18000, 28000, by=20)
+> 
+> E <- matrix(nrow = 501, ncol = 3)
+> location <- c(26000, 24000, 20000) 
+> delta <- c(2000, 3000, 4000)
+> amp <- c(1, 2, 3)  
+> E[, 1] <- amp[1] * exp( - log(2) * (2 * (wavenum - location[1])/delta[1])^2)
+> E[, 2] <- amp[2] * exp( - log(2) * (2 * (wavenum - location[2])/delta[2])^2)
+> E[, 3] <- amp[3] * exp( - log(2) * (2 * (wavenum - location[3])/delta[3])^2)
+> 
+> PSI <- matrix(nrow=length(times), ncol = length(wavenum))
+> 
+> for (i in 1:length(wavenum)) {
++      irfvec <- irfparF(irfpar = c(57.47680283, 1.9), lambdac = 1500, 
++      lambda = wavenum[i], i=1, mudisp = TRUE, parmu = c(.001,.001), 
++      dispmufun = "poly", taudisp = FALSE, disptaufun="",partau=vector())
++ 
++      cohirf <- irfparF(irfpar = c(57.47680283, 1.9), lambdac = 1200, lambda =
++      wavenum[i], i=1, mudisp = TRUE, parmu = c(.0001,.0001), taudisp = FALSE,
++      dispmufun = "poly")
++ 
++     C <- compModel (k=c(.01,.05), x=times, irfpar =irfvec, cohirf = cohirf, 
++     irf = TRUE, cohspec = list(type = "freeirfdisp"),coh = vector(), 
++     lamb = i, dataset = 1,usekin2=FALSE) 
++     
++     PSI[,i] <- C %*% as.matrix(E[i,])    
++ }    
+> 
+> sigma <- .01
+> PSI  <- PSI + sigma * rnorm(dim(C)[1] * dim(E)[1])
+> 
+> ser2 <- dat(psi.df = PSI, x = times, nt = length(times), x2 = wavenum, nl =
++ length(wavenum)) 
+> 
+> model1<- initModel(mod_type = "kin", 
++ kinpar=c(.01, .05), lambdac = 1200, 
++ irfpar=c(57.47680283, 1.9), 
++ parmu = list(c(.001,.001), c(.0001,.0001)), 
++ seqmod=FALSE, cohspec = list(type="freeirfdisp"),
++ makeps="Sergey data", title="Ser")
+> 
+> ## fit the model 
+> 
+> serRes<-fitModel(list(ser2), list(model1), 
++ opt=kinopt(iter=1, plot = FALSE))
+291.4246 :  57.4768  1.9000  0.0100  0.0500  0.0010  0.0010  0.0001  0.0001 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 35.643
+35.64298 :  58.7909442082  2.1853690619  0.0099424387  0.0492863532 -0.0180475208  0.0010337485 -0.0137560813  0.0001364319 
+Warning message:
+number of iterations exceeded maximum of 1 
+> 

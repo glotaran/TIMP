@@ -1,0 +1,31 @@
+\HeaderA{readData}{This function reads in data the ivo file format}{readData}
+\keyword{file}{readData}
+\begin{Description}\relax
+Data in the formats described at 
+\url{http://www.nat.vu.nl/~kate/TIM/tim/node74.html} and 
+\url{http://www.nat.vu.nl/~kate/FLIM_format}
+may be read from file into an R object for analysis.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+readData(filenm, sep = "")
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{filenm}] This is the path to the file to read in, as a quoted
+string. 
+\item[\code{sep}] This is an optional argument describing how the data is 
+delimited; defaults to \code{""}
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+an object of class \code{dat}
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{preProcess}{preProcess}}
+\end{SeeAlso}
+

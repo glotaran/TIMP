@@ -1,0 +1,32 @@
+plotter-methods             package:TIMP             R Documentation
+
+_G_e_n_e_r_i_c _f_u_n_c_t_i_o_n _p_l_o_t_t_e_r _i_n _P_a_c_k_a_g_e '_T_I_M_P'
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Methods for function 'plotter' in Package `TIMP' that  call
+     plotting and output functions.
+
+_U_s_a_g_e:
+
+     plotter(model, multimodel, multitheta, plotoptions)
+
+_A_r_g_u_m_e_n_t_s:
+
+   model: Object of class 'dat'; function switches on this  argument. 
+
+multimodel: Object of class 'multimodel'
+
+multitheta: Object of class 'multitheta'
+
+plotoptions: list of output options  input to 'fitModel' as the
+          argument 'opt'
+
+_A_u_t_h_o_r(_s):
+
+     Katharine M. Mullen, Ivo H. M. van Stokkum
+
+_S_e_e _A_l_s_o:
+
+     'dat-class'
+

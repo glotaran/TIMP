@@ -1,0 +1,136 @@
+kin-class                package:TIMP                R Documentation
+
+_C_l_a_s_s "_k_i_n" _f_o_r _k_i_n_e_t_i_c _m_o_d_e_l _s_t_o_r_a_g_e.
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     'kin' is the class for kinetic models; if 'mod_type = "kin"' is an
+      argument of 'initModel'. All objects of class 'kin' are
+     sub-classes of  class 'dat'; see documentation for 'dat'  for a
+     description of  these slots.
+
+_D_e_t_a_i_l_s:
+
+     See 'dat-class' for an  example of the initialization of a  'kin'
+     object via the 'initModel' function.
+
+_O_b_j_e_c_t_s _f_r_o_m _t_h_e _C_l_a_s_s:
+
+     Objects can be created by calls of the form 'new("kin", ...)' or 
+     'kin(...)'.
+
+_S_l_o_t_s:
+
+     _k_i_n_p_a_r vector of rate constants to be used as starting  values for
+          the exponential decay of components; the length of this
+          vector determines the number of components of the kinetic
+          model.                        
+
+'_s_p_e_c_p_a_r': Object of class '"list"'  parameters for spectral
+     constraints
+
+'_s_e_q_m_o_d': Object of class '"logical"'  that is 'TRUE' if a sequential
+     model is to be applied and 'FALSE' otherwise
+
+'_i_r_f': Object of class '"logical"'   that is 'TRUE' is an IRF is
+     modeled and 'FALSE' otherwise
+
+'_m_i_r_f': Object of class '"logical"'  that is 'TRUE' if a measured IRF
+     is modeled and 'FALSE' otherwise
+
+'_m_e_a_s_u_r_e_d__i_r_f': Object of class '"vector"'  containing a measured IRF
+
+'_c_o_n_v_a_l_g': Object of class '"numeric"'  1-4 determining the numerical
+     convolution algorithm  used in the case of modeling a measured IRF
+
+'_i_r_f_f_u_n': Object of class '"character"'  describing the  function to
+     use to describe the IRF, by default "gaus"
+
+'_i_r_f_p_a_r': Object of class '"vector"'  of IRF parameters; for the common
+     Gaussian IRF this  vector is ordered 'c(location, width)'
+
+'_d_i_s_p_m_u': Object of class '"logical"'   that is 'TRUE' if dispersion of
+     the parameter for IRF  location is to be modeled and 'FALSE'
+     otherwise
+
+'_d_i_s_p_m_u_f_u_n': Object of class '"character"'  describing the functional
+     form of the  dispersion of the IRF location parameter; if equal to
+     "discrete" then the  IRF location is shifted per element of 'x2'
+     and 'parmu' should have the same  length as 'x2'.  defaults to a
+     polynomial description
+
+'_p_a_r_m_u': Object of class '"list"'   of starting values for the
+     dispersion model for the  IRF location
+
+'_d_i_s_p_t_a_u': Object of class '"logical"'  that is 'TRUE' if dispersion of
+     the parameter for  IRF width is to be modeled and 'FALSE'
+     otherwise
+
+'_d_i_s_p_t_a_u_f_u_n': Object of class '"character"'  describing the functional
+     form of the  dispersion of the IRF width parameter; if equal to
+     '"discrete"' then the  IRF width is parameterized per element of
+     'x2' and 'partau' should have the same  length as 'x2'.  defaults
+     to a polynomial description
+
+'_p_a_r_t_a_u': Object of class '"vector"'  of starting values for the
+     dispersion model for the  IRF FWHM 
+
+'_f_u_l_l_k': Object of class '"logical"'  that is 'TRUE' if the data are to
+     be modeled using a  compartmental model defined in a K matrix and
+     'FALSE' otherwise
+
+'_k_m_a_t': Object of class '"array"'  containing the K matrix descriptive
+     of  a compartmental  model
+
+'_j_v_e_c': Object of class '"vector"'  containing the J vector descriptive
+     of the inputs to a  compartmental model
+
+'_n_c_o_l_c': Object of class '"vector"'  describing the number of columns
+     of the C matrix for  each clp in 'x2'
+
+'_k_i_n_s_c_a_l': Object of class '"vector"'   of starting values for
+     branching parameters in a  compartmental model
+
+'_k_m_a_t_f_i_t': Object of class '"array"'  of fitted values for a
+     compartmental model
+
+'_c_o_h_s_p_e_c': Object of class '"list"'   describing the model for 
+     coherent artifact/scatter component(s) containing the element 
+     'type' and optionally the element 'numdatasets' if 'type' is
+     '"irf"', the coherent artifact/scatter has the  time profile of 
+     the IRF.  if 'type' is '"freeirfdisp"' the  coherent 
+     artifact/scatter has  a Gaussian time profile whose location and
+     width are parameterized in the  vector 'coh'.  if 'type' is
+     '"irfmulti"' the time profile of  the IRF is used for the coherent
+     artifact/scatter model, but the IRF parameters are taken per 
+     dataset (for the multidataset case), and the integer argument 
+     'numdatasets' must be equal to the  number of datasets modeled. 
+     if 'type' is '"seq"'  a sequential exponential decay  model is
+     applied, whose parameters are contained in 'coh'. if 'type' is
+     '"mix"' a sequential exponential decay  model is applied along
+     with a model that follows the time profile of the IRF; the
+     coherent artifact/scatter is then a linear superposition of these
+     two  models.  
+
+'_c_o_h': Object of class '"vector"'  of starting values for the
+     parameterization of a   coherent artifact
+
+'_w_a_v_e_d_e_p': Object of class '"logical"'  describing whether the kinetic
+     model is dependent on 'x2' index (i.e., whether there is
+     clp-dependence)
+
+'_l_a_m_b_d_a_c': Object of class '"numeric"'  for the center wavelength to be
+     used in a polynomial  description of 'x2'-dependence 
+
+_E_x_t_e_n_d_s:
+
+     Class 'dat-class', directly.
+
+_A_u_t_h_o_r(_s):
+
+     Katharine M. Mullen, Ivo H. M. van Stokkum
+
+_S_e_e _A_l_s_o:
+
+     'dat-class', 'spec-class'
+

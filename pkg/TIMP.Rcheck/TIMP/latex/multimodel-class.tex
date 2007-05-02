@@ -1,0 +1,42 @@
+\HeaderA{multimodel-class}{Class "multimodel" for storage of multidataset models, data and the 
+results of fitting.}{multimodel.Rdash.class}
+\aliasA{multimodel}{multimodel-class}{multimodel}
+\keyword{classes}{multimodel-class}
+\begin{Description}\relax
+\code{multimodel} is the class to store data, a generally applicable model, a
+list of per-data models, a specification of per-dataset model differences, and 
+results for the analysis of possibly many datasets.  After a call to 
+\code{fitModel}
+an object \code{.currModel} is initialized of the \code{multimodel} class.
+\end{Description}
+\begin{Details}\relax
+after a call to \code{\LinkA{fitModel}{fitModel}}, an object of class 
+\code{multimodel} exists in the global environment as the variable 
+\code{.currModel}
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("multimodel", ...)} or 
+\code{multimodel(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{data}:] Object of class \code{"list"}  of objects of class \code{dat} containing data
+\item[\code{model}:] Object of class \code{"dat"}  of class dat containing a model specification to be
+applied to all datasets
+\item[\code{modellist}:] Object of class \code{"list"}  of length n where n is the number of datasets given in
+\code{data}, and each element i is an object of class \code{dat} giving 
+the dataset-specific model applicable to \code{data[[i]]}
+\item[\code{modeldiffs}:] Object of class \code{"list"}  of per-dataset model differences input as an argument 
+to the \code{\LinkA{fitModel}{fitModel}} function
+\item[\code{fit}:] Object of class \code{"fit"}  containing a list of
+results per-dataset as well as the output of optimization returned by the
+\code{nls} function.
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel} }
+\end{SeeAlso}
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Makes a summary plot of spectra associated with kinetic components
+alongside a plot showing parameter estimates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for sumKinSpecEst {TIMP}"><tr><td>sumKinSpecEst {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Makes a summary plot of spectra associated with kinetic components
+alongside a plot showing parameter estimates</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Makes a summary plot of spectra associated with kinetic components
+alongside a plot showing parameter estimates for, by default, kinetic 
+parameters.  If the analysis had more parameters in the <code>addEst</code> slot 
+of the arguement <code>opt</code>, then more parameters are displayed. 
+Note that this summary leaves out the spectra associated with coherent 
+artifact or scatter.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+sumKinSpecEst(listFits, addtitle = TRUE, customtitle = "", preps = "", 
+ylimlist=list(), kinspecerr=TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>listFits</code></td>
+<td>
+list of objects returned by the <code>fitModel</code> function</td></tr>
+<tr valign="top"><td><code>addtitle</code></td>
+<td>
+logical regarding whether to add a title; if TRUE and
+<code>customtitle</code> is not given then the title is  
+<code> "Summary of EADS for: "</code> plus the analysis titles</td></tr>
+<tr valign="top"><td><code>customtitle</code></td>
+<td>
+character vector containing a title</td></tr>
+<tr valign="top"><td><code>preps</code></td>
+<td>
+character vector describing the prefix of the postscript
+filename given as output</td></tr>
+<tr valign="top"><td><code>ylimlist</code></td>
+<td>
+list with elements <code>list(ind, ylim)</code>.  <code>ind</code> is
+an index into <code>listFits</code>; <code>ylim</code> is the desired <code>ylim</code> for
+the plot for that analysis</td></tr>
+<tr valign="top"><td><code>kinspecerr</code></td>
+<td>
+logical regarding whether to add error bars for to the 
+estimated spectra. 
+</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+This looks best with less than five objects in <code>listFits</code>.
+</p>
+
+
+<h3>Value</h3>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="fitModel.html">fitModel</a></code>, <code><a href="examineFit.html">examineFit</a></code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

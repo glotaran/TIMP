@@ -1,0 +1,296 @@
+
+R version 2.5.0 (2007-04-23)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ##############################
+> ## Dataset and model of
+> ## Mariangela di Donato
+> ##############################
+> 
+> ##############################
+> ## load TIMP
+> ##############################
+> 
+> require(TIMP)
+Loading required package: TIMP
+Loading required package: tcltk
+Loading Tcl/Tk interface ... done
+Loading required package: vcd
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+Loading required package: fields
+fields is loaded use help(fields) for an overview of this library
+Loading required package: gplots
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+Loading required package: splines
+[1] TRUE
+> 
+> ##############################
+> ## Read in and preprocess (by baseline correction) 
+> ## 4 datasets 
+> ##############################
+> 
+> did1<-readData("0902.txt")
+Read 1 item
+Read 2179 items
+> did1<-preProcess(data = did1, baselinelambda = c(3, 7, 1, 32))
+> 
+> did2<-readData("1013.txt")
+Read 1 item
+Read 2179 items
+> did2<-preProcess(data = did2, baselinelambda = c(3, 9, 1, 32))
+> 
+> did3<-readData("124.txt")
+Read 1 item
+Read 2179 items
+> did3<-preProcess(data = did3, baselinelambda = c(3, 7, 1, 32))
+> 
+> did4<-readData("1402.txt")
+Read 1 item
+Read 2179 items
+> did4<-preProcess(data = did4, baselinelambda = c(3, 7, 1, 32))
+> 
+> ##############################
+> ## Make a list of the 4 datasets, to be 
+> ## used for simulteneous analysis 
+> ##############################
+> 
+> data <- list(did1, did2, did3, did4) 
+> 
+> ##############################
+> ## Initial model.  
+> ##############################
+> 
+> model_allfree <- initModel(mod_type = "kin", 
++ kinpar=c(1.1, 0.05, 0.001), 
++ irfpar=c(.05, 0.495912E-01), 
++ lambdac = 1670,
++ parmu = list(-.0158119812957), 
++ seqmod=TRUE, positivepar=c("kinpar"), 
++ weightpar=list( c(-16,.3,1,2000,.1), c(NA,NA,1590,1612,.1)), 
++ cohspec = list( type = "irf"))
+> 
+> ##############################
+> ## First apply the initial model to each dataset separately. 
+> ##############################
+> 
+> didRes1<-fitModel(list(did1), list(model_allfree), opt=kinopt(iter=2, 
++ makeps="d1", title = "Dataset 1, single analysis"))
+4.808621 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 4.69714
+4.69714 :   0.054604223  0.078716221 -0.236730441 -2.885816450 -7.456195546 -0.001176790 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 4.62298
+4.622985 :   0.04848881  0.06637673 -0.56305053 -3.10032388 -7.73279951  0.02901521 
+Warning message:
+number of iterations exceeded maximum of 2 
+> 
+> didRes2<-fitModel(list(did2), list(model_allfree), opt=kinopt(iter=2,
++ makeps="d2", title = "Dataset 2, single analysis"))
+4.502036 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 4.30504
+4.305045 :   0.03313393  0.07290003 -0.20573906 -2.92151724 -7.63974328 -0.02474616 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 4.19838
+4.198377 :   0.01876057  0.09964501 -0.52537938 -3.16014724 -8.06397008 -0.03412345 
+Warning message:
+number of iterations exceeded maximum of 2 
+> 
+> didRes3<-fitModel(list(did3), list(model_allfree), opt=kinopt(iter=2,
++ makeps="d3", title = "Dataset 3, single analysis"))
+3.433163 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 3.18265
+3.182650 :   0.05041380  0.08368246 -0.03768368 -2.11864906 -7.64095267 -0.02033634 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 3.13515
+3.135149 :   0.05720301  0.14006375  0.38259254 -1.96498658 -8.04183036 -0.03975418 
+Warning message:
+number of iterations exceeded maximum of 2 
+> 
+> didRes4<-fitModel(list(did4), list(model_allfree), opt=kinopt(iter=2,
++ makeps="d4", title = "Dataset 4, single analysis"))
+6.319852 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 6.27778
+6.277777 :   0.04816084  0.07005614  0.53389513 -2.74971230 -7.38272903 -0.01726032 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 6.25827
+6.258269 :   0.04409377  0.10485386  0.99192958 -2.74845554 -7.46164543 -0.01518912 
+Warning message:
+number of iterations exceeded maximum of 2 
+> 
+> ##############################
+> ## Apply the initial model to datasets 1 and 2 together. 
+> ## Make the kinetic and irf parameters free to vary between 
+> ## datasets, and add a spectral equality constraint between 
+> ## datasets.  Also add a dataset scaling parameter. 
+> ##############################
+> 
+> didRes<-fitModel(list(did1,did2), modspec = list(model_allfree), 
++ modeldiffs = list( dscal = list(list(to=1,from=2,value=1)),
++ change = list(
++ list(what="kinpar", spec= c(1.011, 0.05, 0.005), dataset=2),
++ list(what="irfpar", spec= c(.051, 0.496912E-01), dataset=2),
++ list(what="clpequspec", spec=list(list(to=3, from=3, low=100, high=1810, 
++ dataset=2)), dataset=1), 
++ list(what="clpequ", spec=c(1), dataset=1))), opt=kinopt(iter=5))
+11.40688 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198  0.01093994 -2.99573227 -5.29831737  0.05100000  0.04969120  1.00000000  1.00000000 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 10.757
+10.75695 :   0.058994602  0.077868713 -0.100018404 -2.991348803 -7.502379010 -0.001634159 -0.171707540 -2.470321303 -7.165904207  0.037244033  0.079426716  2.096214780  0.739998574 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 10.5008
+10.50077 :   0.046489398  0.061234662 -0.271334591 -3.144454213 -7.713171461  0.008196028 -0.176196159 -2.420010042 -7.875804833  0.027977100  0.106292406  1.873402325  0.769555167 
+  It.   3, fac=           1, eval (no.,total): ( 1,  3): new dev = 10.3984
+10.39839 :   0.051158728  0.077889690 -0.466779078 -3.260539700 -7.962626653  0.008854716 -0.280476559 -2.496708207 -8.116347209  0.017100153  0.044245208  1.446327146  0.753450591 
+  It.   4, fac=           1, eval (no.,total): ( 1,  4): new dev = 10.3064
+10.30640 :   0.060765476  0.049235594 -0.621733696 -3.310604633 -8.310918955 -0.002641822 -0.298336624 -2.419553165 -8.472719562  0.015965155  0.060761570  0.855195195  0.733220136 
+  It.   5, fac=           1, eval (no.,total): ( 1,  5): new dev = 10.2228
+10.22281 :   0.071910166  0.069336362 -0.780277477 -3.507592342 -8.715689428  0.001852652 -0.464379652 -2.718886181 -8.452008431  0.017075573  0.082672722  0.752750356  0.732875469 
+Warning message:
+number of iterations exceeded maximum of 5 
+> 
+> ##############################
+> ## Apply the initial model to datasets 3 and 4 together. 
+> ## Make the kinetic and irf parameters free to vary between 
+> ## datasets, and add a spectral equality constraint between 
+> ## datasets.  Also add a dataset scaling parameter -- but this 
+> ## time also add a higher order polynomial for dispersion to the 
+> ## 2nd dataset (dataset 4) via the parmu parameterization.
+> ##############################
+> 
+> didRes<-fitModel(list(did3,did4), list(model_allfree), 
++ modeldiffs = list( dscal = list(list(to=1,from=2,value=1)),
++ change = list(
++ list(what="kinpar", spec= c(1.0, 0.05, 0.005), dataset=2),
++ list(what="irfpar", spec= c(.05, 0.496912E-01), dataset=2),
++ list(what="clpequspec", spec=list(list(to=3, from=3, low=100, 
++ high=1810, dataset=1)), dataset=2),  
++ list(what="clpequ", spec=c(1), dataset=2), 
++ list(what = "parmu", spec=list(c(-.0158119812957)), dataset=2))), 
++ opt=kinopt(iter=1))
+10.76750 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198  0.00000000 -2.99573227 -5.29831737  0.05000000  0.04969120  1.00000000 -0.01581198  1.00000000 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 10.4074
+10.40738 :  -0.0005452546  0.0698790497 -0.4615721035 -2.1785746333 -7.9723950669  0.0107063563 -0.2134627622 -2.8730001226 -5.1918654223  0.0740008826  0.0832939195  1.2631765277 -0.0380349722  0.9078036715 
+Warning message:
+number of iterations exceeded maximum of 1 
+> 
+> ##############################
+> ## Analyze all 4 datasets (previously put into the list "data") together.
+> ## Make all the kinetic and IRF parameters free between datasets, and give
+> ## the IRF model different starting values for each dataset.  Also add some 
+> ## spectral relations between dataset (that are actually equalities, since the
+> ## linear relations are fixed to 1.  The datasets are related as a whole via
+> ## scaling parameters dscal.  For the 3rd dataset dscal is estimated at
+> ## at each wavelength (per-clp).
+> ##############################
+> 
+> didRes<-fitModel(data, list(model_allfree), 
++ modeldiffs = list(dscal = 
++ list(
++ list(to=4,from=1,value=1), 
++ list(to=2,from=1,value=1), 
++ list(to=3,from=1,value=rep(1,32), perclp=TRUE)),
++ change = list(
++ list(what="kinpar", spec= c(1.01, 0.05, 0.005), dataset=2:4,
++ type="multifree"),
++ list(what="irfpar", spec= c(.067, 0.18), dataset=2:4, type="multifree"),
++ 
++ list(what="clpequspec", spec=list(
++ list(to=3, from=3, low=100, high=1810, startrelpar=1, dataset=3), 
++ list(to=1, from=1, low=100, high=1810, startrelpar=1, dataset=2)), 
++ dataset=c(1,4), type="multifree"),
++ 
++ list(what="clpequ", spec=c(1,1), dataset=c(1,4), type="multifree"), 
++ 
++ list(what = "fixed", spec = list(clpequ=c(1,2)), dataset=c(1,4)))),
++ 
++ opt=kinopt(iter=3, linrange=3, superimpose=1:4, 
++ selectedtraces=seq(1,data[[1]]@nl, by=3)))
+29.40924 :   0.05000000  0.04959120  0.09531018 -2.99573227 -6.90775528 -0.01581198  0.00995033 -2.99573227 -5.29831737  0.00995033 -2.99573227 -5.29831737  0.00995033 -2.99573227 -5.29831737  0.06700000  0.18000000  0.06700000  0.18000000  0.06700000  0.18000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 22.4306
+22.43062 :   0.07620597  0.09991085 -0.45795563 -2.96819790 -7.00215188  0.01981941  0.11794895 -2.32769441 -5.55320939 -1.04568865 -2.67795649 -5.51487644 -0.02204344 -3.29127709 -5.17399265  0.17855148  0.01060535 -0.08550643  0.26260575  0.07186454  0.17005102  0.66058959  1.27912951  0.56493137  0.61456901  0.52532537  0.56530304  1.05829779  0.35421015  0.38870649  0.37384770  0.34923469  0.33176144  0.33767178  0.21541099  0.23299097  0.27702952  0.20720719  0.29038186  0.48825523  0.13850869  0.31907916  0.46331635  1.44649158  0.54293975  0.84617425  1.42240912 -0.15674647  1.27846788  0.28877269  1.23481525  0.45700420  0.49187554 -0.08051482  1.05701770 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 21.4812
+21.48123 :   0.16434751  0.08944516 -0.41209419 -2.78850598 -7.83887060  0.01444496  0.03991760 -2.21130651 -6.64015713 -1.53965883 -2.32630350 -6.96248909  0.41510002 -3.43535482 -6.38901241  0.17368442  0.01066064 -0.60340384  0.94637297 -0.05245963  0.30446011  0.74750069  1.37319564  0.66156806  0.94341908  0.82213602  0.96287203  0.93640474  0.58331692  0.50871562  0.51649988  0.53077488  0.49075060  0.52969284  0.40946089  0.40494796  0.44313295 -0.84904107  0.44430503  0.67500463  0.33434700  0.47865350  0.57554319  1.35468471  0.67019852  1.35277316  2.15768980 -0.67661350  2.66701949  0.47835001  2.08354788  0.65026001  0.81667612 -0.28039677  2.23158015 
+  It.   3, fac=           1, eval (no.,total): ( 1,  3): new dev = 22.0472
+  It.   3, fac=         0.5, eval (no.,total): ( 2,  4): new dev = 21.1368
+21.1368 :   0.190766896  0.084171705 -0.500433865 -2.890972742 -8.110346535  0.012544791 -0.033077020 -2.260932566 -7.045739457 -1.502802535 -2.251990972 -7.440242816  0.617091939 -3.438018990 -6.689836972  0.174493894  0.009604196  0.206202509  0.624858044 -0.113427780  0.379555082  0.832766298  1.403472605  0.531691404  0.716541137  0.663546166  0.710574358  0.701715141  0.468590434  0.444065807  0.447309086  0.460782641  0.424254842  0.461668400  0.360781027  0.362302575  0.402880739 -1.182630090  0.377833317  0.563742673  0.304899544  0.410347637  0.484936374  1.110839311  0.537844457  1.038346303  1.745004231 -0.755875163  3.442563675  0.388713309  1.489473723  0.538273081  0.819395042 -0.241201307  2.306876861 
+Warning message:
+number of iterations exceeded maximum of 3 
+> 
+> ##############################
+> ## Add a more sophisticated model for the coherent artifact,
+> ## via the $type = "irfmulti" argument.  The 
+> ## time profile of the IRF is used for the coherent
+> ## artifact/scatter model, but the IRF parameters are taken per
+> ## dataset.
+> ##############################
+> 
+> model_irfcoh <- initModel(mod_type = "kin", 
++ kinpar=c(1.0, 0.05, 0.005), 
++ irfpar=c(.05, 0.495912E-01), 
++ lambdac = 1670,
++ fixed = list(irfpar=2),
++ parmu = list(c(-.0158119812957)), 
++ seqmod=TRUE,iter=2, positivepar=c("kinpar", "coh"), 
++ weightpar=list( c(-16,.3,1,2000,.1), c(NA,NA,1590,1612,.1)), 
++ cohspec = list( type = "irfmulti", numdatasets = 4))
+> 
+> ##############################
+> ## Fit with this more sophisticated coherent artifact model, 
+> ## and fixing the width of the IRF. 
+> ##############################
+> 
+> didRes<-fitModel(data, list(model_irfcoh), 
++ modeldiffs = list(dscal = 
++ list(
++ list(to=4,from=1,value=1), 
++ list(to=2,from=1,value=1), 
++ list(to=3,from=1,value=rep(1,32), perclp=TRUE)),
++ change = list(
++ list(what="kinpar", spec= c(1.01, 0.05, 0.005), dataset=2:4,
++ type="multifree"),
++ list(what="irfpar", spec= c(.067, 0.18), dataset=2:4, type="multifree"),
++ 
++ list(what="clpequspec", spec=list(
++ list(to=3, from=3, low=100, high=1810, startrelpar=1, dataset=3), 
++ list(to=1, from=1, low=100, high=1810, startrelpar=1, dataset=2)), 
++ dataset=c(1,4), type="multifree"),
++ 
++ list(what="clpequ", spec=c(1,1), dataset=c(1,4), type="multifree"), 
++ 
++ list(what = "fixed", spec = list(clpequ=c(1,2)), dataset=c(1,4)))),
++ list(what = "fixed", spec = list(clpequ=c(1), irfpar=2), dataset=2:3), 
++ 
++ opt=kinopt(iter=3, linrange=3, superimpose=1:4, 
++ selectedtraces=seq(1,data[[1]]@nl, by=3)))
+26.38070 :   0.05000000  0.04959120  0.00000000 -2.99573227 -5.29831737 -0.01581198  0.00995033 -2.99573227 -5.29831737  0.00995033 -2.99573227 -5.29831737  0.00995033 -2.99573227 -5.29831737  0.06700000  0.06700000  0.06700000  0.18000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000  1.00000000 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 21.3934
+21.39340 :   0.062729057  0.078863919 -0.412376232 -2.626403439 -6.293147481 -0.004744428 -0.365148600 -2.253415708 -6.398040271 -0.881848341 -2.430504221 -6.403424003  0.068325816 -3.024549418 -6.138329850  0.154855282  0.081784182  0.093330554  0.172534477  0.626391748  1.081023780  0.522081326  0.593078360  0.506950492  0.570570582  0.858567373  0.602198610  0.377771413  0.334378296  0.325579011  0.276560264  0.290184953  0.162215933  0.166182693  0.256199013  0.741028490  0.170100512  0.373555376  0.046041956  0.197136893  0.354783832  1.223769590  0.470944203  0.719764147  1.278913986 -0.278806249  1.304385387  0.398510359  1.393727642  0.627436005  0.988166969 -0.008946694  1.356352428 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 20.4189
+20.4189 :   0.073855427  0.066425775 -0.599890766 -2.675447877 -7.109741988  0.006477899 -0.472860101 -2.167472612 -7.383570006 -1.208455907 -2.290116570 -7.455987017  0.561919595 -3.047880610 -7.111376969  0.227076977  0.109694531  0.073974992  0.228094400  0.722421000  1.106292057  0.618856757  0.729145002  0.639970732  0.722478233  0.724096665  0.829166368  0.501067835  0.488521922  0.501040489  0.433295118  0.460550104  0.356198304  0.335778696  0.418967237  0.263288414  0.319816810  0.506014655  0.274301567  0.363386107  0.447770655  1.128689531  0.561135162  0.983381051  1.711705330 -0.631612005  2.185606099  0.562781127  2.042783812  0.893650769  1.622053611 -0.189770506  2.737928114 
+  It.   3, fac=           1, eval (no.,total): ( 1,  3): new dev = 20.1395
+20.13952 :   0.075571690  0.074293141 -0.788227185 -2.939971801 -7.577583034  0.007100293 -0.571628631 -2.332082803 -7.897258150 -1.211902851 -2.308539874 -8.206408748  0.880989507 -3.460972654 -7.272737041  0.204183989  0.206685776  0.072076226  0.274920662  0.841543637  1.123261106  0.591454378  0.698063941  0.639074288  0.729632596  0.734330104  0.699710935  0.503723353  0.488842742  0.497805645  0.427619951  0.454502759  0.360811971  0.339092244  0.435313424  0.150616659  0.313649902  0.491102567  0.288173929  0.359313151  0.451769535  1.163708961  0.527154001  0.921433246  1.684741439 -0.720121735  3.667742369  0.539466029  1.830289710  0.913754318  2.011546423 -0.145377190  3.296995854 
+Warning message:
+number of iterations exceeded maximum of 3 
+> 
+> 
+> 
+> 
+> 

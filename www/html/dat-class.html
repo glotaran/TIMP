@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Class "dat" for model and data storage</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for dat-class {TIMP}"><tr><td>dat-class {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Class "dat" for model and data storage</h2>
+
+
+<h3>Description</h3>
+
+<p>
+<code>dat</code> is the super-class of other classes representing models and data, so
+that other model/data classes (e.g., <code>kin</code> and <code>spec</code> 
+for kinetic and spectral
+models respectively) also have the slots defined here.  These slots may
+be specified in the <code>...</code> 
+argument of the  <code><a href="initModel.html">initModel</a></code> function.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>
+Objects from the class 
+can be created by calls of the form <code>new("dat", ...)</code> or 
+<code>dat(...)</code>, but 
+most are most often made by invoking another function such as 
+<code>readData</code> or <code>initModel</code>.
+</p>
+
+
+<h3>Slots</h3>
+
+<dl>
+<dt><code>psi.df</code>:</dt><dd>Object of class <code>"matrix"</code>  dataset from 1 experiment</dd>
+<dt><code>psi.weight</code>:</dt><dd>Object of class <code>"matrix"</code> weighted  dataset from 1 experiment</dd>
+<dt><code>x</code>:</dt><dd>Object of class <code>"vector"</code> time or other independent
+variable.  </dd>
+<dt><code>nt</code>:</dt><dd>Object of class <code>"integer"</code> length <code>x</code></dd>
+<dt><code>x2</code>:</dt><dd>Object of class <code>"vector"</code>  vector of points in 
+2nd independent dimension, such as wavelengths of wavenumbers</dd>
+<dt><code>nl</code>:</dt><dd>Object of class <code>"integer"</code>  length <code>x2</code> </dd>
+<dt><code>C2</code>:</dt><dd>Object of class <code>"matrix"</code> concentration matrix for
+simulated data</dd>
+<dt><code>E2</code>:</dt><dd>Object of class <code>"matrix"</code> matrix of spectra for
+simulated data</dd>
+<dt><code>sigma</code>:</dt><dd>Object of class <code>"numeric"</code> noise level in 
+simulated data </dd>
+<dt><code>mod_type</code>:</dt><dd>Object of class <code>"character"</code> character string defining the model type, e.g., 
+<code>"kin"</code> or <code>"spec"</code></dd>
+<dt><code>parnames</code>:</dt><dd>Object of class <code>"vector"</code> vector of
+parameter names, used internally</dd>
+<dt><code>finished</code>:</dt><dd>Object of class <code>"logical"</code> describes 
+whether optimization is complete</dd>
+<dt><code>simdata</code>:</dt><dd>Object of class <code>"logical"</code>  logical that is <code>TRUE</code> if the data is simulated, 
+<code>FALSE</code> otherwise; will determine whether values in <code>C2</code> and 
+<code>E2</code> are plotted with results</dd>
+<dt><code>weightpar</code>:</dt><dd>Object of class <code>"list"</code>  list of vectors 
+<code>c(first_x, last_x, first_x2, last_x2, weight)</code>, 
+where each vector is of length 5 and 
+specifies an interval in which to weight the data.  
+<ul>
+<dt>first_x</dt><dd>first(absolute, not an index) <code>x</code> to weight</dd>
+<dt>last_x</dt><dd>last (absolute, not an index) <code>x</code> to weight</dd> 
+<dt>first_x2</dt><dd>first (absolute, not an index)  <code>x2</code> to weight</dd>
+<dt>last_x2</dt><dd>last (absolute, not an index)  <code>x2</code> to weight</dd> 
+<dt>weight</dt><dd>numeric by which to weight data</dd> 
+</ul>
+<p>
+Note that if vector elements 1-4 are <code>NA</code> (not a number), the firstmost 
+point of the data is taken for elements 1 and 3, and the lastmost points
+are taken for 2 and 4. 
+For example, <code> weight_par = list(c(40, 1500, 400, 600, .9), 
+  c(NA, NA, 700, 800, .1))</code>  will weight data between times 40 and 1500 
+picoseconds and 700 and 800 wavelengths by .9, and will weight data at 
+all times between wavelength 700 and 800 by .1.  
+Note also that for single photon counting data 
+<code>weightpar = list(poisson = TRUE)</code> will apply poisson weighting to all 
+non-zero elements of the data. </dd>
+<dt><code>weight</code>:</dt><dd>Object of class <code>"logical"</code> <code>TRUE</code> when the specification in 
+<code>weightpar</code> is to be applied and <code>FALSE</code> otherwise</dd>
+<dt><code>weightM</code>:</dt><dd>Object of class <code>"matrix"</code> weights </dd>
+<dt><code>weightsmooth</code>:</dt><dd>Object of class <code>"list"</code> type of smoothing to apply with weighting; not currently
+used</dd>
+<dt><code>fixed</code>:</dt><dd>Object of class <code>"list"</code> list of lists or vectors giving the parameter values 
+to fix (at their starting values) during optimization. </dd>
+<dt><code>clp0</code>:</dt><dd>Object of class <code>"list"</code>  list of lists with elements <code>low</code>, <code>high</code> and 
+<code>comp</code>, specifying the least value in  <code>x2</code> to constrain 
+to zero, the greatest value in  <code>x2</code> to 
+constrain to zero, and the component to which to apply the zero constraint, 
+respectively.  e.g., <code>clp0 = list(list(low=400, high = 600, comp=2), 
+  list(low = 600, high = 650, comp=4))</code> applies zero constraints to the spectra 
+associated with components 2 and 4. </dd>
+<dt><code>makeps</code>:</dt><dd>Object of class <code>"character"</code> 
+specifyies the prefix of files written to 
+postscript
+</dd>
+<dt><code>clpequspec</code>:</dt><dd>Object of class <code>"list"</code> list of lists each of which has elements <code>to, 
+  from, low, high</code>, and optional element <code>dataset</code> to specify the dataset
+from which to get the reference clp (that is, a spectrum for kinetic 
+models).  <code>to</code> is the component to be fixed in relation to some other 
+component; from is the reference component.  <code>low</code> and <code>high</code> 
+are the 
+least and greatest absolute values of the <code>clp</code> vector to constrain. 
+e.g., 
+<code>clpequspec = list(list(low = 400, high = 600, to = 1, from = 2))</code> 
+will constrain the first component to equality to the second component 
+between wavelengths 400 and 600.  Note that equality constraints are
+actually constraints to a linear relationship.  For each of the equality
+constraints specfied as a list in the <code>clpequspec</code> list, specify a
+starting value parameterizing this linear relation in the vector
+<code>clpequ</code>; if true equality is desired then fix the corresponding
+parameter in <code>clpequ</code> to 1.  Note that if multiple components are
+constraints, the <code>from</code> in the sublists should be increasing order, 
+(i.e., <code>(list(to=2, from=1, low=100, high=10000), 
+list(to=3, from=1, low=10000, high=100))</code>, not <code>list(to=3, from=1, low=10000, high=100), 
+list(to=2, from=1, low=10000, high=100)</code>)</dd>
+<dt><code>lclp0</code>:</dt><dd>Object of class <code>"logical"</code> <code>TRUE</code> if specification in <code>clp0</code> 
+is to be applied and <code>FALSE</code> otherwise </dd>
+<dt><code>lclpequ</code>:</dt><dd>Object of class <code>"logical"</code> <code>TRUE</code> if specification in clpequspec 
+is to be applied and <code>FALSE</code> otherwise</dd>
+<dt><code>title</code>:</dt><dd>Object of class <code>"character"</code> displayed on output plots</dd>
+<dt><code>mhist</code>:</dt><dd>Object of class <code>"list"</code>  list describing fitting history</dd>
+<dt><code>datCall</code>:</dt><dd>Object of class <code>"list"</code> list of calls to functions</dd>
+<dt>drel</dt><dd>vector of starting parameters for dataset scaling relations</dd>
+<dt><code>dscalspec</code>:</dt><dd>Object of class <code>"list"</code> </dd>
+<dt><code>drel</code>:</dt><dd>Object of class <code>"vector"</code>  vector of starting parameters for dataset scaling relations</dd>
+<dt><code>clpequ</code>:</dt><dd>Object of class <code>"vector"</code>  describes the
+parameters governing the clp equality constraints specified in <code>clpequspec</code></dd>
+<dt><code>scalx</code>:</dt><dd>Object of class <code>"numeric"</code>  numeric by which to scale the <code>x</code> axis in plotting</dd>
+<dt>prel</dt><dd>vector of starting values for the relations described in 
+prelspec</dd>
+<dt><code>prel</code>:</dt><dd>Object of class <code>"vector"</code>  vector of starting values for the relations described in 
+prelspec</dd>
+<dt><code>prelspec</code>:</dt><dd>Object of class <code>"list"</code>  list of lists to specify the functional
+relationship between parameters, each of which has elements 
+<ul> 
+<dt>what1</dt><dd>character string describing the parameter type to relate, 
+e.g., <code>"kinpar"</code></dd> 
+<dt>what2</dt><dd>the parameter type on which the relation is based; usually 
+the same as <code>what1</code></dd>
+<dt>ind1</dt><dd>index into <code>what1</code></dd>
+<dt>ind2</dt><dd>index into <code>what2</code></dd>
+<dt>rel</dt><dd>character string, 
+optional argument to specify functional relation type, 
+by default linear</dd> </ul>
+<p>
+e.g., 
+<code>prelspec = list(list(what1 = "kinpar", what2 = "kinpar", ind1 = 1, 
+  ind2 = 5))</code>  relates the 1st element of <code>kinpar</code> to the 5th element of 
+<code>kinpar</code>.  The starting values parameterizing the relationship are 
+given in the <code>prel</code> vector</dd>
+<dt><code>fvecind</code>:</dt><dd>Object of class <code>"vector"</code>  vector containing indices of fixed parameters</dd> 
+<dt><code>pvecind</code>:</dt><dd>Object of class <code>"vector"</code>  used internally to
+store indices of related parameters. </dd>
+<dt><code>groups</code>:</dt><dd>Object of class <code>"list"</code>  list containing lists of pairs c(x2 index, dataset index). 
+the <code>x2</code> values (which are solved for as conditionally linear 
+parameters) are equated for all pairs in a list.</dd>
+<dt><code>iter</code>:</dt><dd>Object of class <code>"numeric"</code>  describing the 
+number of iterations that is run; this is sometimes 
+stored after fitting, but has not effect as an argument to  
+<code><a href="initModel.html">initModel</a></code></dd>
+<dt><code>clpCon</code>:</dt><dd>Object of class <code>"list"</code>  used internally to enforce constraints on the clp</dd>
+<dt><code>ncomp</code>:</dt><dd>Object of class <code>"numeric"</code>  describing the number of components in a model</dd>
+<dt><code>clpdep</code>:</dt><dd>Object of class <code>"logical"</code>  describing whether a model is dependent on the index
+of <code>x2</code></dd>
+<dt><code>inten</code>:</dt><dd>Object of class <code>"matrix"</code>  for use with FLIM data; represents the number of photons
+per pixel measured over the course of all 
+times $t$ represented by the dataset.  See the help for the <code>readData</code>
+function for more information. </dd>
+<dt><code>positivepar</code>:</dt><dd>Object of class <code>"vector"</code>  containing
+character strings of those parameter vectors to constrain to positivity,
+e.g., <code>positivepar=c("kinpar")</code></dd>
+</dl>
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="kin-class.html">kin-class</a></code>, <code><a href="spec-class.html">spec-class</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# simulate data 
+
+ C &lt;- matrix(nrow = 51, ncol = 2)
+ k &lt;- c(.5, 1)
+ t &lt;- seq(0, 2, by = 2/50)
+ C[, 1] &lt;- exp( - k[1] * t)
+ C[, 2] &lt;- exp( - k[2] * t) 
+ E &lt;- matrix(nrow = 51, ncol = 2)
+ wavenum &lt;- seq(18000, 28000, by=200)
+ location &lt;- c(25000, 20000)
+ delta &lt;- c(5000, 7000)
+ amp &lt;- c(1, 2)
+ E[, 1] &lt;- amp[1] * exp( - log(2) * (2 * (wavenum - location[1])/delta[1])^2)
+ E[, 2] &lt;- amp[2] * exp( - log(2) * (2 * (wavenum - location[2])/delta[2])^2)
+ sigma &lt;- .001
+ Psi_q  &lt;- C 
+
+ # initialize an object of class dat 
+ Psi_q_data &lt;- dat(psi.df = Psi_q, x = t, nt = length(t), 
+ x2 = wavenum, nl = length(wavenum))
+
+ # initialize an object of class dat via initModel 
+ # this dat object is also a kin object
+ kinetic_model &lt;- initModel(mod_type = "kin", seqmod = FALSE, 
+ kinpar = c(.1, 2))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

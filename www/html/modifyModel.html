@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Allows the starting values for parameters associated with a model
+to be updated with the values found in fitting the model.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for modifyModel {TIMP}"><tr><td>modifyModel {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Allows the starting values for parameters associated with a model
+to be updated with the values found in fitting the model.</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Allows the starting values for parameters associated with 
+a model to be updated with the values found in fitting the model.  
+A call <code>model_w_new_starting_vals &lt;- modifyModel(old_model)</code>
+will plug in the optimized parameter values the last model fit
+so that are the starting values in the model specification 
+<code>model_w_new_starting_vals</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+modifyModel(model = list(), newest = list(), exceptslots = vector() )
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>model</code></td>
+<td>
+an object of class <code>dat</code> returned by <code>initModel</code>;
+if this argument is of <code>length(0)</code>, which is the default, then the 
+last model fit is used (which is found in the global variable 
+<code>.currModel@model</code>)</td></tr>
+<tr valign="top"><td><code>newest</code></td>
+<td>
+an object of class <code>theta</code> containing new parameter
+estimates;    if this argument is of <code>length(0)</code>, which is the default, 
+then the parameter estimates associated with dataset 1 in the last model fit
+are used (which are found in 
+the global variable <code>.currTheta[[1]]</code>)</td></tr>
+<tr valign="top"><td><code>exceptslots</code></td>
+<td>
+a vector of character vector of slot names whose 
+corresponding slots are to be left out of the update</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+an object of class <code>dat</code> that returns the results of 
+calling <code>initModel</code> with the new starting values.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="initModel.html">initModel</a></code>, <code><a href="fitModel.html">fitModel</a></code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

@@ -1,0 +1,38 @@
+* using log directory '/home/km/TIM/TIMP/TIMP.Rcheck'
+* using R version 2.5.0 (2007-04-23)
+* checking for file 'TIMP/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'TIMP' version '1.2'
+* checking package dependencies ... OK
+* checking if this is a source package ... WARNING
+Subdirectory 'TIMP/src' contains object files.
+* checking whether package 'TIMP' can be installed ... OK
+* checking package directory ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the name space can be loaded with stated dependencies ... OK
+* checking for unstated dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking for CRLF line endings in C/C++/Fortran sources/headers ... OK
+* checking for portable use of $BLAS_LIBS ... OK
+* creating TIMP-Ex.R ... OK
+* checking examples ... OK
+* checking tests ... OK
+* creating TIMP-manual.tex ... OK
+* checking TIMP-manual.tex ... OK

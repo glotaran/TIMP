@@ -1,0 +1,44 @@
+baseIRF                 package:TIMP                 R Documentation
+
+_B_a_s_e_l_i_n_e _s_u_b_t_r_a_c_t_i_o_n _f_r_o_m _a _v_e_c_t_o_r, _u_s_u_a_l_l_y _r_e_p_r_e_s_e_n_t_i_n_g _a_n _I_R_F.
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Baseline subtraction from a vector, usually representing an IRF.
+
+_U_s_a_g_e:
+
+     baseIRF(irfvec, indexlow, indexhigh, removeNeg = FALSE) 
+
+_A_r_g_u_m_e_n_t_s:
+
+  irfvec: Vector to subtract a baseline from
+
+indexlow: Lowest index to base the baseline estimation on
+
+indexhigh: Highest index to base the baseline estimation on
+
+removeNeg: Whether negative values should be replaced with 0.
+
+_D_e_t_a_i_l_s:
+
+     Currently estimates the baseline as the mean of data between 
+     indexlow and indexhigh, and subtracts the result from the  entire
+     vector.
+
+_V_a_l_u_e:
+
+     vector
+
+_A_u_t_h_o_r(_s):
+
+     Katharine M. Mullen, Ivo H. M. van Stokkum
+
+_E_x_a_m_p_l_e_s:
+
+      
+     irfvec <- rnorm(128, mean=1) 
+     plot(irfvec,type="l") 
+     irfvec_corrected <- baseIRF(irfvec, 1, 10)
+     lines(irfvec_corrected, col=2)
+

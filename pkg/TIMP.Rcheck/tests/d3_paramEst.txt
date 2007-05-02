@@ -1,0 +1,15 @@
+Dataset 3, single analysis 
+
+Sum square error: 3.135149 
+
+Residual standard error: 0.04013818 
+
+Estimates for parameters:
+
+irfpar 1:  0.057203	(t value: 1.02096)
+irfpar 2:  0.140064	(t value: 4.36356)
+kinpar 1:  1.46608	(t value: 4.67881)
+kinpar 2:  0.140158	(t value: 10.5177)
+kinpar 3:  0.00032172	(t value: 2.45073)
+parmu 1:  -0.0397542	(t value: -0.668181)
+

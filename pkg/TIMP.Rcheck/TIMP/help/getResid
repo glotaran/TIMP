@@ -1,0 +1,40 @@
+getResid                package:TIMP                R Documentation
+
+_F_o_r _d_a_t_a _c_o_r_r_e_c_t_i_o_n, _f_i_t_s _a _m_o_d_e_l (_b_u_t _i_g_n_o_r_e_s 
+_p_l_o_t_t_i_n_g _c_o_m_m_a_n_d_s) _i_n _o_r_d_e_r _t_o _o_b_t_a_i_n _t_h_e _S_V_D _o_f _t_h_e _r_e_s_i_d_u_a_l_s, _w_h_i_c_h 
+_t_h_e_n _c_a_n _b_e _u_s_e_d _i_n _d_a_t_a-_c_o_r_r_e_c_t_i_o_n.
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     For data correction, fits a model exactly as does  'fitModel' (but
+     ignores  plotting commands) in order to obtain the SVD of the
+     residuals.  These  residuals can then be subtracted away from the
+     original data to some extent with the 'preProcess' function.
+
+_U_s_a_g_e:
+
+     getResid(data, modspec=list(), datasetind = vector(), modeldiffs = list(), 
+                     opt = opt() )
+
+_A_r_g_u_m_e_n_t_s:
+
+    data: As in the 'fitModel' function 
+
+ modspec: As in the 'fitModel' function
+
+datasetind: As in the 'fitModel' function
+
+modeldiffs: As in the 'fitModel' function
+
+     opt: As in the 'fitModel' function
+
+_V_a_l_u_e:
+
+     list containing the first five left and right singular vectors of
+     the  residuals, as well as the first five singular values.  A
+     weight matrix  (if used) is also included in this list.
+
+_S_e_e _A_l_s_o:
+
+     'fitModel', 'preProcess'
+

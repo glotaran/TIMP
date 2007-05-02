@@ -1,0 +1,17 @@
+makevars = -f Makevars
+srcdir = /home/km/TIM/TIMP/TIMP/tests
+R_LIBS = /home/km/TIM/TIMP/TIMP.Rcheck:
+VPATH = $(srcdir)
+
+test-src-1 =\
+ kin_ir_simult_script.R\
+ kin_sim_large_script.R\
+ kin_simple_ir_script.R\
+ kin_simple_visible_script.R\
+ kin_simult_script.R\
+ kin_target_script.R\
+ memory_prof_pvarpro.R\
+ num_conv_FLIM_script.R\
+ spectral_script.R
+test-src-auto =
+USE_GCT = 0

@@ -1,0 +1,103 @@
+
+R version 2.5.0 (2007-04-23)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ##############################
+> ## Dataset and model of 
+> ## Mariangela di Donato.
+> ##############################
+> 
+> ##############################
+> ## load TIMP
+> ##############################
+> 
+> require(TIMP)
+Loading required package: TIMP
+Loading required package: tcltk
+Loading Tcl/Tk interface ... done
+Loading required package: vcd
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+Loading required package: fields
+fields is loaded use help(fields) for an overview of this library
+Loading required package: gplots
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+Loading required package: splines
+[1] TRUE
+> 
+> ##############################
+> ## READ IN DATA
+> ##############################
+> 
+> mdDat<-readData("cp432704.txt")
+Read 1 item
+Read 1849 items
+> 
+> ##############################
+> ## PREPROCESS PSI 1
+> ## estimate the baseline from timepoints 1-5, 
+> ## and substract this baseline from data between wavelengths 1-32 
+> ##############################
+> 
+> mdDat<-preProcess(data = mdDat, baselinelambda = c(1, 5, 1, 32))
+> 
+> ##############################
+> ## DEFINE INITIAL MODEL
+> ##############################
+> 
+> model1<- initModel(mod_type = "kin", 
++ kinpar= c(1.0,  0.01, 0.005  ), irfpar=c(.003, .095), 
++ parmu = list(c(.073)), lambdac = 1670,
++ seqmod=TRUE,
++ positivepar = c("kinpar"), weightpar = list(c(-16, -.1, NA, NA, .1)),
++ makeps="MARI", title="MARI", 
++ cohspec = list( type = "irf"))
+> 
+> ##############################
+> ## FIT INITIAL MODEL
+> ##############################
+> 
+> denRes<-fitModel(list(mdDat), list(model1), 
++ opt=kinopt(iter=5, linrange = .2,
++ makeps = "MARI", xlab = "time (ps)", 
++ ylab = "wavelength", 
++ paropt=list(mar=c(2,2,2,2), mgp=c(1,.2,0) )))
+3.023402 :   0.003000  0.095000  0.000000 -4.605170 -5.298317  0.073000 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 2.02861
+2.028614 :   -0.0537632   0.1242623  -0.2989021   0.6768985 -10.0229417   0.1077550 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 2.76707
+  It.   2, fac=         0.5, eval (no.,total): ( 2,  3): new dev = 1.59918
+1.59918 :  -0.07237881  0.13332572 -0.67321675  0.93758186 -8.04834301  0.12396438 
+  It.   3, fac=           1, eval (no.,total): ( 1,  4): new dev = 1.59251
+1.592509 :  -0.09450686  0.13606569 -0.94892905  0.71273645 -8.12345525  0.14399376 
+  It.   4, fac=           1, eval (no.,total): ( 1,  5): new dev = 1.58943
+1.589425 :  -0.09683887  0.13394291 -1.21955152  0.56801790 -8.13497254  0.14568706 
+  It.   5, fac=           1, eval (no.,total): ( 1,  6): new dev = 1.58718
+1.587184 :  -0.09688593  0.13369230 -1.49794894  0.55464783 -8.14318749  0.14356034 
+Warning message:
+number of iterations exceeded maximum of 5 
+> 
+> 

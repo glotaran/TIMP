@@ -1,0 +1,1532 @@
+\documentclass{article}
+\usepackage[ae,hyper]{Rd}
+\begin{document}
+\HeaderA{fit-class}{Class "fit" to store the results of model fitting associated with 
+all datasets analyzed.}{fit.Rdash.class}
+\aliasA{fit}{fit-class}{fit}
+\keyword{classes}{fit-class}
+\begin{Description}\relax
+Class to store results of model fitting associated with 
+all datasets in a single call to the \code{fitModel} function.  
+An object of class \code{fit} is stored in 
+the slot \code{fit} of objects of class \code{multimodel}.
+\end{Description}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("fit", ...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{resultlist}:] Object of class \code{"list"} that contains 
+an object of class \code{res} for each dataset modeled, in the order 
+that they were specified. 
+\item[\code{nlsres}:] Object of class \code{"list"} containing 
+named elements 
+\Itemize{ 
+\item[onls] output of the call to \code{nls} used in model optimization. 
+\item[sumonls] result of call \code{summary(onls)}  
+}
+
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{res-class}{res.Rdash.class}}, \code{\LinkA{multimodel-class}{multimodel.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{modifyModel}{Allows the starting values for parameters associated with a model
+to be updated with the values found in fitting the model.}{modifyModel}
+\keyword{file}{modifyModel}
+\begin{Description}\relax
+Allows the starting values for parameters associated with 
+a model to be updated with the values found in fitting the model.  
+A call \code{model\_w\_new\_starting\_vals <- modifyModel(old\_model)}
+will plug in the optimized parameter values the last model fit
+so that are the starting values in the model specification 
+\code{model\_w\_new\_starting\_vals}.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+modifyModel(model = list(), newest = list(), exceptslots = vector() )
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] an object of class \code{dat} returned by \code{initModel};
+if this argument is of \code{length(0)}, which is the default, then the 
+last model fit is used (which is found in the global variable 
+\code{.currModel@model})
+\item[\code{newest}] an object of class \code{theta} containing new parameter
+estimates;    if this argument is of \code{length(0)}, which is the default, 
+then the parameter estimates associated with dataset 1 in the last model fit
+are used (which are found in 
+the global variable \code{.currTheta[[1]]})
+\item[\code{exceptslots}] a vector of character vector of slot names whose 
+corresponding slots are to be left out of the update
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+an object of class \code{dat} that returns the results of 
+calling \code{initModel} with the new starting values.
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{initModel}{initModel}}, \code{\LinkA{fitModel}{fitModel}}
+\end{SeeAlso}
+
+\HeaderA{kinopt-class}{Class "kinopt" stores options for fitting and plotting kinetic models}{kinopt.Rdash.class}
+\aliasA{kinopt}{kinopt-class}{kinopt}
+\keyword{classes}{kinopt-class}
+\begin{Description}\relax
+Class "kinopt" stores options for fitting and plotting kinetic
+models in particular; this is a subclass of class \code{opt} that contains 
+options applicable to all model types
+\end{Description}
+\begin{Details}\relax
+See \code{\LinkA{opt-class}{opt.Rdash.class}} and  \LinkA{specopt-class}{specopt.Rdash.class} for 
+the specification of fitting/plotting options that are not specific to the 
+class type and for the \code{kin} class type, respectively.
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("kinopt", ...)} or
+\code{kinopt(...)}
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{notraces}:] Object of class \code{"logical"} that defaults
+to \code{FALSE}; if \code{TRUE}, do not plot traces
+\item[\code{selectedtraces}:] Object of class \code{"vector"} containing
+\code{x} indices for which plots of 
+traces are desired under a kinetic model 
+\item[\code{breakdown}:] Object of class \code{"list"} with the 
+following elements: 
+\Itemize{ 
+\item[plot] vector of \code{x2} values to plot the breakdown for.  
+These values be specified in 
+a fuzzy way:  an \code{x2} value within \code{abs(x2[1] - x2[2])/100} 
+a value given in \code{plot} means that a plot for that \code{x2} value 
+will be generated, where
+the reference \code{x2[1]} and \code{x2[2]} are from the first dataset
+modelled. 
+
+\item[tol] numeric giving a tolerance by which 
+the values in \code{plot} are compared to \code{x2} values
+for near-equality. The default is defined as  
+\code{abs(x2[1] - x2[2])/100}. 
+\item[superimpose] vector of dataset indices for which results should
+be superimposed if the dataset has an \code{x2} value at a value in 
+\code{plot}.
+}
+
+\item[FLIM:] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, the data represent a FLIM experiment and 
+special plots are generated. 
+\item[kinspecest] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, make a plot of the spectra associated with
+the kinetic components as well as the lifetime estimates. 
+\item[kinspecerr] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, add standard error estimates to the spectra
+a plot generated with \code{kinspecest=TRUE}.  This option can only be 
+used if the estimates were generated during fitting via the option 
+\code{stderrclp=TRUE}
+\item[specinterpol] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, use spline instead of lines between 
+the points representing estimated spectra
+\item[specinterpolpoints] Object of class \code{"logical"} that defaults to 
+\code{TRUE}; if \code{TRUE}, add points representing the actual estimates
+for spectra to plots of the curves respresenting smoothed spectra
+\item[specinterpolseg] Object of class \code{"numeric"} that defaults to 
+\code{50}; represents the number of segments used in a spline-based
+representation of spectra  
+\item[specinterpolbspline] Object of class \code{"logical"} that defaults
+to \code{FALSE}; determines whether a B-spline based representation of
+spectra is used (when \code{specinterpol=TRUE}) or a piecewise polynomial 
+representation 
+\item[normspec] Object of class \code{"logical"} that determines whether
+spectra are normalized in plots
+
+\item[writespecinterpol] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, a spline-based representation of spectra
+is written to ASCII files
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{examineFit}{examineFit}}, \code{\LinkA{fitModel}{fitModel}}, \code{\LinkA{opt-class}{opt.Rdash.class}}, \code{\LinkA{specopt-class}{specopt.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{Internals}{TIMP function used internally}{Internals}
+\aliasA{addDscal}{Internals}{addDscal}
+\aliasA{addPrel}{Internals}{addPrel}
+\aliasA{addPrelCl}{Internals}{addPrelCl}
+\aliasA{applyWeighting}{Internals}{applyWeighting}
+\aliasA{applyWeightingModel}{Internals}{applyWeightingModel}
+\aliasA{baseCorlambda}{Internals}{baseCorlambda}
+\aliasA{baseCortime}{Internals}{baseCortime}
+\aliasA{calcB}{Internals}{calcB}
+\aliasA{calcC}{Internals}{calcC}
+\aliasA{calcCirf}{Internals}{calcCirf}
+\aliasA{calcEbspline}{Internals}{calcEbspline}
+\aliasA{calcEhiergaus}{Internals}{calcEhiergaus}
+\aliasA{compCoh}{Internals}{compCoh}
+\aliasA{compModel}{Internals}{compModel}
+\aliasA{decayirf}{Internals}{decayirf}
+\aliasA{diffAdd}{Internals}{diffAdd}
+\aliasA{diffChange}{Internals}{diffChange}
+\aliasA{diffFree}{Internals}{diffFree}
+\aliasA{diffRel}{Internals}{diffRel}
+\aliasA{diffRemove}{Internals}{diffRemove}
+\aliasA{displayEst}{Internals}{displayEst}
+\aliasA{doClpConstr}{Internals}{doClpConstr}
+\aliasA{doSVD}{Internals}{doSVD}
+\aliasA{fillK}{Internals}{fillK}
+\aliasA{fillResult}{Internals}{fillResult}
+\aliasA{fullKF}{Internals}{fullKF}
+\aliasA{gaus}{Internals}{gaus}
+\aliasA{getClpConstr}{Internals}{getClpConstr}
+\aliasA{getClpList}{Internals}{getClpList}
+\aliasA{getCoh}{Internals}{getCoh}
+\aliasA{getCohToPlot}{Internals}{getCohToPlot}
+\aliasA{getConToPlot}{Internals}{getConToPlot}
+\aliasA{getDiffTheta}{Internals}{getDiffTheta}
+\aliasA{getDiffThetaChange}{Internals}{getDiffThetaChange}
+\aliasA{getDiffThetaCl}{Internals}{getDiffThetaCl}
+\aliasA{getDiffThetaClChange}{Internals}{getDiffThetaClChange}
+\aliasA{getFixed}{Internals}{getFixed}
+\aliasA{getGroups}{Internals}{getGroups}
+\aliasA{getModel}{Internals}{getModel}
+\aliasA{getPar}{Internals}{getPar}
+\aliasA{getPrel}{Internals}{getPrel}
+\aliasA{getPrelTheta}{Internals}{getPrelTheta}
+\aliasA{getSpecList}{Internals}{getSpecList}
+\aliasA{getSpecToPlot}{Internals}{getSpecToPlot}
+\aliasA{getTheta}{Internals}{getTheta}
+\aliasA{getThetaCl}{Internals}{getThetaCl}
+\aliasA{init.dat}{Internals}{init.dat}
+\aliasA{init.fc}{Internals}{init.fc}
+\aliasA{init.fit}{Internals}{init.fit}
+\aliasA{init.het}{Internals}{init.het}
+\aliasA{init.kin}{Internals}{init.kin}
+\aliasA{init.kinopt}{Internals}{init.kinopt}
+\aliasA{init.multimodel}{Internals}{init.multimodel}
+\aliasA{init.multitheta}{Internals}{init.multitheta}
+\aliasA{init.opt}{Internals}{init.opt}
+\aliasA{init.res}{Internals}{init.res}
+\aliasA{init.spec}{Internals}{init.spec}
+\aliasA{init.specopt}{Internals}{init.specopt}
+\aliasA{init.theta}{Internals}{init.theta}
+\aliasA{initModellist}{Internals}{initModellist}
+\aliasA{irfparF}{Internals}{irfparF}
+\aliasA{l2nu}{Internals}{l2nu}
+\aliasA{linloglines}{Internals}{linloglines}
+\aliasA{linlogplot}{Internals}{linlogplot}
+\aliasA{matlinlogplot}{Internals}{matlinlogplot}
+\aliasA{normdat}{Internals}{normdat}
+\aliasA{plotEst}{Internals}{plotEst}
+\aliasA{plotFLIM}{Internals}{plotFLIM}
+\aliasA{plotKinBreakDown}{Internals}{plotKinBreakDown}
+\aliasA{plotKinSpec}{Internals}{plotKinSpec}
+\aliasA{plotKinSpecEst}{Internals}{plotKinSpecEst}
+\aliasA{plotSelectedSpectra}{Internals}{plotSelectedSpectra}
+\aliasA{plotSelectedTraces}{Internals}{plotSelectedTraces}
+\aliasA{plotSelectedTracesSuper}{Internals}{plotSelectedTracesSuper}
+\aliasA{plotSpectra}{Internals}{plotSpectra}
+\aliasA{plotTraces}{Internals}{plotTraces}
+\aliasA{plotTracesSuper}{Internals}{plotTracesSuper}
+\aliasA{rescomp}{Internals}{rescomp}
+\aliasA{sample\_sel}{Internals}{sample.Rul.sel}
+\aliasA{setGenerics}{Internals}{setGenerics}
+\aliasA{setMethods}{Internals}{setMethods}
+\aliasA{set\_getClpindepX}{Internals}{set.Rul.getClpindepX}
+\aliasA{set\_getClpindepX\_kin}{Internals}{set.Rul.getClpindepX.Rul.kin}
+\aliasA{set\_getClpindepX\_spec}{Internals}{set.Rul.getClpindepX.Rul.spec}
+\aliasA{set\_plotter\_kin}{Internals}{set.Rul.plotter.Rul.kin}
+\aliasA{set\_plotter\_spec}{Internals}{set.Rul.plotter.Rul.spec}
+\aliasA{set\_residPart\_kin}{Internals}{set.Rul.residPart.Rul.kin}
+\aliasA{set\_residPart\_spec}{Internals}{set.Rul.residPart.Rul.spec}
+\aliasA{simndecay\_gen}{Internals}{simndecay.Rul.gen}
+\aliasA{simpExp}{Internals}{simpExp}
+\aliasA{simpPol}{Internals}{simpPol}
+\aliasA{skew}{Internals}{skew}
+\aliasA{specModel}{Internals}{specModel}
+\aliasA{specparF}{Internals}{specparF}
+\aliasA{timpErrors}{Internals}{timpErrors}
+\aliasA{weightNL}{Internals}{weightNL}
+\aliasA{weightPsi}{Internals}{weightPsi}
+\aliasA{weightSM}{Internals}{weightSM}
+\aliasA{writeEst}{Internals}{writeEst}
+\aliasA{writeFit}{Internals}{writeFit}
+\keyword{file}{Internals}
+\begin{Description}\relax
+TIMP function used internally
+\end{Description}
+\begin{Details}\relax
+The functions linked to below are for direct use.
+\end{Details}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{baseIRF}{baseIRF}},\code{\LinkA{readData}{readData}}, 
+\code{\LinkA{preProcess}{preProcess}},\code{\LinkA{initModel}{initModel}},
+\code{\LinkA{fitModel}{fitModel}},\code{\LinkA{examineFit}{examineFit}}, 
+\code{\LinkA{sumKinSpecEst}{sumKinSpecEst}}
+\end{SeeAlso}
+
+\HeaderA{fitModel}{Performs optimization of (possibly multidataset) models.}{fitModel}
+\keyword{file}{fitModel}
+\begin{Description}\relax
+Performs optimization of (possibly multidataset) models and 
+outputs plots and files representing the fit of the model to the data.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+fitModel(data, modspec=list(), datasetind = vector(), modeldiffs = list(), 
+                opt = opt() )
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] list of data objects of class \code{dat}
+\item[\code{modspec}] list whose elements are models of class \code{dat} 
+describing the models as results from a
+call to the function \code{initModel} 
+\item[\code{datasetind}] vector that has the same length as \code{data};
+for each dataset in \code{data} specify the model it should have as 
+an index into \code{modspec}; default mapping is that all datasets 
+use the first model given in \code{modspec}  
+\item[\code{modeldiffs}] list whose elements specify any dataset-specific 
+model differences. 
+\Itemize{ 
+\item[dscal] list of lists specifying linear scaling relations between 
+datasets; each list has elements \code{to, from, value}.  The index of the 
+dataset to be scaled is given in \code{to}; the index of the dataset on 
+which the scaling is to be based is given in \code{from}.  The starting 
+value parameterizing the relationship is given as \code{value}. For 
+example, \code{dscal = list(list(to=2,from=1,value=.457))}.     
+\item[thresh] numeric describing the tolerance with which clp from 
+different datasets are to be considered as equal.  
+For instance, for 
+two datasets containing data at 750 and 751 nm, respectively, 
+\code{thresh=1.5} will equate the clp at 750 and 751 between datasets.
+Specify a negative
+value of \code{thresh} to estimate clp per-dataset. 
+See Section 2.2 of the paper in the references for the model equations.  
+\item[free] list of lists specifying individual 
+parameters to free for a given dataset. each sublist has 
+named elements 
+\Itemize{ 
+\item[what] character string naming parameter type, e.g., "kinpar"
+\item[ind] vector of indices into parameter vector or list, e.g.,
+\code{c(2,3)} or \code{4}
+\item[dataset] dataset index in which parameter is to be freed
+\item[start] starting value for freed parameter
+}  
+For example, \code{free = list(
+list(what = "irfpar", ind = 1, dataset = 2, start=-.1932),
+list(what = "kinpar", ind = 5, dataset = 2, start=.0004),
+list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}. 
+
+\item[remove] list of lists specifying individual 
+parameters to remove from 
+parameter groups for a given dataset. each sublist has 
+named elements 
+\Itemize{ 
+\item[what] character string naming parameter type, e.g., "kinpar"
+\item[dataset] dataset index in which parameter group is to be removed
+\item[ind] vector of indices into parameter vector or list, e.g.,
+\code{c(2,3)} or \code{4} where parameter should be removed 
+}
+  
+\item[add] list of lists specifying individual 
+parameters to add to parameter groups for a given dataset. each sublist has 
+named elements 
+\Itemize{ 
+\item[what] character string naming parameter type, e.g., "kinpar"
+\item[dataset] dataset index in which parameter group is to change
+\item[start] starting value for added parameter
+\item[ind] vector of indices into parameter vector or list, e.g.,
+\code{c(2,3)} or \code{4} where parameter should be added. 
+}
+  
+\item[change] list of lists specifying entire parameter groups to change 
+for a given dataset.
+each sublist has named elements 
+\Itemize{ 
+\item[what] character string naming parameter type, e.g., "kinpar"
+\item[dataset] dataset index in which parameter group is to change
+\item[spec] new specification that in initModel would follow "what", 
+e.g., for \code{c(.1, .3)} if what="kinpar"
+}
+\item[rel] list of lists specifying parameters to relate between datasets
+each sublist has named elements 
+\Itemize{ 
+\item[what1] character string naming parameter type to be determined in 
+relation to some other parameter type , e.g., "kinpar"
+\item[what2] character string naming parameter type on which another 
+parameter type is to depend, e.g., "kinpar"
+\item[ind1] vector of indices into parameter vector or 
+list, e.g., \code{c(2,3)} or \code{4} of the dependent parameter. }
+\item[ind2] vector or numeric of indices into parameter vector or 
+list, e.g., \code{c(2,3)} or \code{4} of the parameter on which another 
+parameter will depend 
+\item[dataset1] dataset index of the dependent parameter
+\item[dataset2] dataset index of the parameter on which another parameter
+will depend
+\item[rel] optional character string describing functional relationship 
+between parameters; defaults to "lin" for linear relationship 
+\item[start] starting value or vector of values parameterizing 
+relationship between parameters  
+ 
+
+}
+
+\item[\code{opt}] Object of class \code{kinopt} or \code{specopt} specifying 
+fitting and plotting options. 
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+This function applies the \code{\LinkA{nls}{nls}} function internally to 
+optimize nonlinear parameters and to solve for conditionally linear parameters
+(clp) via the partitioned variable projection algorithm.
+\end{Details}
+\begin{Value}
+list with element \code{toPlotter}.  
+\begin{ldescription}
+\item[\code{toPlotter}] is a list containing all arguments used by the plotting 
+function; it is used to regenerate plots and other output by the 
+\code{examineFit}  function
+\end{ldescription}
+
+normal-bracket116bracket-normal
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{References}\relax
+Mullen KM, van Stokkum IHM (2007). 
+``TIMP: an R package for modeling
+multi-way spectroscopic measurements.'' Journal of Statistical Software,
+18(3). \url{http://www.jstatsoft.org/v18/i03/.}
+\end{References}
+\begin{SeeAlso}\relax
+\code{\LinkA{readData}{readData}}, \code{\LinkA{initModel}{initModel}}, 
+\code{\LinkA{examineFit}{examineFit}}
+\end{SeeAlso}
+
+\HeaderA{theta-class}{Class "theta" for storage of nonlinear parameter estimates}{theta.Rdash.class}
+\aliasA{theta}{theta-class}{theta}
+\keyword{classes}{theta-class}
+\begin{Description}\relax
+\code{theta} is the class to store parameter estimates associated with possibly 
+many datasets; after a call to fitModel a list containing n theta objects 
+for each of the n datasets analyzed in the call to fitModel is created
+as the invisible object \code{.currTheta}.  To see the parameter estimates 
+associated with the ith dataset, examine \code{.currTheta[[i]]}
+\end{Description}
+\begin{Details}\relax
+after a call to \code{\LinkA{fitModel}{fitModel}}, an object of class 
+\code{theta} exists in the global environment as the variable 
+\code{.currTheta}
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("theta", ...)} or 
+\code{theta(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{kinpar}:] Object of class \code{"vector"} of rate constant estimates 
+\item[\code{specpar}:] Object of class \code{"list"}   of spectral shape parameter estimates
+\item[\code{irfpar}:] Object of class \code{"vector"}  of IRF parameter estimates
+\item[\code{parmu}:] Object of class \code{"list"}   of parameter estimates describing dispersion of the location
+of other parameters (in time, temp., etc.)
+\item[\code{partau}:] Object of class \code{"vector"}  of parameter estimates describing dispersion of the 
+width of other parameters (in time)
+\item[\code{clpequ}:] Object of class \code{"vector"}  of parameter estimates describing conditionally linear
+parameters (spectra, in a kinetic model) relations
+\item[\code{specdisppar}:] Object of class \code{"list"}  of parameter estimates describing dispersion of
+spectra
+\item[\code{kinscal}:] Object of class \code{"vector"}  of parameters describing kinetic relations in
+the context of a compartmental scheme
+\item[\code{prel}:] Object of class \code{"vector"}  of parameters describing relations between
+parameters (which may be linear, exponential, etc.)
+\item[\code{coh}:] Object of class \code{"vector"}  of parameters
+describing a coherent artifact or pulse follower. 
+\item[\code{drel}:] Object of class \code{"vector"}  of parameters describing relations between
+datasets (linear, and possibly per-wavelength or, in general, per-clp)
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel} }, \code{\LinkA{multitheta-class}{multitheta.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{getClpindepX-methods}{Generic function getClpindepX in Package `TIMP'}{getClpindepX.Rdash.methods}
+\aliasA{getClpindepX}{getClpindepX-methods}{getClpindepX}
+\aliasA{getClpindepX,kin-method}{getClpindepX-methods}{getClpindepX,kin.Rdash.method}
+\aliasA{getClpindepX,spec-method}{getClpindepX-methods}{getClpindepX,spec.Rdash.method}
+\keyword{methods}{getClpindepX-methods}
+\begin{Description}\relax
+Gets the matrix associated with nonlinear parameter estimates for the 
+case that this matrix is not re-calculated per conditionally linear
+parameter.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+getClpindepX(model, multimodel, theta, returnX, rawtheta, dind)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] Object of class \code{dat}; function switches on this 
+argument. 
+
+\item[\code{multimodel}] Object of class \code{multimodel} used in standard error
+determination
+\item[\code{theta}] Vector of nonlinear parameter estimates.
+\item[\code{returnX}] logical indicating whether to return a vectorized version of 
+the \code{X} matrix
+\item[\code{rawtheta}] vector of nonlinear parmeters; used in standard error
+determination
+\item[\code{dind}] numeric indicating the dataset index; used in standard error
+determination
+\end{ldescription}
+\end{Arguments}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{examineFit}{Examines the results of a call to  fitModel}{examineFit}
+\keyword{file}{examineFit}
+\begin{Description}\relax
+Examine the results of a call to  \code{\LinkA{fitModel}{fitModel}} 
+by a call to plotting functions; call this function with argument 
+an object returned from \code{fitModel}.  Possibly also supply a new 
+specification of plots to be generated.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+examineFit(resultfitModel, opt=vector())
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{resultfitModel}] list returned by a call to  \code{\LinkA{fitModel}{fitModel}}
+\item[\code{opt}] possibly an object of class \code{opt} giving options for 
+plotting; if \code{opt} has length zero (the default) then the plotting
+options given in the \code{opt} list of \code{resultFitModel} are 
+applied
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+The  \code{\LinkA{fitModel}{fitModel}} function returns a list of results, and initiates plotting
+functions.  Given the \code{resultfitModel} list  \code{\LinkA{fitModel}{fitModel}} returns, 
+\code{examineFit} initiates the plotting functions, and thus may be 
+used to examine results.
+\end{Details}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel}}, \code{\LinkA{opt}{opt} }
+\end{SeeAlso}
+
+\HeaderA{preProcess}{Performs preprocessing on data stored as an objects of class dat.}{preProcess}
+\keyword{file}{preProcess}
+\begin{Description}\relax
+Performs data sampling, selection, baseline correction,  
+scaling, and data correction on an object of class \code{dat}.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+preProcess(data, sample = 1, sample_time = 1, sample_lambda = 1, 
+    sel_time = vector(), sel_lambda = vector(), baselinetime = vector(), 
+    baselinelambda = vector(), scalx = NULL, scalx2 = NULL, 
+    sel_lambda_ab = vector(), sel_time_ab = vector(), rm_x2=vector(), 
+    rm_x = vector(), svdResid = list(), numV = 0)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] Object of class \code{dat}
+\item[\code{sample}] integer describing sampling interval to take in both time and 
+\code{x2}; e.g., \code{sample=2} 
+will sample every 2nd time and every 2nd point in 
+\code{x2}.
+\item[\code{sample\_time}] integer describing sampling interval in time; e.g.,
+\code{sample\_time=2} will sample every 2nd element of the time vector. 
+\item[\code{sample\_lambda}] integer describing sampling interval in \code{x2}; 
+e.g., \code{sample\_lambda=2} will sample every 2nd element in the 
+\code{x2} vector. 
+\item[\code{sel\_time}] vector of length 2 describing the first and last time 
+index of data to select; e.g., \code{sel\_time=c(5,120)} will select 
+data at times indexed 5-120. 
+\item[\code{sel\_lambda}] vector of length 2 describing the first and last \code{x2}  
+index of data to select; e.g., \code{sel\_lambda=c(5,120)} 
+will select data at \code{x2}
+indexed 5-120. 
+\item[\code{baselinetime}] a vector of form \code{c(timeIndexmin, timeIndexmax, 
+  lambdaIndexmin, lambdaIndexmax)}.  The average of data between 
+\code{x2} indexes  
+\code{lambdaIndexmin} and \code{lambdaIndexmax} 
+is subtracted from data with 
+time index between \code{timeIndexmin} and \code{timeIndexmax}.  
+\item[\code{baselinelambda}] a vector of form \code{c(timeIndexmin, timeIndexmax, 
+  lambdaIndexmin, lambdaIndexmax)}.  The average of data between time indexes  
+\code{timeIndexmin} and \code{timeIndexmax} 
+is subtracted from data with \code{x2} index 
+between \code{lambdaIndexmin} and \code{lambdaIndexmax}.
+\item[\code{scalx}] numeric by which to linearly scale the \code{x} axis
+(which often represents time), so that newx = oldx * scalx 
+\item[\code{scalx2}] vector of length 2 by which to linearly scale the 
+\code{x2} axis, so that newx2 = oldx2 * scalx2[1] + scalx2[2]
+\item[\code{sel\_lambda\_ab}] vector of length 2 describing the absolute values
+(e.g., wavelengths, wavenumbers, etc.) between which data should be
+selected.   e.g., \code{sel\_lambda\_ab = c(400, 600)} will select data  
+associated with \code{x2} values between 400 and 600. 
+\item[\code{sel\_time\_ab}] vector of length 2 describing the absolute times 
+between which data should be
+selected.   e.g., \code{sel\_time\_ab = c(50, 5000)} will select data  
+associated with time values between 50 and 5000 picoseconds.
+\item[\code{rm\_x2}] vector of \code{x2} indices to remove from the data
+\item[\code{rm\_x}] vector of \code{x} indices to remove from the data
+\item[\code{svdResid}] list returned from the \code{getResid} function, containing
+residuals to be used in data correction. 
+\item[\code{numV}] numeric specifying how many singular vectors to use in data
+correction.  Maximum is five. 
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+object of class \code{dat}.
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{readData}{readData}}, \code{\LinkA{getResid}{getResid} }
+\end{SeeAlso}
+
+\HeaderA{spec-class}{Class "spec" for the storage of spectral models.}{spec.Rdash.class}
+\aliasA{spec}{spec-class}{spec}
+\keyword{classes}{spec-class}
+\begin{Description}\relax
+\code{spec} is the class for spectral models; if \code{mod\_type = "spec"} 
+is an 
+input to \code{initModel}. All objects of class 
+\code{spec} are
+also of class \code{dat}; see documentation for \code{dat} 
+for a description of 
+these slots.  Note that here \code{x2} 
+will refer to the independent variable in
+which traces are resolved, e.g., wavelength or wavenumber.
+\end{Description}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("spec", ...)} or 
+\code{spec(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{clpequ}:] Object of class \code{"vector"}  of starting values for linear relationships between 
+clp
+\item[\code{specpar}:] Object of class \code{"list"}  of vectors of 
+starting values for spectral parameters; the number of vectors gives the 
+number of components in the resulting spectral model;  
+each vector contains the parameters 
+associated with a component.  e.g., 
+\code{specpar = list(c(20000, 3000, .3, 21000, 2000, .4), c(18000, 1000, .2))};
+the parameters in each vector are grouped 
+\code{c(location\_spectra, width\_spectra, skew\_spectra)}.  
+the location and width parameters are given in wavenumbers.  
+
+\item[\code{specfun}:] Object of class \code{"character"},  \code{"gaus"} for a spectral model of a
+superposition of skewed Gaussians; \code{"bspline"} for a 
+bspline-based model.  
+\item[\code{specref}:] Object of class \code{"numeric"}  index defining the center value of the 
+\code{x2} variable.
+\item[\code{specCon}:] Object of class \code{"list"}  used internally to 
+store constraints. 
+\item[\code{specdisp}:] Object of class \code{"logical"}  \code{TRUE} if time-dependence of the spectral parameters
+is to be taken into account and \code{FALSE} otherwise
+\item[\code{specdisppar}:] Object of class \code{"list"}  
+\item[\code{specdispindex}:] Object of class \code{"list"}  of vectors defining those indexes of specpar whose
+time-dependence is to be modeled.  e.g., \code{specdispindex = list(c(1,1), 
+c(1,2), c(1,3))} says that parameters 1-3 of spectra 1 are to be modeled as 
+time-dependent.
+\item[\code{nupow}:] Object of class \code{"numeric"}   describing the power to which wavenumbers are raised in 
+the model equation; see Equation 30 of the paper in the references section 
+for a complete description
+\item[\code{timedep}:] Object of class \code{"logical"} describing whether the model for spectra E is dependent
+on x-index (i.e., whether it is clp-dependent). 
+\item[\code{parmufunc}:] Object of class \code{"character"}  describing the function form of the 
+time-dependence of spectral parameters; options are \code{"exp"} 
+for exponential time 
+dependence, \code{"multiexp"} for multiexponential time dependence, and 
+\code{"poly"} for 
+polynomial time dependence. defaults to polynomial time dependence.  
+\item[ ncole ] vector describing the number of columns of the E matrix for 
+each value in the \code{x} vector
+}
+\end{Section}
+\begin{Section}{Extends}
+Class \code{\LinkA{dat-class}{dat.Rdash.class}}, directly.
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{References}\relax
+Ivo H. M. van Stokkum, 
+"Global and target analysis of time-resolved spectra, Lecture notes
+for the Troisieme Cycle de la Physique en Suisse Romande", 
+Department of Physics and Astronomy, Faculty of Sciences, Vrije Universiteit,
+Amsterdam, The Netherlands, 2005, 
+\url{http://www.nat.vu.nl/~ivo/lecturenotes.pdf}
+\end{References}
+\begin{SeeAlso}\relax
+\code{\LinkA{kin-class}{kin.Rdash.class}},
+\code{\LinkA{dat-class}{dat.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{opt-class}{Class "opt" stores options for fitting and plotting}{opt.Rdash.class}
+\aliasA{opt}{opt-class}{opt}
+\keyword{classes}{opt-class}
+\begin{Description}\relax
+Class "opt" stores options for fitting and plotting applicable to
+all model types
+\end{Description}
+\begin{Details}\relax
+See \code{\LinkA{kinopt-class}{kinopt.Rdash.class}} and  \code{\LinkA{specopt-class}{specopt.Rdash.class}} for 
+the specification of fitting/plotting options that are specific to the 
+class type.
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("opt", ...)} or
+\code{opt(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{writecon}:] Object of class \code{"logical"}  that defaults to
+FALSE; if true then 
+concentrations are written to a txt file; row labels are \code{x}
+\item[\code{writespec}:] Object of class \code{"logical"} that defaults to
+\code{FALSE}; if \code{TRUE} then 
+spectra are written to a txt file; row labels are \code{x2}
+\item[\code{writenormspec}:] Object of class \code{"logical"} that 
+defaults to \code{FALSE}; if \code{TRUE} then normalized spectra are 
+written to a txt file; row labels are \code{x2}
+\item[\code{writefit}:] Object of class 
+\code{"logical"} that defaults to \code{FALSE}; if \code{TRUE} then fit 
+is written to a txt file; row and column labels are \code{x} and 
+\code{x2}
+\item[\code{residplot}:] Object of class \code{"logical"} defaults to 
+\code{FALSE}; if \code{TRUE} generate a plot of residuals in a 
+separate window.
+\item[\code{plot}:] Object of class \code{"logical"} that defaults to 
+\code{TRUE}; if \code{FALSE} then do not write output in the form of 
+plots and other windows to the screen. 
+\item[\code{divdrel}:] Object of class \code{"logical"} that defaults to 
+\code{FALSE}; if \code{TRUE}, plot traces and concentration 
+profiles divided by the dataset scaling parameters where they apply; this
+allows for the fit of datasets having different intensities on the same 
+scale.
+\item[\code{plotkinspec}:] Object of class \code{"logical"} that defaults 
+to \code{FALSE}; if \code{TRUE}, generates a separate plot of the spectra
+associated with the components that are not a part of a coherent
+artifact/scatter model. 
+\item[\code{superimpose}:] Object of class \code{"vector"} containing 
+dataset indices whose results should be superimposed in plots
+\item[\code{xlab}:] Object of class \code{"character"} containing 
+label for x-axis, e.g., \code{"nanoseconds"}
+or \code{"picoseconds"}
+\item[\code{ylab}:] Object of class \code{"character"} containing label
+for y-axis, e.g., \code{"wavelength"}
+\item[\code{title}:] Object of class \code{"character"} containing title 
+to write at the top of plots.
+\item[\code{makeps}:] Object of class \code{"character"} containing 
+prefix to plot files written to postscript; 
+if present postscript will be written. Note that this string is also 
+used as the preffix of txt output files 
+\item[\code{linrange}:] Object of class \code{"numeric"} giving linear
+range of time axis for plotting; time will be plotted linearly from
+-linrange to linrange and plotted on a logarithmic (base 10) axis elsewhere
+\item[\code{summaryplotrow}:] Object of class \code{"numeric"} giving  
+number of rows in summary plot; defaults to \code{4}
+\item[\code{summaryplotcol}:] Object of class \code{"numeric"} giving  
+number of columns in summary plot; defaults to \code{4}
+\item[\code{iter}:] Object of class \code{"numeric"} giving  number of iterations to optimize model parameters
+\item[\code{paropt}:] Object of class \code{"list"} 
+of graphical parameters in format \code{par(...)} 
+to apply to plots. 
+\item[\code{stderrclp}:] Object of class \code{"logical"} that defaults 
+to \code{FALSE}; if \code{TRUE}, estimates of the standard error of 
+conditionally linear parameters are made
+\item[\code{addest}:] Object of class \code{"vector"} containing 
+character strings of which parameter estimates should be added to the 
+summary plot, e.g., \code{addest = c("kinpar", "irfpar")}  
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{kinopt-class}{kinopt.Rdash.class}}, \code{\LinkA{specopt-class}{specopt.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{readData}{This function reads in data the ivo file format}{readData}
+\keyword{file}{readData}
+\begin{Description}\relax
+Data in the formats described at 
+\url{http://www.nat.vu.nl/~kate/TIM/tim/node74.html} and 
+\url{http://www.nat.vu.nl/~kate/FLIM_format}
+may be read from file into an R object for analysis.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+readData(filenm, sep = "")
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{filenm}] This is the path to the file to read in, as a quoted
+string. 
+\item[\code{sep}] This is an optional argument describing how the data is 
+delimited; defaults to \code{""}
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+an object of class \code{dat}
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{preProcess}{preProcess}}
+\end{SeeAlso}
+
+\HeaderA{dat-class}{Class "dat" for model and data storage}{dat.Rdash.class}
+\aliasA{dat}{dat-class}{dat}
+\keyword{classes}{dat-class}
+\begin{Description}\relax
+\code{dat} is the super-class of other classes representing models and data, so
+that other model/data classes (e.g., \code{kin} and \code{spec} 
+for kinetic and spectral
+models respectively) also have the slots defined here.  These slots may
+be specified in the \code{...} 
+argument of the  \code{\LinkA{initModel}{initModel}} function.
+\end{Description}
+\begin{Section}{Objects from the Class}
+Objects from the class 
+can be created by calls of the form \code{new("dat", ...)} or 
+\code{dat(...)}, but 
+most are most often made by invoking another function such as 
+\code{readData} or \code{initModel}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{psi.df}:] Object of class \code{"matrix"}  dataset from 1 experiment
+\item[\code{psi.weight}:] Object of class \code{"matrix"} weighted  dataset from 1 experiment
+\item[\code{x}:] Object of class \code{"vector"} time or other independent
+variable.  
+\item[\code{nt}:] Object of class \code{"integer"} length \code{x}
+\item[\code{x2}:] Object of class \code{"vector"}  vector of points in 
+2nd independent dimension, such as wavelengths of wavenumbers
+\item[\code{nl}:] Object of class \code{"integer"}  length \code{x2} 
+\item[\code{C2}:] Object of class \code{"matrix"} concentration matrix for
+simulated data
+\item[\code{E2}:] Object of class \code{"matrix"} matrix of spectra for
+simulated data
+\item[\code{sigma}:] Object of class \code{"numeric"} noise level in 
+simulated data 
+\item[\code{mod\_type}:] Object of class \code{"character"} character string defining the model type, e.g., 
+\code{"kin"} or \code{"spec"}
+\item[\code{parnames}:] Object of class \code{"vector"} vector of
+parameter names, used internally
+\item[\code{finished}:] Object of class \code{"logical"} describes 
+whether optimization is complete
+\item[\code{simdata}:] Object of class \code{"logical"}  logical that is \code{TRUE} if the data is simulated, 
+\code{FALSE} otherwise; will determine whether values in \code{C2} and 
+\code{E2} are plotted with results
+\item[\code{weightpar}:] Object of class \code{"list"}  list of vectors 
+\code{c(first\_x, last\_x, first\_x2, last\_x2, weight)}, 
+where each vector is of length 5 and 
+specifies an interval in which to weight the data.  
+\Itemize{
+\item[first\_x] first(absolute, not an index) \code{x} to weight
+\item[last\_x] last (absolute, not an index) \code{x} to weight 
+\item[first\_x2] first (absolute, not an index)  \code{x2} to weight
+\item[last\_x2] last (absolute, not an index)  \code{x2} to weight 
+\item[weight] numeric by which to weight data 
+}
+Note that if vector elements 1-4 are \code{NA} (not a number), the firstmost 
+point of the data is taken for elements 1 and 3, and the lastmost points
+are taken for 2 and 4. 
+For example, \code{ weight\_par = list(c(40, 1500, 400, 600, .9), 
+  c(NA, NA, 700, 800, .1))}  will weight data between times 40 and 1500 
+picoseconds and 700 and 800 wavelengths by .9, and will weight data at 
+all times between wavelength 700 and 800 by .1.  
+Note also that for single photon counting data 
+\code{weightpar = list(poisson = TRUE)} will apply poisson weighting to all 
+non-zero elements of the data. 
+\item[\code{weight}:] Object of class \code{"logical"} \code{TRUE} when the specification in 
+\code{weightpar} is to be applied and \code{FALSE} otherwise
+\item[\code{weightM}:] Object of class \code{"matrix"} weights 
+\item[\code{weightsmooth}:] Object of class \code{"list"} type of smoothing to apply with weighting; not currently
+used
+\item[\code{fixed}:] Object of class \code{"list"} list of lists or vectors giving the parameter values 
+to fix (at their starting values) during optimization. 
+\item[\code{clp0}:] Object of class \code{"list"}  list of lists with elements \code{low}, \code{high} and 
+\code{comp}, specifying the least value in  \code{x2} to constrain 
+to zero, the greatest value in  \code{x2} to 
+constrain to zero, and the component to which to apply the zero constraint, 
+respectively.  e.g., \code{clp0 = list(list(low=400, high = 600, comp=2), 
+  list(low = 600, high = 650, comp=4))} applies zero constraints to the spectra 
+associated with components 2 and 4. 
+\item[\code{makeps}:] Object of class \code{"character"} 
+specifyies the prefix of files written to 
+postscript
+
+\item[\code{clpequspec}:] Object of class \code{"list"} list of lists each of which has elements \code{to, 
+  from, low, high}, and optional element \code{dataset} to specify the dataset
+from which to get the reference clp (that is, a spectrum for kinetic 
+models).  \code{to} is the component to be fixed in relation to some other 
+component; from is the reference component.  \code{low} and \code{high} 
+are the 
+least and greatest absolute values of the \code{clp} vector to constrain. 
+e.g., 
+\code{clpequspec = list(list(low = 400, high = 600, to = 1, from = 2))} 
+will constrain the first component to equality to the second component 
+between wavelengths 400 and 600.  Note that equality constraints are
+actually constraints to a linear relationship.  For each of the equality
+constraints specfied as a list in the \code{clpequspec} list, specify a
+starting value parameterizing this linear relation in the vector
+\code{clpequ}; if true equality is desired then fix the corresponding
+parameter in \code{clpequ} to 1.  Note that if multiple components are
+constraints, the \code{from} in the sublists should be increasing order, 
+(i.e., \code{(list(to=2, from=1, low=100, high=10000), 
+list(to=3, from=1, low=10000, high=100))}, not \code{list(to=3, from=1, low=10000, high=100), 
+list(to=2, from=1, low=10000, high=100)})
+\item[\code{lclp0}:] Object of class \code{"logical"} \code{TRUE} if specification in \code{clp0} 
+is to be applied and \code{FALSE} otherwise 
+\item[\code{lclpequ}:] Object of class \code{"logical"} \code{TRUE} if specification in clpequspec 
+is to be applied and \code{FALSE} otherwise
+\item[\code{title}:] Object of class \code{"character"} displayed on output plots
+\item[\code{mhist}:] Object of class \code{"list"}  list describing fitting history
+\item[\code{datCall}:] Object of class \code{"list"} list of calls to functions
+\item[drel] vector of starting parameters for dataset scaling relations
+\item[\code{dscalspec}:] Object of class \code{"list"} 
+\item[\code{drel}:] Object of class \code{"vector"}  vector of starting parameters for dataset scaling relations
+\item[\code{clpequ}:] Object of class \code{"vector"}  describes the
+parameters governing the clp equality constraints specified in \code{clpequspec}
+\item[\code{scalx}:] Object of class \code{"numeric"}  numeric by which to scale the \code{x} axis in plotting
+\item[prel] vector of starting values for the relations described in 
+prelspec
+\item[\code{prel}:] Object of class \code{"vector"}  vector of starting values for the relations described in 
+prelspec
+\item[\code{prelspec}:] Object of class \code{"list"}  list of lists to specify the functional
+relationship between parameters, each of which has elements 
+\Itemize{ 
+\item[what1] character string describing the parameter type to relate, 
+e.g., \code{"kinpar"} 
+\item[what2] the parameter type on which the relation is based; usually 
+the same as \code{what1}
+\item[ind1] index into \code{what1}
+\item[ind2] index into \code{what2}
+\item[rel] character string, 
+optional argument to specify functional relation type, 
+by default linear }
+e.g., 
+\code{prelspec = list(list(what1 = "kinpar", what2 = "kinpar", ind1 = 1, 
+  ind2 = 5))}  relates the 1st element of \code{kinpar} to the 5th element of 
+\code{kinpar}.  The starting values parameterizing the relationship are 
+given in the \code{prel} vector
+\item[\code{fvecind}:] Object of class \code{"vector"}  vector containing indices of fixed parameters 
+\item[\code{pvecind}:] Object of class \code{"vector"}  used internally to
+store indices of related parameters. 
+\item[\code{groups}:] Object of class \code{"list"}  list containing lists of pairs c(x2 index, dataset index). 
+the \code{x2} values (which are solved for as conditionally linear 
+parameters) are equated for all pairs in a list.
+\item[\code{iter}:] Object of class \code{"numeric"}  describing the 
+number of iterations that is run; this is sometimes 
+stored after fitting, but has not effect as an argument to  
+\code{\LinkA{initModel}{initModel}}
+\item[\code{clpCon}:] Object of class \code{"list"}  used internally to enforce constraints on the clp
+\item[\code{ncomp}:] Object of class \code{"numeric"}  describing the number of components in a model
+\item[\code{clpdep}:] Object of class \code{"logical"}  describing whether a model is dependent on the index
+of \code{x2}
+\item[\code{inten}:] Object of class \code{"matrix"}  for use with FLIM data; represents the number of photons
+per pixel measured over the course of all 
+times $t$ represented by the dataset.  See the help for the \code{readData}
+function for more information. 
+\item[\code{positivepar}:] Object of class \code{"vector"}  containing
+character strings of those parameter vectors to constrain to positivity,
+e.g., \code{positivepar=c("kinpar")}
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{kin-class}{kin.Rdash.class}}, \code{\LinkA{spec-class}{spec.Rdash.class}}
+\end{SeeAlso}
+\begin{Examples}
+\begin{ExampleCode}
+# simulate data 
+
+ C <- matrix(nrow = 51, ncol = 2)
+ k <- c(.5, 1)
+ t <- seq(0, 2, by = 2/50)
+ C[, 1] <- exp( - k[1] * t)
+ C[, 2] <- exp( - k[2] * t) 
+ E <- matrix(nrow = 51, ncol = 2)
+ wavenum <- seq(18000, 28000, by=200)
+ location <- c(25000, 20000)
+ delta <- c(5000, 7000)
+ amp <- c(1, 2)
+ E[, 1] <- amp[1] * exp( - log(2) * (2 * (wavenum - location[1])/delta[1])^2)
+ E[, 2] <- amp[2] * exp( - log(2) * (2 * (wavenum - location[2])/delta[2])^2)
+ sigma <- .001
+ Psi_q  <- C 
+
+ # initialize an object of class dat 
+ Psi_q_data <- dat(psi.df = Psi_q, x = t, nt = length(t), 
+ x2 = wavenum, nl = length(wavenum))
+
+ # initialize an object of class dat via initModel 
+ # this dat object is also a kin object
+ kinetic_model <- initModel(mod_type = "kin", seqmod = FALSE, 
+ kinpar = c(.1, 2))
+\end{ExampleCode}
+\end{Examples}
+
+\HeaderA{residPart-methods}{Generic function residPart in Package `TIMP'}{residPart.Rdash.methods}
+\aliasA{residPart}{residPart-methods}{residPart}
+\aliasA{residPart,kin-method}{residPart-methods}{residPart,kin.Rdash.method}
+\aliasA{residPart,spec-method}{residPart-methods}{residPart,spec.Rdash.method}
+\keyword{methods}{residPart-methods}
+\begin{Description}\relax
+Methods for function \code{residPart} in Package `TIMP' determine the 
+part of the residual vector associated with a single `part' of the
+dataset(s).
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+residPart(model, group, multimodel, thetalist, clpindepX, finished, returnX,
+rawtheta)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] Object of class \code{dat}; switches on this 
+argument. 
+\item[\code{group}] list of vector pairs (x2 index, dataset index) for which 
+the part of the residual vector is to be determined
+\item[\code{multimodel}] Object of class \code{multimodel}
+\item[\code{thetalist}] Object of class \code{multitheta}
+\item[\code{clpindepX}] Object of class \code{matrix} containing the matrix
+determined directly by the nonlinear parameters (e.g., a concentration matrix
+in the case of a kinetic model) in the case that this matrix does not depend
+on the \code{x2} index
+\item[\code{finished}] logical determining whether fitting is finished that
+triggers the storage of results
+\item[\code{returnX}] logical determining whether to just return the matrix 
+\code{X} directly dependent on nonlinear parameters; this is used in the finite
+difference derivative of \code{X} used to get standard error estimates on the 
+conditionally linear parameters. 
+\item[\code{rawtheta}] numeric vector of nonlinear parameters to be optimized 
+by \code{nls}; this is used in the finite
+difference derivative of \code{X} used to get standard error estimates on the 
+conditionally linear parameters.
+
+\end{ldescription}
+\end{Arguments}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}, \code{\LinkA{spec-class}{spec.Rdash.class}},
+\code{\LinkA{kin-class}{kin.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{multitheta-class}{Class "multitheta" that stores a list with one element of class 
+"theta" for each dataset modeled.}{multitheta.Rdash.class}
+\aliasA{multitheta}{multitheta-class}{multitheta}
+\keyword{classes}{multitheta-class}
+\begin{Description}\relax
+Class \code{multitheta} stores a list with one element of class 
+\code{theta} for each dataset modeled, corresponding to the parameter 
+estimates associated with that dataset.
+\end{Description}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("multitheta", ...)} or
+\code{multitheta(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{th}:] Object of class \code{"list"}  with element i
+corresponding to the \code{theta} object for the ith dataset modeled. 
+
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{theta-class}{theta.Rdash.class}}, \code{\LinkA{dat-class}{dat.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{getResid}{For data correction, fits a model (but ignores 
+plotting commands) in order to obtain the SVD of the residuals, which 
+then can be used in data-correction.}{getResid}
+\keyword{file}{getResid}
+\begin{Description}\relax
+For data correction, fits a model exactly as does 
+\code{fitModel} (but ignores 
+plotting commands) in order to obtain the SVD of the residuals.  These 
+residuals can then be subtracted away from the original data to some
+extent with the \code{preProcess} function.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+getResid(data, modspec=list(), datasetind = vector(), modeldiffs = list(), 
+                opt = opt() )
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] As in the \code{fitModel} function 
+\item[\code{modspec}] As in the \code{fitModel} function
+\item[\code{datasetind}] As in the \code{fitModel} function
+\item[\code{modeldiffs}] As in the \code{fitModel} function
+\item[\code{opt}] As in the \code{fitModel} function
+\end{ldescription}
+\end{Arguments}
+\begin{Value}
+list containing the first five left and right singular vectors of the 
+residuals, as well as the first five singular values.  A weight matrix 
+(if used) is also included in this list.
+\end{Value}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel}}, \code{\LinkA{preProcess}{preProcess}}
+\end{SeeAlso}
+
+\HeaderA{res-class}{Class "res" to store the results of model fitting associated with 
+a single dataset.}{res.Rdash.class}
+\aliasA{res}{res-class}{res}
+\keyword{classes}{res-class}
+\begin{Description}\relax
+Class to store results of model fitting associated with 
+a single dataset.  A list containing objects of class \code{res} is 
+a slot in class \code{fit}.  An object of class \code{fit} is stored in 
+the slot \code{fit} of objects of class \code{multimodel}.
+\end{Description}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("res", ...)}.
+A \code{res} object is created after model fitting
+via the residual function \code{residPart}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{cp}:] Object of class \code{"list"} that contains the
+estimates for conditionally linear parameters. 
+\item[\code{resid}:] Object of class \code{"list"} of residuals, with one
+element for each dataset modeled. 
+\item[\code{fitted}:] Object of class \code{"list"} of fits, with one
+element for each dataset modeled. 
+\item[\code{irfvec}:] Object of class \code{"list"} with a vector of
+elements for each element of the clp \code{x2}
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fit-class}{fit.Rdash.class}}, \code{\LinkA{multimodel-class}{multimodel.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{multimodel-class}{Class "multimodel" for storage of multidataset models, data and the 
+results of fitting.}{multimodel.Rdash.class}
+\aliasA{multimodel}{multimodel-class}{multimodel}
+\keyword{classes}{multimodel-class}
+\begin{Description}\relax
+\code{multimodel} is the class to store data, a generally applicable model, a
+list of per-data models, a specification of per-dataset model differences, and 
+results for the analysis of possibly many datasets.  After a call to 
+\code{fitModel}
+an object \code{.currModel} is initialized of the \code{multimodel} class.
+\end{Description}
+\begin{Details}\relax
+after a call to \code{\LinkA{fitModel}{fitModel}}, an object of class 
+\code{multimodel} exists in the global environment as the variable 
+\code{.currModel}
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("multimodel", ...)} or 
+\code{multimodel(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{data}:] Object of class \code{"list"}  of objects of class \code{dat} containing data
+\item[\code{model}:] Object of class \code{"dat"}  of class dat containing a model specification to be
+applied to all datasets
+\item[\code{modellist}:] Object of class \code{"list"}  of length n where n is the number of datasets given in
+\code{data}, and each element i is an object of class \code{dat} giving 
+the dataset-specific model applicable to \code{data[[i]]}
+\item[\code{modeldiffs}:] Object of class \code{"list"}  of per-dataset model differences input as an argument 
+to the \code{\LinkA{fitModel}{fitModel}} function
+\item[\code{fit}:] Object of class \code{"fit"}  containing a list of
+results per-dataset as well as the output of optimization returned by the
+\code{nls} function.
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel} }
+\end{SeeAlso}
+
+\HeaderA{initModel}{Defines the model to be used in analysis.}{initModel}
+\keyword{file}{initModel}
+\begin{Description}\relax
+Allows definition of a model of class "dat" to be used 
+in analysis.  The arguments specify the model.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+initModel(...)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{...}] specify the model class via the character string
+e.g., \code{\LinkA{kin-class}{kin.Rdash.class}} or \code{\LinkA{spec}{spec}} and 
+any of the slots associated with that model type (which is 
+a subclass of class \code{dat}, so that all slots in \code{dat} 
+may also be specified),   
+e.g., \code{mod\_type = "kin"} will initialize a model with 
+class \code{kin}, for a kinetic model.  
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+For examples, see the help files for \code{\LinkA{dat-class}{dat.Rdash.class}} and 
+\code{\LinkA{fitModel}{fitModel}}
+\end{Details}
+\begin{Value}
+an object of class \code{dat} with the sub-class given by the value of 
+the \code{mod\_type} input.
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}, \code{\LinkA{kin-class}{kin.Rdash.class}}, 
+\code{\LinkA{spec-class}{spec.Rdash.class}}, 
+\code{\LinkA{fitModel}{fitModel}}
+\end{SeeAlso}
+
+\HeaderA{baseIRF}{Baseline subtraction from a vector, usually representing an IRF.}{baseIRF}
+\keyword{file}{baseIRF}
+\begin{Description}\relax
+Baseline subtraction from a vector, usually representing an IRF.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+baseIRF(irfvec, indexlow, indexhigh, removeNeg = FALSE) 
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{irfvec}] Vector to subtract a baseline from
+\item[\code{indexlow}] Lowest index to base the baseline estimation on
+\item[\code{indexhigh}] Highest index to base the baseline estimation on
+\item[\code{removeNeg}] Whether negative values should be replaced with 0.
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+Currently estimates the baseline as the mean of data between 
+indexlow and indexhigh, and subtracts the result from the 
+entire vector.
+\end{Details}
+\begin{Value}
+vector
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{Examples}
+\begin{ExampleCode} 
+irfvec <- rnorm(128, mean=1) 
+plot(irfvec,type="l") 
+irfvec_corrected <- baseIRF(irfvec, 1, 10)
+lines(irfvec_corrected, col=2)
+\end{ExampleCode}
+\end{Examples}
+
+\HeaderA{specopt-class}{Class "specopt" stores options for fitting and plotting spectral models}{specopt.Rdash.class}
+\aliasA{specopt}{specopt-class}{specopt}
+\keyword{classes}{specopt-class}
+\begin{Description}\relax
+Class "specopt" stores options for fitting and plotting spectral
+models in particular; this is a subclass of class \code{opt} that contains 
+options applicable to all model types.
+\end{Description}
+\begin{Details}\relax
+See \code{\LinkA{opt-class}{opt.Rdash.class}} and  \LinkA{kinopt-class}{kinopt.Rdash.class} for 
+the specification of fitting/plotting options that are not specific to the 
+class type and for the \code{spec} class type, respectively.
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("specopt", ...)}.
+or \code{specopt(...)}
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[\code{nospectra}:] Object of class \code{"logical"} 
+that defaults
+to \code{FALSE}; if \code{TRUE}, do not plot time-resolved spectra
+\item[\code{selectedspectra}:] Object of class \code{"vector"} 
+containing
+\code{x} indices for which plots of 
+time-resolved spectra are desired under a spectral model
+}
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{opt-class}{opt.Rdash.class}}, \code{\LinkA{kinopt-class}{kinopt.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{TIMP-package}{a problem solving environment for fitting superposition models}{TIMP.Rdash.package}
+\aliasA{TIMP}{TIMP-package}{TIMP}
+\keyword{package}{TIMP-package}
+\begin{Description}\relax
+Measurements often represent a superposition of the contributions of distinct
+sub-systems resolved with respect to many experimental variables (time,
+temperature, wavelength, pH, polarization, etc).  A parametric model for each
+component may be desirable to apply to the data, but only to the evolution of
+components with respect to a subset of the independent variables.  For
+instance, given time-resolved spectroscopy data, a parametric model for the
+time-evolution of components may be available, while a physically-inspired
+parametric model for the spectra of components may be difficult to formulate
+and interpret.  Such situations give rise to a separable nonlinear parameter
+estimation problem, namely that of estimating the (nonlinear) parameters
+associated with the parametric model, while estimating parameters representing
+the evolution of components with respect to the independent variables to which
+a parametric model does not apply as conditionally linear.  The partitioned
+variable projection algorithm is well-suited to solving such problems under
+the criteria of efficiency, quality of standard error estimates, and precision
+of parameter estimates.  TIMP implements the partitioned variable projection
+algorithm and allows its application to fitting a wide range of models,
+including those for the simultaneous analysis of multiple datasets collected
+under different experimental conditions.  The package has been extensively
+applied to modeling data arising in spectroscopy experiments.
+\end{Description}
+\begin{Details}\relax
+Package: TIMP
+Type: Package
+Title: a problem solving environment for fitting superposition models
+Version: 1.2
+Author: Katharine M. Mullen, Ivo H. M. van Stokkum 
+Maintainer: Katharine M. Mullen <kate@nat.vu.nl>
+Depends: R (>= 2.5.0), methods, tcltk, vcd, fields, gplots, splines
+Suggests: gclus
+License: GPL version 2 or newer
+\end{Details}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum  
+Maintainer: Katharine M. Mullen \email{kate@nat.vu.nl}
+\end{Author}
+\begin{References}\relax
+See \url{http://www.nat.vu.nl/~kate/TIMP/} for further 
+documentation.
+\end{References}
+
+\HeaderA{plotter-methods}{Generic function plotter in Package `TIMP'}{plotter.Rdash.methods}
+\aliasA{plotter}{plotter-methods}{plotter}
+\aliasA{plotter,kin-method}{plotter-methods}{plotter,kin.Rdash.method}
+\aliasA{plotter,spec-method}{plotter-methods}{plotter,spec.Rdash.method}
+\keyword{methods}{plotter-methods}
+\begin{Description}\relax
+Methods for function \code{plotter} in Package `TIMP' that 
+call plotting and output functions.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+plotter(model, multimodel, multitheta, plotoptions)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] Object of class \code{dat}; function switches on this 
+argument. 
+\item[\code{multimodel}] Object of class \code{multimodel}
+\item[\code{multitheta}] Object of class \code{multitheta}
+\item[\code{plotoptions}] list of output options 
+input to \code{fitModel} as the argument \code{opt}
+\end{ldescription}
+\end{Arguments}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{kin-class}{Class "kin" for kinetic model storage.}{kin.Rdash.class}
+\aliasA{kin}{kin-class}{kin}
+\keyword{classes}{kin-class}
+\begin{Description}\relax
+\code{kin} is the class for kinetic models; if \code{mod\_type = "kin"} is an 
+argument of \code{initModel}.
+All objects of class \code{kin} are sub-classes of 
+class \code{dat}; see documentation for \code{dat} 
+for a description of 
+these slots.
+\end{Description}
+\begin{Details}\relax
+See \code{\LinkA{dat-class}{dat.Rdash.class}} for an 
+example of the initialization of a 
+\code{kin} object via the \code{initModel} function.
+\end{Details}
+\begin{Section}{Objects from the Class}
+Objects can be created by calls of the form \code{new("kin", ...)} or 
+\code{kin(...)}.
+\end{Section}
+\begin{Section}{Slots}
+\describe{
+\item[kinpar] vector of rate constants to be used as starting 
+values for the exponential decay of components; the length of this
+vector determines the number of components of the kinetic model.                        
+}
+\item[\code{specpar}:] Object of class \code{"list"}  parameters for
+spectral constraints
+\item[\code{seqmod}:] Object of class \code{"logical"}  that is \code{TRUE} if a sequential model is to be applied
+and \code{FALSE} otherwise
+\item[\code{irf}:] Object of class \code{"logical"}   that is \code{TRUE} is an IRF is modeled and \code{FALSE} otherwise
+\item[\code{mirf}:] Object of class \code{"logical"}  that is \code{TRUE} if a measured IRF is modeled and \code{FALSE}
+otherwise
+\item[\code{measured\_irf}:] Object of class \code{"vector"}  containing a measured IRF
+\item[\code{convalg}:] Object of class \code{"numeric"}  1-4 determining the numerical convolution algorithm 
+used in the case of modeling a measured IRF
+\item[\code{irffun}:] Object of class \code{"character"}  describing the 
+function to use to describe the IRF, by default "gaus"
+\item[\code{irfpar}:] Object of class \code{"vector"}  of IRF parameters; for the common Gaussian IRF this 
+vector is ordered \code{c(location, width)}
+\item[\code{dispmu}:] Object of class \code{"logical"}   that is \code{TRUE} if dispersion of the parameter for IRF 
+location is to be modeled and \code{FALSE} otherwise
+\item[\code{dispmufun}:] Object of class \code{"character"}  describing the functional form of the 
+dispersion of the IRF location parameter; if equal to "discrete" then the 
+IRF location is shifted per element of \code{x2} and \code{parmu} should have the same 
+length as \code{x2}.  defaults to a polynomial description
+\item[\code{parmu}:] Object of class \code{"list"}   of starting values for the dispersion model for the 
+IRF location
+\item[\code{disptau}:] Object of class \code{"logical"}  that is \code{TRUE} if dispersion of the parameter for 
+IRF width is to be modeled and \code{FALSE} otherwise
+\item[\code{disptaufun}:] Object of class \code{"character"}  describing the functional form of the 
+dispersion of the IRF width parameter; if equal to \code{"discrete"} then the 
+IRF width is parameterized per element of \code{x2} and \code{partau} should have the same 
+length as \code{x2}.  defaults to a polynomial description
+\item[\code{partau}:] Object of class \code{"vector"}  of starting values for the dispersion model for the 
+IRF FWHM 
+\item[\code{fullk}:] Object of class \code{"logical"}  that is \code{TRUE} if the data are to be modeled using a 
+compartmental model defined in a K matrix and \code{FALSE} otherwise
+\item[\code{kmat}:] Object of class \code{"array"}  containing the K matrix descriptive of  a compartmental 
+model
+\item[\code{jvec}:] Object of class \code{"vector"}  containing the J vector descriptive of the inputs to a 
+compartmental model
+\item[\code{ncolc}:] Object of class \code{"vector"}  describing the number of columns of the C matrix for 
+each clp in \code{x2}
+\item[\code{kinscal}:] Object of class \code{"vector"}   of starting values for branching parameters in a 
+compartmental model
+\item[\code{kmatfit}:] Object of class \code{"array"}  of fitted values for a compartmental model
+\item[\code{cohspec}:] Object of class \code{"list"}   describing the model for 
+coherent artifact/scatter component(s) containing the element  \code{type}
+and optionally the element \code{numdatasets}
+if \code{type} is \code{"irf"}, the coherent artifact/scatter has the 
+time profile of 
+the IRF.  if \code{type} is \code{"freeirfdisp"} the  coherent 
+artifact/scatter has  a
+Gaussian time profile whose location and width are parameterized in the 
+vector \code{coh}.  if \code{type} is \code{"irfmulti"} the time profile of 
+the IRF is used for
+the coherent artifact/scatter model, but the IRF parameters are taken per 
+dataset (for the multidataset case), and the integer argument 
+\code{numdatasets} must be equal to the 
+number of datasets modeled.  if \code{type} is \code{"seq"} 
+a sequential exponential decay 
+model is applied, whose parameters are contained in \code{coh}.
+if \code{type} is \code{"mix"} a sequential exponential decay 
+model is applied along with a model that follows the time profile of the IRF;
+the coherent artifact/scatter is then a linear superposition of these two 
+models.  
+\item[\code{coh}:] Object of class \code{"vector"}  of starting values for the parameterization of a  
+coherent artifact
+\item[\code{wavedep}:] Object of class \code{"logical"}  describing whether the kinetic model is dependent on
+\code{x2} index (i.e., whether there is clp-dependence)
+\item[\code{lambdac}:] Object of class \code{"numeric"}  for the center wavelength to be used in a polynomial 
+description of \code{x2}-dependence 
+\end{Section}
+\begin{Section}{Extends}
+Class \code{\LinkA{dat-class}{dat.Rdash.class}}, directly.
+\end{Section}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}, \code{\LinkA{spec-class}{spec.Rdash.class}}
+\end{SeeAlso}
+
+\HeaderA{sumKinSpecEst}{Makes a summary plot of spectra associated with kinetic components
+alongside a plot showing parameter estimates}{sumKinSpecEst}
+\keyword{file}{sumKinSpecEst}
+\begin{Description}\relax
+Makes a summary plot of spectra associated with kinetic components
+alongside a plot showing parameter estimates for, by default, kinetic 
+parameters.  If the analysis had more parameters in the \code{addEst} slot 
+of the arguement \code{opt}, then more parameters are displayed. 
+Note that this summary leaves out the spectra associated with coherent 
+artifact or scatter.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+sumKinSpecEst(listFits, addtitle = TRUE, customtitle = "", preps = "", 
+ylimlist=list(), kinspecerr=TRUE)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{listFits}] list of objects returned by the \code{fitModel} function
+\item[\code{addtitle}] logical regarding whether to add a title; if TRUE and
+\code{customtitle} is not given then the title is  
+\code{ "Summary of EADS for: "} plus the analysis titles
+\item[\code{customtitle}] character vector containing a title
+\item[\code{preps}] character vector describing the prefix of the postscript
+filename given as output
+\item[\code{ylimlist}] list with elements \code{list(ind, ylim)}.  \code{ind} is
+an index into \code{listFits}; \code{ylim} is the desired \code{ylim} for
+the plot for that analysis
+\item[\code{kinspecerr}] logical regarding whether to add error bars for to the 
+estimated spectra. 
+
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+This looks best with less than five objects in \code{listFits}.
+\end{Details}
+\begin{Value}
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{fitModel}{fitModel}}, \code{\LinkA{examineFit}{examineFit}}
+\end{SeeAlso}
+
+\end{document}

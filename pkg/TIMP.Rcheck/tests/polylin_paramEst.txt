@@ -1,0 +1,15 @@
+ 
+
+Sum square error: 3349187433 
+
+Residual standard error: 414.2825 
+
+Estimates for parameters:
+
+specdisppar 1:  -523.073	(t value: -53.7155)
+specdisppar 2:  -409.097	(t value: -19.6605)
+specdisppar 3:  -0.0842457	(t value: -8.29551)
+specpar 1:  18556.9	(t value: 3484.89)
+specpar 2:  3476.79	(t value: 308.361)
+specpar 3:  -0.0323481	(t value: -6.1223)
+

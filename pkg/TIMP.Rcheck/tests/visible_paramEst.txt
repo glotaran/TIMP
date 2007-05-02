@@ -1,0 +1,17 @@
+ 
+
+Sum square error: 10470.65 
+
+Residual standard error: 0.9443124 
+
+Estimates for parameters:
+
+irfpar 1:  -0.376331	(t value: -97.8953)
+irfpar 2:  0.0961404	(t value: 79.0065)
+kinpar 1:  2.01426	(t value: 15.4206)
+kinpar 2:  0.451552	(t value: 40.1283)
+kinpar 3:  0.0797858	(t value: 54.9974)
+kinpar 4:  0.000309139	(t value: 228.746)
+parmu 1:  0.281153	(t value: 23.7909)
+parmu 2:  0.535583	(t value: 19.5522)
+

@@ -1,0 +1,46 @@
+Internals               TIMP function used internally
+TIMP-package            a problem solving environment for fitting
+                        superposition models
+baseIRF                 Baseline subtraction from a vector, usually
+                        representing an IRF.
+dat-class               Class "dat" for model and data storage
+examineFit              Examines the results of a call to fitModel
+fit-class               Class "fit" to store the results of model
+                        fitting associated with all datasets analyzed.
+fitModel                Performs optimization of (possibly
+                        multidataset) models.
+getClpindepX-methods    Generic function getClpindepX in Package 'TIMP'
+getResid                For data correction, fits a model (but ignores
+                        plotting commands) in order to obtain the SVD
+                        of the residuals, which then can be used in
+                        data-correction.
+initModel               Defines the model to be used in analysis.
+kin-class               Class "kin" for kinetic model storage.
+kinopt-class            Class "kinopt" stores options for fitting and
+                        plotting kinetic models
+modifyModel             Allows the starting values for parameters
+                        associated with a model to be updated with the
+                        values found in fitting the model.
+multimodel-class        Class "multimodel" for storage of multidataset
+                        models, data and the results of fitting.
+multitheta-class        Class "multitheta" that stores a list with one
+                        element of class "theta" for each dataset
+                        modeled.
+opt-class               Class "opt" stores options for fitting and
+                        plotting
+plotter-methods         Generic function plotter in Package 'TIMP'
+preProcess              Performs preprocessing on data stored as an
+                        objects of class dat.
+readData                This function reads in data the ivo file format
+res-class               Class "res" to store the results of model
+                        fitting associated with a single dataset.
+residPart-methods       Generic function residPart in Package 'TIMP'
+spec-class              Class "spec" for the storage of spectral
+                        models.
+specopt-class           Class "specopt" stores options for fitting and
+                        plotting spectral models
+sumKinSpecEst           Makes a summary plot of spectra associated with
+                        kinetic components alongside a plot showing
+                        parameter estimates
+theta-class             Class "theta" for storage of nonlinear
+                        parameter estimates

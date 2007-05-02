@@ -1,0 +1,38 @@
+\HeaderA{getClpindepX-methods}{Generic function getClpindepX in Package `TIMP'}{getClpindepX.Rdash.methods}
+\aliasA{getClpindepX}{getClpindepX-methods}{getClpindepX}
+\aliasA{getClpindepX,kin-method}{getClpindepX-methods}{getClpindepX,kin.Rdash.method}
+\aliasA{getClpindepX,spec-method}{getClpindepX-methods}{getClpindepX,spec.Rdash.method}
+\keyword{methods}{getClpindepX-methods}
+\begin{Description}\relax
+Gets the matrix associated with nonlinear parameter estimates for the 
+case that this matrix is not re-calculated per conditionally linear
+parameter.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+getClpindepX(model, multimodel, theta, returnX, rawtheta, dind)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{model}] Object of class \code{dat}; function switches on this 
+argument. 
+
+\item[\code{multimodel}] Object of class \code{multimodel} used in standard error
+determination
+\item[\code{theta}] Vector of nonlinear parameter estimates.
+\item[\code{returnX}] logical indicating whether to return a vectorized version of 
+the \code{X} matrix
+\item[\code{rawtheta}] vector of nonlinear parmeters; used in standard error
+determination
+\item[\code{dind}] numeric indicating the dataset index; used in standard error
+determination
+\end{ldescription}
+\end{Arguments}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}
+\end{SeeAlso}
+

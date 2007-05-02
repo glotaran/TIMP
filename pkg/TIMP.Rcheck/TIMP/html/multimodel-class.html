@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Class "multimodel" for storage of multidataset models, data and the 
+results of fitting.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for multimodel-class {TIMP}"><tr><td>multimodel-class {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Class "multimodel" for storage of multidataset models, data and the 
+results of fitting.</h2>
+
+
+<h3>Description</h3>
+
+<p>
+<code>multimodel</code> is the class to store data, a generally applicable model, a
+list of per-data models, a specification of per-dataset model differences, and 
+results for the analysis of possibly many datasets.  After a call to 
+<code>fitModel</code>
+an object <code>.currModel</code> is initialized of the <code>multimodel</code> class.
+</p>
+
+
+<h3>Details</h3>
+
+<p>
+after a call to <code><a href="fitModel.html">fitModel</a></code>, an object of class 
+<code>multimodel</code> exists in the global environment as the variable 
+<code>.currModel</code>
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>
+Objects can be created by calls of the form <code>new("multimodel", ...)</code> or 
+<code>multimodel(...)</code>.
+</p>
+
+
+<h3>Slots</h3>
+
+<dl>
+<dt><code>data</code>:</dt><dd>Object of class <code>"list"</code>  of objects of class <code>dat</code> containing data</dd>
+<dt><code>model</code>:</dt><dd>Object of class <code>"dat"</code>  of class dat containing a model specification to be
+applied to all datasets</dd>
+<dt><code>modellist</code>:</dt><dd>Object of class <code>"list"</code>  of length n where n is the number of datasets given in
+<code>data</code>, and each element i is an object of class <code>dat</code> giving 
+the dataset-specific model applicable to <code>data[[i]]</code></dd>
+<dt><code>modeldiffs</code>:</dt><dd>Object of class <code>"list"</code>  of per-dataset model differences input as an argument 
+to the <code><a href="fitModel.html">fitModel</a></code> function</dd>
+<dt><code>fit</code>:</dt><dd>Object of class <code>"fit"</code>  containing a list of
+results per-dataset as well as the output of optimization returned by the
+<code>nls</code> function.</dd>
+</dl>
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="fitModel.html">fitModel</a> </code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

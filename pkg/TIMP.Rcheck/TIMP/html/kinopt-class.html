@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Class "kinopt" stores options for fitting and plotting kinetic models</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for kinopt-class {TIMP}"><tr><td>kinopt-class {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Class "kinopt" stores options for fitting and plotting kinetic models</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Class "kinopt" stores options for fitting and plotting kinetic
+models in particular; this is a subclass of class <code>opt</code> that contains 
+options applicable to all model types
+</p>
+
+
+<h3>Details</h3>
+
+<p>
+See <code><a href="opt-class.html">opt-class</a></code> and  <a href="specopt-class.html">specopt-class</a> for 
+the specification of fitting/plotting options that are not specific to the 
+class type and for the <code>kin</code> class type, respectively.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>
+Objects can be created by calls of the form <code>new("kinopt", ...)</code> or
+<code>kinopt(...)</code>
+</p>
+
+
+<h3>Slots</h3>
+
+<dl>
+<dt><code>notraces</code>:</dt><dd>Object of class <code>"logical"</code> that defaults
+to <code>FALSE</code>; if <code>TRUE</code>, do not plot traces</dd>
+<dt><code>selectedtraces</code>:</dt><dd>Object of class <code>"vector"</code> containing
+<code>x</code> indices for which plots of 
+traces are desired under a kinetic model </dd>
+<dt><code>breakdown</code>:</dt><dd>Object of class <code>"list"</code> with the 
+following elements: 
+<ul> 
+<dt>plot</dt><dd>vector of <code>x2</code> values to plot the breakdown for.  
+These values be specified in 
+a fuzzy way:  an <code>x2</code> value within <code>abs(x2[1] - x2[2])/100</code> 
+a value given in <code>plot</code> means that a plot for that <code>x2</code> value 
+will be generated, where
+the reference <code>x2[1]</code> and <code>x2[2]</code> are from the first dataset
+modelled. 
+</dd>
+<dt>tol</dt><dd>numeric giving a tolerance by which 
+the values in <code>plot</code> are compared to <code>x2</code> values
+for near-equality. The default is defined as  
+<code>abs(x2[1] - x2[2])/100</code>. </dd>
+<dt>superimpose</dt><dd>vector of dataset indices for which results should
+be superimposed if the dataset has an <code>x2</code> value at a value in 
+<code>plot</code>.</dd>
+</ul>
+</dd>
+<dt>FLIM:</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, the data represent a FLIM experiment and 
+special plots are generated. </dd>
+<dt>kinspecest</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, make a plot of the spectra associated with
+the kinetic components as well as the lifetime estimates. </dd>
+<dt>kinspecerr</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, add standard error estimates to the spectra
+a plot generated with <code>kinspecest=TRUE</code>.  This option can only be 
+used if the estimates were generated during fitting via the option 
+<code>stderrclp=TRUE</code></dd>
+<dt>specinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, use spline instead of lines between 
+the points representing estimated spectra</dd>
+<dt>specinterpolpoints</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>TRUE</code>; if <code>TRUE</code>, add points representing the actual estimates
+for spectra to plots of the curves respresenting smoothed spectra</dd>
+<dt>specinterpolseg</dt><dd>Object of class <code>"numeric"</code> that defaults to 
+<code>50</code>; represents the number of segments used in a spline-based
+representation of spectra</dd>  
+<dt>specinterpolbspline</dt><dd>Object of class <code>"logical"</code> that defaults
+to <code>FALSE</code>; determines whether a B-spline based representation of
+spectra is used (when <code>specinterpol=TRUE</code>) or a piecewise polynomial 
+representation</dd> 
+<dt>normspec</dt><dd>Object of class <code>"logical"</code> that determines whether
+spectra are normalized in plots</dd>
+
+
+<dt>writespecinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, a spline-based representation of spectra
+is written to ASCII files</dd>
+</dl>
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="examineFit.html">examineFit</a></code>, <code><a href="fitModel.html">fitModel</a></code>, <code><a href="opt-class.html">opt-class</a></code>, <code><a href="specopt-class.html">specopt-class</a></code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

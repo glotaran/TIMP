@@ -1,0 +1,51 @@
+multimodel-class            package:TIMP            R Documentation
+
+_C_l_a_s_s "_m_u_l_t_i_m_o_d_e_l" _f_o_r _s_t_o_r_a_g_e _o_f _m_u_l_t_i_d_a_t_a_s_e_t _m_o_d_e_l_s, _d_a_t_a _a_n_d _t_h_e 
+_r_e_s_u_l_t_s _o_f _f_i_t_t_i_n_g.
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     'multimodel' is the class to store data, a generally applicable
+     model, a list of per-data models, a specification of per-dataset
+     model differences, and  results for the analysis of possibly many
+     datasets.  After a call to  'fitModel' an object '.currModel' is
+     initialized of the 'multimodel' class.
+
+_D_e_t_a_i_l_s:
+
+     after a call to 'fitModel', an object of class  'multimodel'
+     exists in the global environment as the variable  '.currModel'
+
+_O_b_j_e_c_t_s _f_r_o_m _t_h_e _C_l_a_s_s:
+
+     Objects can be created by calls of the form 'new("multimodel",
+     ...)' or  'multimodel(...)'.
+
+_S_l_o_t_s:
+
+     '_d_a_t_a': Object of class '"list"'  of objects of class 'dat'
+          containing data
+
+     '_m_o_d_e_l': Object of class '"dat"'  of class dat containing a model
+          specification to be applied to all datasets
+
+     '_m_o_d_e_l_l_i_s_t': Object of class '"list"'  of length n where n is the
+          number of datasets given in 'data', and each element i is an
+          object of class 'dat' giving  the dataset-specific model
+          applicable to 'data[[i]]'
+
+     '_m_o_d_e_l_d_i_f_f_s': Object of class '"list"'  of per-dataset model
+          differences input as an argument  to the 'fitModel' function
+
+     '_f_i_t': Object of class '"fit"'  containing a list of results
+          per-dataset as well as the output of optimization returned by
+          the 'nls' function.
+
+_A_u_t_h_o_r(_s):
+
+     Katharine M. Mullen, Ivo H. M. van Stokkum
+
+_S_e_e _A_l_s_o:
+
+     'fitModel '
+

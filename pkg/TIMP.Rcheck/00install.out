@@ -1,0 +1,56 @@
+* Installing *source* package 'TIMP' ...
+** libs
+gcc -std=gnu99 -I/usr/local/lib/R/include -I/usr/local/lib/R/include  -I/usr/local/include    -fpic  -g -O2 -c ntr.c -o ntr.o
+gcc -std=gnu99 -shared -L/usr/local/lib -o TIMP.so ntr.o   -L/usr/local/lib/R/lib -lR
+** R
+** preparing package for lazy loading
+Loading required package: tcltk
+Loading Tcl/Tk interface ... done
+Loading required package: vcd
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+Loading required package: fields
+fields is loaded use help(fields) for an overview of this library
+Loading required package: gplots
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+Loading required package: splines
+** help
+ >>> Building/Updating help pages for package 'TIMP'
+     Formats: text html latex example 
+  TIMP-package                      text    html    latex
+  baseIRF                           text    html    latex   example
+  dat-class                         text    html    latex   example
+  examineFit                        text    html    latex
+  fit-class                         text    html    latex
+  fitModel                          text    html    latex
+  getClpindepX                      text    html    latex
+  getResid                          text    html    latex
+  initModel                         text    html    latex
+  internals                         text    html    latex
+  kin-class                         text    html    latex
+  kinopt-class                      text    html    latex
+  modifyModel                       text    html    latex
+  multimodel-class                  text    html    latex
+  multitheta-class                  text    html    latex
+  opt-class                         text    html    latex
+  plotter                           text    html    latex
+  preProcess                        text    html    latex
+  readData                          text    html    latex
+  res-class                         text    html    latex
+  residPart                         text    html    latex
+  spec-class                        text    html    latex
+  specopt-class                     text    html    latex
+  sumKinSpecEst                     text    html    latex
+  theta-class                       text    html    latex
+** building package indices ...
+* DONE (TIMP)

@@ -1,0 +1,199 @@
+
+R version 2.5.0 (2007-04-23)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ##############################
+> ## Dataset and model of 
+> ## Mariangela di Donato.
+> ##############################
+> 
+> ##############################
+> ## load TIMP
+> ##############################
+> 
+> require(TIMP)
+Loading required package: TIMP
+Loading required package: tcltk
+Loading Tcl/Tk interface ... done
+Loading required package: vcd
+Loading required package: MASS
+Loading required package: grid
+Loading required package: colorspace
+Loading required package: fields
+fields is loaded use help(fields) for an overview of this library
+Loading required package: gplots
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+Loading required package: splines
+[1] TRUE
+> 
+> ##############################
+> ## READ IN DATA
+> ##############################
+> 
+> mdDat<-readData("cp8b.txt")
+Read 1 item
+Read 14393 items
+> 
+> ##############################
+> ## Look at the attributes of the data object
+> ##############################
+> 
+> slotNames(mdDat)
+ [1] "psi.df"       "psi.weight"   "x"            "nt"           "x2"          
+ [6] "nl"           "C2"           "E2"           "sigma"        "mod_type"    
+[11] "parnames"     "simdata"      "weightpar"    "weight"       "weightM"     
+[16] "weightsmooth" "fixed"        "clp0"         "makeps"       "clpequspec"  
+[21] "lclp0"        "lclpequ"      "title"        "mhist"        "datCall"     
+[26] "dscalspec"    "drel"         "clpequ"       "scalx"        "prel"        
+[31] "prelspec"     "fvecind"      "pvecind"      "iter"         "clpCon"      
+[36] "ncomp"        "clpdep"       "inten"        "positivepar" 
+> 
+> ##############################
+> ## The times in the data
+> ##############################
+> 
+> mdDat@x 
+ [1]  -15.00  -13.00  -11.00  -10.00   -8.00   -5.00   -3.00   -2.00   -1.00
+[10]   -0.75   -0.45   -0.30   -0.20   -0.10    0.00    0.10    0.20    0.50
+[19]    1.00    1.50    2.50    3.50    4.00    5.00    6.00    8.00   10.00
+[28]   12.00   15.00   20.00   25.00   30.00   40.00   50.00   75.00  100.00
+[37]  150.00  200.00  300.00  400.00  500.00  650.00  800.00 1000.00 1250.00
+[46] 1500.00 1750.00 2000.00 2250.00 2500.00 3000.00 3500.00 4000.00 4500.00
+[55] 5000.00
+> 
+> ##############################
+> ## The number of timepoints in the data
+> ##############################
+> 
+> mdDat@nt 
+[1] 55
+> 
+> ##############################
+> ## The wavelengths in the data
+> ##############################
+> 
+> mdDat@x2
+  [1] 604.562 605.092 605.622 606.152 606.682 607.212 607.742 608.272 608.802
+ [10] 609.332 609.862 610.392 610.922 611.452 611.982 612.512 613.042 613.572
+ [19] 614.102 614.632 615.162 615.692 616.222 616.752 617.282 617.812 618.342
+ [28] 618.872 619.402 619.932 620.462 620.992 621.522 622.052 622.582 623.112
+ [37] 623.642 624.172 624.702 625.232 625.762 626.292 626.822 627.352 627.882
+ [46] 628.412 628.942 629.472 630.002 630.532 631.062 631.592 632.122 632.652
+ [55] 633.182 633.712 634.242 634.772 635.302 635.832 636.362 636.892 637.422
+ [64] 637.952 638.482 639.012 639.542 640.072 640.602 641.132 641.662 642.192
+ [73] 642.722 643.252 643.782 644.312 644.842 645.372 645.902 646.432 646.962
+ [82] 647.492 648.022 648.552 649.082 649.612 650.142 650.672 651.202 651.732
+ [91] 652.262 652.792 653.322 653.852 654.382 654.912 655.442 655.972 656.502
+[100] 657.032 657.562 658.092 658.622 659.152 659.682 660.212 660.742 661.272
+[109] 661.802 662.332 662.862 663.392 663.922 664.452 664.982 665.512 666.042
+[118] 666.572 667.102 667.632 668.162 668.692 669.222 669.752 670.282 670.812
+[127] 671.342 671.872 672.402 672.932 673.462 673.992 674.522 675.052 675.582
+[136] 676.112 676.642 677.172 677.702 678.232 678.762 679.292 679.822 680.352
+[145] 680.882 681.412 681.942 682.472 683.002 683.532 684.062 684.592 685.122
+[154] 685.652 686.182 686.712 687.242 687.772 688.302 688.832 689.362 689.892
+[163] 690.422 690.952 691.482 692.012 692.542 693.072 693.602 694.132 694.662
+[172] 695.192 695.722 696.252 696.782 697.312 697.842 698.372 698.902 699.432
+[181] 699.962 700.492 701.022 701.552 702.082 702.612 703.142 703.672 704.202
+[190] 704.732 705.262 705.792 706.322 706.852 707.382 707.912 708.442 708.972
+[199] 709.502 710.032 710.562 711.092 711.622 712.152 712.682 713.212 713.742
+[208] 714.272 714.802 715.332 715.862 716.392 716.922 717.452 717.982 718.512
+[217] 719.042 719.572 720.102 720.632 721.162 721.692 722.222 722.752 723.282
+[226] 723.812 724.342 724.872 725.402 725.932 726.462 726.992 727.522 728.052
+[235] 728.582 729.112 729.642 730.172 730.702 731.232 731.762 732.292 732.822
+[244] 733.352 733.882 734.412 734.942 735.472 736.002 736.532 737.062 737.592
+[253] 738.122 738.652 739.182 739.712
+> 
+> ##############################
+> ## The number of wavelengths in the data
+> ##############################
+> 
+> mdDat@nl
+[1] 256
+> 
+> ##############################
+> ## PREPROCESS PSI 1
+> ## estimate the baseline from timepoints 1-9, 
+> ## and substract this baseline from data between wavelengths 1-256 
+> ##############################
+> 
+> mdDat<-preProcess(data = mdDat, baselinelambda = c(1, 9, 1, 256))
+> 
+> ##############################
+> ## PREPROCESS PSI 1
+> ## Select wavelengths 1-235 for analysis
+> ##############################
+> 
+> mdDat<-preProcess(data = mdDat, sel_lambda = c(1, 235))
+> 
+> 
+> ##############################
+> ## DEFINE INITIAL MODEL
+> ##############################
+> 
+> model1<- initModel(mod_type = "kin", 
++ kinpar= c(3.0, 0.5266452074, 0.8900437504E-01, 0.3096646687E-03 ) , 
++ irfpar=c(-0.213412169,0.66E-01), 
++ parmu = list(c(-0.4294245897, 0.663252115 )), 
++ lambdac = 670,
++ seqmod=TRUE,
++ positivepar=c("kinpar"), weightpar = list(c(-16, -.1, NA, NA, .5)),
++ title="visible example", 
++ cohspec = list( type = "irf"))
+> 
+> ##############################
+> ## FIT INITIAL MODEL
+> ## plotting only every 20th trace
+> ##############################
+> 
+> denRes<-fitModel(list(mdDat), list(model1), 
++ opt=kinopt(iter=10, linrange = .2,
++ makeps = "visible", xlab = "time (ps)", 
++ ylab = "wavelength", notraces=FALSE,
++ selectedtraces = seq(1,256,by=20),
++ paropt=list(mar=c(2,2,2,2), mgp=c(1,.2,0) ))) 
+42769.39 :  -0.2134122  0.0660000  1.0986123 -0.6412282 -2.4190698 -8.0800206 -0.4294246  0.6632521 
+  It.   1, fac=           1, eval (no.,total): ( 1,  1): new dev = 23955.4
+23955.38 :  -0.2287705  0.1011909  1.4616511 -0.5928380 -2.5028557 -8.0835883 -0.3795350  0.6993128 
+  It.   2, fac=           1, eval (no.,total): ( 1,  2): new dev = 14862.8
+14862.85 :  -0.2640124  0.1320159  1.8641866 -0.6283141 -2.5038013 -8.0838692 -0.2865395  0.8327431 
+  It.   3, fac=           1, eval (no.,total): ( 1,  3): new dev = 11962.8
+11962.80 :  -0.3345720  0.1169555  1.2904689 -0.6935103 -2.5024294 -8.0822734 -0.1268532  0.9825378 
+  It.   4, fac=           1, eval (no.,total): ( 1,  4): new dev = 11021.8
+11021.78 :  -0.37310888  0.09892213  0.66823291 -0.78706471 -2.52064853 -8.08109894 -0.00256391  1.05351891 
+  It.   5, fac=           1, eval (no.,total): ( 1,  5): new dev = 10795.2
+10795.23 :  -0.37546074  0.09754323  0.66434599 -0.81544997 -2.53566513 -8.08148077  0.05515960  0.95512528 
+  It.   6, fac=           1, eval (no.,total): ( 1,  6): new dev = 10692.1
+10692.15 :  -0.37532673  0.09739731  0.70815275 -0.79766404 -2.53553624 -8.08193617  0.10126361  0.86960644 
+  It.   7, fac=           1, eval (no.,total): ( 1,  7): new dev = 10611.9
+10611.89 :  -0.37482087  0.09751078  0.71526507 -0.80087192 -2.53462984 -8.08179454  0.14287343  0.78967606 
+  It.   8, fac=           1, eval (no.,total): ( 1,  8): new dev = 10531.9
+10531.93 :  -0.3739558  0.0971984  0.7057632 -0.8017594 -2.5340891 -8.0817520  0.1926962  0.6915181 
+  It.   9, fac=           1, eval (no.,total): ( 1,  9): new dev = 10484.7
+10484.74 :  -0.37389004  0.09679977  0.69512100 -0.80077367 -2.53256141 -8.08173660  0.24635423  0.59005148 
+  It.  10, fac=           1, eval (no.,total): ( 1, 10): new dev = 10470.6
+10470.65 :  -0.37633052  0.09614035  0.70024994 -0.79506552 -2.52840991 -8.08171994  0.28115338  0.53558267 
+Warning message:
+number of iterations exceeded maximum of 10 
+> 

@@ -1,0 +1,39 @@
+\HeaderA{initModel}{Defines the model to be used in analysis.}{initModel}
+\keyword{file}{initModel}
+\begin{Description}\relax
+Allows definition of a model of class "dat" to be used 
+in analysis.  The arguments specify the model.
+\end{Description}
+\begin{Usage}
+\begin{verbatim}
+initModel(...)
+\end{verbatim}
+\end{Usage}
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{...}] specify the model class via the character string
+e.g., \code{\LinkA{kin-class}{kin.Rdash.class}} or \code{\LinkA{spec}{spec}} and 
+any of the slots associated with that model type (which is 
+a subclass of class \code{dat}, so that all slots in \code{dat} 
+may also be specified),   
+e.g., \code{mod\_type = "kin"} will initialize a model with 
+class \code{kin}, for a kinetic model.  
+\end{ldescription}
+\end{Arguments}
+\begin{Details}\relax
+For examples, see the help files for \code{\LinkA{dat-class}{dat.Rdash.class}} and 
+\code{\LinkA{fitModel}{fitModel}}
+\end{Details}
+\begin{Value}
+an object of class \code{dat} with the sub-class given by the value of 
+the \code{mod\_type} input.
+\end{Value}
+\begin{Author}\relax
+Katharine M. Mullen, Ivo H. M. van Stokkum
+\end{Author}
+\begin{SeeAlso}\relax
+\code{\LinkA{dat-class}{dat.Rdash.class}}, \code{\LinkA{kin-class}{kin.Rdash.class}}, 
+\code{\LinkA{spec-class}{spec.Rdash.class}}, 
+\code{\LinkA{fitModel}{fitModel}}
+\end{SeeAlso}
+

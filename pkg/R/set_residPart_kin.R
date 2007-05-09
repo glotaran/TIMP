@@ -66,7 +66,7 @@ function ()
 		  } 
               }
 	    }
-        }    
+        }
 	if(returnX)  
 		    retval <- as.vector(concen) 
         else {

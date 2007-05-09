@@ -15,7 +15,7 @@ function (th, modellist, diffs, d, parorder)
 	       ind <- (length(th) + 1):(length(th) + length(parapp))
 	else ind <- vector()
 	parorder[[length(parorder)+1]] <- list(name="prel",
-			  ind=ind, dataset = diffs$dataset, rm=removepar)
+			  ind=ind, dataset = d, rm=removepar)
 	th <- append(th, parapp)
 	list(th=th, parorder=parorder)
 }

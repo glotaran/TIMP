@@ -40,13 +40,13 @@
                 }          
         if(length(modeldiff$rel)!=0)
 		for(diff in modeldiff$rel) {
-		     removepar <- if(diff$fixed) 1:length(diff$start) else vector()
+		     removepar <- if(diff$fix) 1:length(diff$start) else vector()
 		     if(length(removepar)>0)
 			partmp <- diff$start[-removepar]
 		      ind <- if(length(partmp) > 0) (length(th) +
 				 1):(length(th) + length(partmp)) else vector()
-		     parorder[[length(parorder)+1]] <- list(name=diff$what,
-			ind=ind, rm=removepar, dataset=diff$dataset, indm=diff$ind)
+		     parorder[[length(parorder)+1]] <- list(name=diff$what1,
+			ind=ind, rm=removepar, dataset=diff$dataset1, indm=diff$ind1)
 		     th <- append(th, partmp)
 	        }
         if(length(modeldiff$dscal) != 0) {

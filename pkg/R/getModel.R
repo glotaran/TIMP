@@ -30,6 +30,7 @@
         modeldiffs$dscal <- list()
     modellist <- applyWeighting(modellist)
     modellist <- initModellist(modellist)
+    ##modellist <- getPrelBetweenDatasets(modellist, modeldiffs$rel)
     groups <- getGroups(modellist, modeldiffs)
     modeldiffs$groups <- groups$groups
     modeldiffs$linkclp <- groups$linkclp

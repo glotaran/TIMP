@@ -1,7 +1,6 @@
 "fillResult" <- function (group , multimodel, thetalist, clpindepX, rlist,
 	        rawtheta)
 {
- 
     irfvec <- rlist$irfvec
     QR.temp <- rlist$QR 
     psi <- rlist$psi 

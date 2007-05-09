@@ -86,9 +86,7 @@
             else 
                   cohirf <- vector()
  	    irfvec <- resultlist[[i]]@irfvec[[1]]
-	    
-            contoplotList[[length(contoplotList)+1]] <- getConToPlot(
-	    doClpConstr(compModel(k = t[[i]]@kinpar, 
+	    C <- compModel(k = t[[i]]@kinpar, 
                 kinscal = m[[i]]@kinscal, x = m[[i]]@x, irfpar = irfvec, 
                 irf = m[[i]]@irf, seqmod = m[[i]]@seqmod, 
 		fullk = m[[i]]@fullk, 
@@ -100,8 +98,14 @@
                 convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
 		speckin2 = m[[i]]@speckin2, 
 		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
-		kin2scal = t[[i]]@kin2scal), 
-                1, m[[i]]@clpCon, t[[i]]@clpequ, dataset = i), 
+		kin2scal = t[[i]]@kin2scal)
+	      if(plotoptions@writerawcon) 
+		 write.table(C, file=paste(plotoptions@makeps,
+		 "_rawconcen_dataset_", i, ".txt", sep=""), quote = FALSE,
+		  row.names = m[[i]]@x)
+ 
+            contoplotList[[length(contoplotList)+1]] <- getConToPlot(
+	    doClpConstr(C, 1, m[[i]]@clpCon, t[[i]]@clpequ, dataset = i), 
                 m[[i]]@cohspec, m[[i]]@cohcol)
            minc <- min(minc, min(contoplotList[[length(contoplotList)]]))
 	   maxc <- max(maxc, max(contoplotList[[length(contoplotList)]]))

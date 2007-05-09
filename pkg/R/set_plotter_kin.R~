@@ -21,7 +21,7 @@
 		if(!plotoptions@FLIM) 
 		   plotResids(multimodel, multitheta, plotoptions) 
 	}
-	if(plotoptions@writefit)
+	if(plotoptions@writefit || plotoptions@writefitivo)
 		writeFit(multimodel, multitheta, plotoptions)
         if (length(plotoptions@breakdown)>0) 
             plotKinBreakDown(multimodel, multitheta, 

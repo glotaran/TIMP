@@ -1,5 +1,6 @@
 "getTheta" <- function (mod) 
 {
+   
    modelspec <- mod@modelspec
    modellist <- mod@modellist
    datasetind <- mod@datasetind 
@@ -20,7 +21,6 @@
 	     if(length(parapp) != 0) 
 		ind <- (length(th) + 1):(length(th) + length(parapp))
 	     else ind <- vector()
-	     
 	     parorder[[length(parorder)+1]] <- list(name=p, ind=ind, 
 	     dataset = ds, rm=removepar)
 	
@@ -30,8 +30,10 @@
 		  th <- append(th, parapp)
              }
 	}  
-   }
-    .currModel@parorder <<- parorder 
-    getDiffTheta(th, mod)
+    }
+   .currModel@parorder <<- processOrder(parorder, mod) 
+   getDiffTheta(th, mod)
+   
+    
 }
     

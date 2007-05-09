@@ -8,6 +8,7 @@ function (th, mod) {
 	thetaClasslist <- vector("list", length(datasetind))
 	for(i in 1:length(modellist))
 	      thetaClasslist[[i]] <- theta()
+	
 	for(po in parorder) {
 	      ds <- po$dataset	
 	      model <- modellist[[ds[1] ]]
@@ -27,14 +28,33 @@ function (th, mod) {
 		 for (d in ds)
 			slot(thetaClasslist[[d]], p) <- parslot
 	      }
-	      else {
-		 thL <- addPrelCl(thetaClasslist[[ds[1]]], model, th, po)
-		 for (d in ds)
-		     thetaClasslist[[d]] <- thL
-	      }
+	      
 	}
- 	if(length(mod@data) > 1) 
+
+	if(length(mod@data) > 1) 
 		thetaClasslist <- getDiffThetaCl(th, thetaClasslist, mod)
+	
+	pd <- .currModel@parorderdiff
+	md <- .currModel@modeldiffs$rel 
+	cnt <- 0
+	if(length(pd) > 0) {
+	for(i in 1:length(pd)) {
+	      if(pd[[i]]$name == "prel") {
+		  cnt <- cnt + 1
+		  for(j in 1:length( pd[[i]]$dataset)) 	
+		    thetaClasslist[[pd[[i]]$dataset[j]]]@prel[md[[cnt]]$ind2] <- thetaClasslist[[md[[cnt]]$dataset2[j]  ]]@prel[md[[cnt]]$ind2 ]
+
+	      }
+          }
+	}
+	for(i in 1:length(parorder)) {
+	      if(parorder[[i]]$name == "prel")
+		  for(j in parorder[[i]]$dataset) {	
+		    thetaClasslist[[j]] <- addPrelCl(thetaClasslist[[j]], 
+		    modellist[[j]], th, parorder[[i]])
+		  }
+	}
+	
 	thetaClasslist
 }
 

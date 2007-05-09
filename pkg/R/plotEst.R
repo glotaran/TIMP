@@ -154,7 +154,8 @@
 	      textplot(t(xmat), mar=c(1,0,1,0),cmar=.7,halign="left")
       title(main=paste("RMSE:", signif(sumonls$sigma, digits=3)))
       options(scipen=0)
-
+      write.table(xmat[-dim(xmat)[1],], 
+      file=paste(plotoptions@makeps, "_parSum.txt", sep=""), quote=FALSE)
       list(x=xret, y=yret, z=zret)
     
 }

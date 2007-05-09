@@ -100,6 +100,7 @@
 \alias{plotEst}
 \alias{init.fit}
 \alias{fillResult}
+\alias{processOrder}
 \title{TIMP function used internally}
 \description{TIMP function used internally}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}

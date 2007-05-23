@@ -19,7 +19,8 @@ function ()
 			   specinterpolbspline = "logical",
 			   samespecline = "logical",
 			   normspec = "logical",
-			   writespecinterpol = "logical"),
+			   writespecinterpol = "logical", 
+			   writeplaincon = "list"),
         prototype = list( notraces = FALSE,
 			   selectedtraces = vector(),
 			   breakdown = list(),
@@ -39,6 +40,7 @@ function ()
 			   specinterpolseg = 50,
 			   specinterpolbspline = FALSE,
 			   normspec = FALSE,
-			   writespecinterpol = FALSE) )
+			   writespecinterpol = FALSE,
+			   writeplaincon = list()))
 }
 

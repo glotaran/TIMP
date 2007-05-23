@@ -51,6 +51,8 @@ function (m)
         m[[i]]@x <- m[[i]]@x * m[[i]]@scalx
         m[[i]]@fvecind <- getFixed(m[[i]])
         m[[i]]@pvecind <- getPrel(m[[i]])
+	m[[i]]@mvecind <- m[[i]]@nvecind <- getMvec(m[[i]])
+	
         m[[i]] <- addPrel(m[[i]])
     }
     m

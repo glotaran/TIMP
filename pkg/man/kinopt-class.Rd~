@@ -96,7 +96,7 @@ the plot of spectra}
  \item{ylimspec}{Object of class \code{"vector"} that defaults to 
 \code{vector()}; if changed, it should specify the desired y-limits of 
 the plot of spectra}
-}}
+}
 \details{See \code{\link{opt-class}} and  \link{specopt-class} for 
 the specification of fitting/plotting options that are not specific to the 
 class type and for the \code{kin} class type, respectively. }

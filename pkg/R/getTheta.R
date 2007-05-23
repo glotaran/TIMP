@@ -1,6 +1,5 @@
 "getTheta" <- function (mod) 
 {
-   
    modelspec <- mod@modelspec
    modellist <- mod@modellist
    datasetind <- mod@datasetind 
@@ -11,29 +10,32 @@
 	 model <- modellist[[ds[1] ]]
 	 fixed <- model@fvecind
 	 prel <- model@pvecind
+	 mrel <- model@mvecind 
 	 ppars <- append(model@parnames, "prel")
 	 for (p in ppars) {
 	     if(length(slot(modelspec[[i]], p)) != 0) {  
-		removepar <- sort(unique(append(fixed[[p]], prel[[p]])))
-		parapp <- if (length(removepar) != 0) 
-			  unlist(slot(model, p))[-removepar]
+		removepar <- sort(unique(c(fixed[[p]], prel[[p]])))
+		rmpar <- sort(unique(c(fixed[[p]], prel[[p]], mrel[[p]])))
+		parapp <- if (length(rmpar) != 0) 
+			  unlist(slot(model, p))[-rmpar]
 			  else unlist(slot(model, p))
-	     if(length(parapp) != 0) 
+	     if(length(parapp) != 0) {
 		ind <- (length(th) + 1):(length(th) + length(parapp))
-	     else ind <- vector()
+	     }
+	     else {
+		  ind <- vector()
+	     }
 	     parorder[[length(parorder)+1]] <- list(name=p, ind=ind, 
-	     dataset = ds, rm=removepar)
-	
+	     dataset = ds, rm=rmpar)
 	     if(p %in% model@positivepar && length(parapp) != 0) 
 		  th <- append(th, log(parapp))
 	     else 
 		  th <- append(th, parapp)
-             }
+           }
 	}  
     }
    .currModel@parorder <<- processOrder(parorder, mod) 
    getDiffTheta(th, mod)
-   
-    
+       
 }
     

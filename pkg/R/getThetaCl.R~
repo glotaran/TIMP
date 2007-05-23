@@ -45,6 +45,9 @@ function (th, mod) {
 		    modellist[[j]], th, parorder[[i]], addM = FALSE)
 		  }
 	}
+
+	
+	
 	thetaClasslist
 }
 

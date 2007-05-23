@@ -19,8 +19,7 @@
                     diffs$what2)[diffs$ind2] * parvec[cnt] + parvec[cnt+1]
 	      } 
 	      if(length(diffs$ind1)==1 && length(diffs$ind2)==2)
-		    slot(thetaClass, diffs$what1)[diffs$ind1] <- 
-		    slot(thetaClass, diffs$what2)[[diffs$ind2[1]]][diffs$ind2[2]] * parvec[cnt] + parvec[cnt+1]
+		    slot(thetaClass, diffs$what1)[diffs$ind1] <- slot(thetaClass, diffs$what2)[[diffs$ind2[1]]][diffs$ind2[2]] * parvec[cnt] + parvec[cnt+1]
 	      if(length(diffs$ind1)==2 && length(diffs$ind2)==1)
 		    slot(thetaClass, 
 	            diffs$what1)[[diffs$ind1[1]]][diffs$ind1[2]] <- 

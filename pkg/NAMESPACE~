@@ -31,5 +31,5 @@ init.multitheta, simpExp, init.res, simpPol, init.spec, skew, init.theta,
 specModel, irfparF, specparF, fillK, l2nu, linloglines, fullKF, linlogplot,
 gaus, getClpConstr, weightNL, getClpindepX, matlinlogplot, weightPsi,
 getClpList, weightSM, getCoh, writeEst, getCohToPlot, normdat, writeFit,
-getConToPlot, plotEst, plotKinSpecEst, fillResult, getResid, orderProcess)
+getConToPlot, plotEst, plotKinSpecEst, fillResult, getResid, processOrder)
 

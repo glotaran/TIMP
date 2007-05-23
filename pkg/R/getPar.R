@@ -1,5 +1,5 @@
-"getPar" <-
-function (model, po, th, theta=theta() ) 
+"getPar" <- 
+function (model, po, th, theta=theta(), addM=FALSE) 
 {
 	 removepar <- po$rm 
 	 if(length(unlist(slot(model, po$name))) - length(removepar) != 0)
@@ -12,8 +12,10 @@ function (model, po, th, theta=theta() )
 		if(fx %in% model@fvecind[[po$name]])
 		    parvec <- append(parvec, unlist(slot(model, po$name))[fx], 
 			        after=(fx-1))
-                 else 
+                else if(fx %in% model@pvecind[[po$name]] || (
+		 fx %in% model@mvecind[[po$name]] && !addM)) 
 		    parvec <- append(parvec, 0, after=(fx-1))
+
 	 }
 	 parvec
 }

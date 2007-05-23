@@ -103,7 +103,26 @@
 		 write.table(C, file=paste(plotoptions@makeps,
 		 "_rawconcen_dataset_", i, ".txt", sep=""), quote = FALSE,
 		  row.names = m[[i]]@x)
- 
+	      if(length(plotoptions@writeplaincon) > 0){
+		xplot <- plotoptions@writeplaincon$x 
+
+		CWRITE <- compModel(k = t[[i]]@kinpar, 
+                kinscal = m[[i]]@kinscal, x = xplot, irfpar = irfvec, 
+                irf = m[[i]]@irf, seqmod = m[[i]]@seqmod, 
+		fullk = m[[i]]@fullk, 
+                kmat = m[[i]]@kmat, jvec = m[[i]]@jvec, 
+		dscalspec = m[[i]]@dscalspec, 
+                drel = t[[i]]@drel, cohspec = m[[i]]@cohspec, 
+                coh = t[[i]]@coh, lamb = 1, 
+                dataset = i, cohirf = cohirf, mirf = m[[i]]@mirf, 
+                convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
+		speckin2 = m[[i]]@speckin2, 
+		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
+		kin2scal = t[[i]]@kin2scal)
+	       write.table(CWRITE, file=paste(plotoptions@makeps,
+		 "_plaincon_dataset_", i, ".txt", sep=""), quote = FALSE,
+		  row.names = linloglines(xplot, irfvec[1], 0  ))
+	      } 
             contoplotList[[length(contoplotList)+1]] <- getConToPlot(
 	    doClpConstr(C, 1, m[[i]]@clpCon, t[[i]]@clpequ, dataset = i), 
                 m[[i]]@cohspec, m[[i]]@cohcol)
@@ -335,9 +354,9 @@
             par(las = 2)
         }
 	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
-	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
-	writeEst(multimodel, multitheta, plotoptions, plotEstout)
-        displayEst(plotoptions)
+	##plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
+	##writeEst(multimodel, multitheta, plotoptions, plotEstout)
+        ##displayEst(plotoptions)
 
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
             dev.print(device = postscript, file = paste(plotoptions@makeps, 

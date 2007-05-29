@@ -1,13 +1,5 @@
 "plotKinBreakDown" <-
 function (multimodel, multitheta, plotoptions) { 
-
-    ## breakdown assumed to have following elements:
-    ## character vector "type", can be "ind" "abs", defaults to "ind", 
-    ## for multiple datasets this will plot ind 1 in all datasets if
-    ## superimpose > 1 -- this could be bad for different x2-ranges   
-    ## numeric vector "plot" of wavelengths to plot 
-    ##                       OR wavelength indices to plot
-    ##  character vector "from", dataset indices (defaults to all) 
     get(getOption("device"))()
     plotrow<-length(plotoptions@breakdown$plot) 
     plotcol<-1
@@ -20,9 +12,6 @@ function (multimodel, multitheta, plotoptions) {
     m <- multimodel@modellist   
     t <- multitheta   
     res <- multimodel@fit@resultlist
-    ## is x2 decreasing? assume answer same for all datasets 
-    x2_decr <- if(m[[1]]@x2[1] < m[[1]]@x2[m[[1]]@nl]) FALSE
-	       else TRUE
     allx2 <- allx <- vector() 
     pl <- plotoptions@breakdown$plot
     if(length(plotoptions@breakdown$tol) == 0)
@@ -61,7 +50,7 @@ function (multimodel, multitheta, plotoptions) {
 	  allx2 <- append(allx2, m[[i]]@x2) 
 	  allx <- append(allx, m[[i]]@x)
     }
-    allx2 <- sort(unique(allx2), decreasing = x2_decr) 
+    allx2 <- sort(unique(allx2)) 
     allx <- sort(unique(allx))
     xmax <- max(allx)
     xmin <- min(allx)
@@ -174,7 +163,8 @@ function (multimodel, multitheta, plotoptions) {
 
 			matlinlogplot(m[[i]]@x, resPList[[i]], mu=mu,
 			alpha=plotoptions@linrange, add = !newplot, type =
-			"l", lty=i, ylab ="amplitude", xlab=plotoptions@xlab,
+			"l", lty=i, ylab =plotoptions@ylab, 
+			xlab=plotoptions@xlab,
 			ylim = ylim, xlim = c(xmin, xmax),
 			main = m[[i]]@x2[breakl])
 	

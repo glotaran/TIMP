@@ -71,6 +71,15 @@ most are most often made by invoking another function such as
   used}
     \item{\code{fixed}:}{ Object of class \code{"list"} list of lists or vectors giving the parameter values 
   to fix (at their starting values) during optimization. }
+ \item{\code{free}:}{ Object of class \code{"list"} list of lists or vectors giving the parameter values 
+  to free during optimization; if this list is present then all parameters
+not specified in it are fixed, e.g., \code{free = list(irfpar = 2)} will fix
+every parameter at its starting value except for the 2nd \code{irfpar}.  If 
+\code{fix = list(none=TRUE)}  (or if the element \code{none}  has length
+greater than 0) then all parameters in the model are fixed.  Note that this
+option only should be applied to multiexperiment models in which at least one 
+parameter appling to some other dataset is optimized (\code{nls} always must 
+have at least one parameter to optimize).      }
     \item{\code{clp0}:}{ Object of class \code{"list"}  list of lists with elements \code{low}, \code{high} and 
   \code{comp}, specifying the least value in  \code{x2} to constrain 
   to zero, the greatest value in  \code{x2} to 

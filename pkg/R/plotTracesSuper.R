@@ -11,10 +11,6 @@ function(multimodel, multitheta, plotoptions)
     else 
 	 superimpose <- plotoptions@superimpose
     divdrel <- plotoptions@divdrel
-    
-    ## is x2 decreasing? assume answer same for all datasets 
-    x2_decr <- if(m[[1]]@x2[1] < m[[1]]@x2[m[[1]]@nl]) FALSE
-	       else TRUE
     allx2 <- allx <- vector() 
     for(i in superimpose) {
 	  allx2 <- append(allx2, m[[i]]@x2) 

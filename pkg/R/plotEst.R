@@ -1,6 +1,6 @@
 "plotEst" <- function (mod, plotoptions, tr=FALSE)  
 {
-	options(scipen=-2) 
+	options(scipen=-4) 
 	m <- mod@modellist
 	model <- m[[1]]
 	sumonls <- mod@fit@nlsres$sumonls
@@ -15,7 +15,7 @@
 		    if(j %in% removepar) {
 			  pest <- unlist(slot(model, name))[j]
 			  t <- "NA"
-			  xret[[length(xret)+1]] <- list(name=name, pest=pest, 
+			  xret[[length(xret)+1]] <- list(name=name, pest=signif(pest), 
 			  t=t, ind=j)
 		    }
 		    else{
@@ -92,7 +92,7 @@
 			  pest <- unlist(slot(m[[dataset]], name))[j]
 			  t <- "NA"
 			  zret[[length(zret)+1]] <- list(name=name, 
-			  pest=pest, t=t, dataset=dataset, ind=j)
+			  pest=signif(pest), t=t, dataset=dataset, ind=j)
 		    }
 		    else{
 			pest <- sumonls$parameter[cnt, 1]
@@ -122,10 +122,10 @@
        c("PAR", "EST", "T VAL", "")))
        if(length(x) > 0)
         for(i in 1:length(x)) {
-	     xmat[i,] <- c(paste(x[[i]]$name,x[[i]]$ind, x[[i]]$dataset), 
-	     x[[i]]$pest, x[[i]]$t, NA)
+	     xmat[i,] <- c(paste(x[[i]]$name, x[[i]]$ind, x[[i]]$dataset), 
+	     signif(x[[i]]$pest), x[[i]]$t, NA)
 	     if(x[[i]]$name == "kinpar") 
-		       xmat[i, 4]<-paste("tau:",signif(1/x[[i]]$pest,digits=2))
+		       xmat[i, 4] <- paste("tau:",signif(1/x[[i]]$pest,digits=2))
        }
        if(length(y) > 0 || length(z) > 0) {
 	 x2 <- xmat[(1+length(x)):(lall+1),]
@@ -137,14 +137,14 @@
        if(length(y) > 0)
          for(i in 1:length(y)) {
 	     xmat[i+length(x)+1,] <- c(paste(y[[i]]$name,y[[i]]$ind, y[[i]]$dataset),
-	      y[[i]]$pest, y[[i]]$t, NA)
+	      signif(y[[i]]$pest), y[[i]]$t, NA)
 	      if(y[[i]]$name == "kinpar") 
 		       xmat[i+length(x)+1, 4]<-paste("tau:",signif(1/y[[i]]$pest,digits=2))
        }
        if(length(z) > 0)
          for(i in 1:length(z)) {
 	     xmat[i+length(x)+length(y)+1,] <- c(paste(z[[i]]$name,z[[i]]$ind, 
-	     z[[i]]$dataset), z[[i]]$pest,z[[i]]$t, NA)
+	     z[[i]]$dataset), signif(z[[i]]$pest), z[[i]]$t, NA)
 	     if(z[[i]]$name == "kinpar") 
 		       xmat[i+length(x)+length(y)+1, 4]<-paste("tau:",signif(1/z[[i]]$pest,digits=2))
         }
@@ -154,8 +154,7 @@
 	      textplot(t(xmat), mar=c(1,0,1,0),cmar=.7,halign="left")
       title(main=paste("RMSE:", signif(sumonls$sigma, digits=3)))
       options(scipen=0)
-      write.table(xmat[-dim(xmat)[1],], 
-      file=paste(plotoptions@makeps, "_parSum.txt", sep=""), quote=FALSE)
+      
       list(x=xret, y=yret, z=zret)
     
 }

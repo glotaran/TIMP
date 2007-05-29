@@ -14,7 +14,7 @@ function ()
         drel = "vector", clpequ = "vector", scalx = "numeric", 
         prel = "vector", prelspec = "list", fvecind = "vector", 
         pvecind = "vector", nvecind = "vector",
-	iter = "numeric", 
+	iter = "numeric", free = "list",
         clpCon = "list", ncomp = "numeric", clpdep = "logical", 
 	inten = "matrix", positivepar="vector"), 
         prototype = list(psi.df = matrix(), psi.weight = matrix(), 
@@ -28,7 +28,7 @@ function ()
             mhist = list(), datCall = list(), nvecind = vector(), 
             dscal = list(), drel = vector(),  mvecind = vector(),
             scalx = 1, prel = vector(), prelspec = list(), fvecind = vector(), 
-            pvecind = vector(), clpequ = vector(), 
+            pvecind = vector(), clpequ = vector(), free = list(),
             iter = 1, ncomp = numeric(), clpdep = logical(),inten = matrix(), 
 	    parnames=vector(), positivepar=vector()))
 }

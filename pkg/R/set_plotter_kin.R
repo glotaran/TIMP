@@ -35,10 +35,6 @@
 	mfrow=c(plotoptions@summaryplotrow, plotoptions@summaryplotcol))
         m <- multimodel@modellist
         t <- multitheta
-
-	## is x2 decreasing? assume answer same for all datasets 
-	x2_decr <- if(m[[1]]@x2[1] < m[[1]]@x2[m[[1]]@nl]) FALSE
-	       else TRUE
         allx2 <- allx <- vector() 
 	for(i in 1:length(m)) {
 	  allx2 <- append(allx2, m[[i]]@x2) 
@@ -258,7 +254,6 @@
 	}
 	##START RESID PLOTTING
 	for (i in 1:length(m)) {          
-	   if (m[[i]]@x2[1] < m[[i]]@x2[m[[i]]@nl]) {
 	    limd<- max(  max(residlist[[i]]), abs(min(residlist[[i]]))) 
 	    image.plot(m[[i]]@x, m[[i]]@x2, 
 	    residlist[[i]], xlab = plotoptions@xlab, 
@@ -267,8 +262,7 @@
 		zlim=c(-limd,limd),
 		col = diverge_hcl(40, h = c(0, 120), c = 60, 
 		l = c(45, 90), power = 1.2))
-            }
-           }
+        }
 	for (i in 1:length(m)) {     
 	   if (m[[i]]@nt > 1 && m[[i]]@nl > 1) {
 	       xpos <- m[[i]]@x 
@@ -354,9 +348,9 @@
             par(las = 2)
         }
 	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
-	##plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
-	##writeEst(multimodel, multitheta, plotoptions, plotEstout)
-        ##displayEst(plotoptions)
+	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
+	writeEst(multimodel, multitheta, plotoptions, plotEstout)
+        displayEst(plotoptions)
 
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
             dev.print(device = postscript, file = paste(plotoptions@makeps, 

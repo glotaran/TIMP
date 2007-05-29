@@ -13,9 +13,6 @@ ylim=vector(), kinspecerr=FALSE)
 	if(is.na(max_x2) || is.na(max_x2))
 			 withlim <- FALSE 
 	else		 withlim <- TRUE
-	## is x2 decreasing? assume answer same for all datasets 
-	x2_decr <- if(m[[1]]@x2[1] < m[[1]]@x2[m[[1]]@nl]) FALSE
-	       else TRUE
         allx2 <- allx <- vector() 
 	for(i in 1:length(m)) {
 	  allx2 <- append(allx2, m[[i]]@x2) 

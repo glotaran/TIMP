@@ -86,7 +86,7 @@
                 kinscal = m[[i]]@kinscal, x = m[[i]]@x, irfpar = irfvec, 
                 irf = m[[i]]@irf, seqmod = m[[i]]@seqmod, 
 		fullk = m[[i]]@fullk, 
-                kmat = m[[i]]@kmat, jvec = m[[i]]@jvec, 
+                kmat = m[[i]]@kmat, jvec = t[[i]]@jvec, 
 		dscalspec = m[[i]]@dscalspec, 
                 drel = t[[i]]@drel, cohspec = m[[i]]@cohspec, 
                 coh = t[[i]]@coh, lamb = 1, 
@@ -348,9 +348,9 @@
             par(las = 2)
         }
 	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
-	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
-	writeEst(multimodel, multitheta, plotoptions, plotEstout)
-        displayEst(plotoptions)
+	#plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
+	#writeEst(multimodel, multitheta, plotoptions, plotEstout)
+        #displayEst(plotoptions)
 
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
             dev.print(device = postscript, file = paste(plotoptions@makeps, 

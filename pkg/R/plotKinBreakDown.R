@@ -87,7 +87,7 @@ function (multimodel, multitheta, plotoptions) {
 			      irfpar=irfvec,
 			      irf=m[[i]]@irf, seqmod=m[[i]]@seqmod,
 			      fullk=m[[i]]@fullk, kmat=m[[i]]@kmat,
-			      jvec=m[[i]]@jvec, dscalspec=m[[i]]@dscalspec,
+			      jvec=t[[i]]@jvec, dscalspec=m[[i]]@dscalspec,
 			      drel=t[[i]]@drel, cohspec=m[[i]]@cohspec, coh =
 			      t[[i]]@coh, lamb=breakl, dataset=i, 
 			      cohirf = cohirf,  mirf = m[[i]]@mirf, 

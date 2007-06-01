@@ -1,4 +1,4 @@
-"set_residPart_kin" <-
+			    "set_residPart_kin" <-
 function () 
 {
     setMethod("residPart", signature(model = "kin"), function(model,
@@ -30,7 +30,7 @@ function ()
                 concen_i <- doClpConstr(compModel(k = t@kinpar, 
                   kinscal = m@kinscal, x = m@x, irfpar = irfvec, 
                   irf = m@irf, seqmod = m@seqmod, fullk = m@fullk, 
-                  kmat = m@kmat, jvec = m@jvec, shiftmea =  t@parmu, 
+                  kmat = m@kmat, jvec = t@jvec, shiftmea =  t@parmu, 
 		  dscalspec = m@dscalspec, 
                   drel = t@drel, cohspec = m@cohspec, coh = t@coh, 
                   cohirf = cohirf, lamb = group[[i]][1], 

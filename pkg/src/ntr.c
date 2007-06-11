@@ -232,7 +232,6 @@ void calcB(double *bvec, double *k, int *lenk){
 
     int i, j;
     float sumcol;
-    int len = (*lenk) * (*lenk);
     #define matind(i,j,l) (((j-1) * (l) + (i-1))) 
         
     bvec[0] = 1;

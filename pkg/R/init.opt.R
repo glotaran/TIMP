@@ -23,7 +23,19 @@ function ()
 			iter = "numeric",
 			stderrclp = "logical",
 			paropt="list", 
-			addest="vector"), 
+			addest="vector", 
+			kinspecerr = "logical",
+			xlimspec = "vector",
+			ylimspec = "vector",
+			ylimspecplus = "vector",
+			specinterpol = "logical",
+			specinterpolpoints = "logical",
+			specinterpolseg = "numeric",
+			specinterpolbspline = "logical",
+			samespecline = "logical",
+			normspec = "logical",
+			writespecinterpol = "logical" 
+			), 
         prototype = list(writecon = FALSE, 
 			writespec = FALSE,
 			writenormspec = FALSE,
@@ -43,6 +55,18 @@ function ()
 			summaryplotcol = 4,
 			linrange = 1,
 			iter = 1, 
-			addest=vector()))
+			addest=vector(), 
+			kinspecerr = FALSE,
+			ylimspecplus = vector(), 
+			xlimspec = vector(),
+			ylimspec = vector(),
+			specinterpol = FALSE,
+			specinterpolpoints = TRUE, 
+			specinterpolseg = 50,
+			specinterpolbspline = FALSE,
+			normspec = FALSE,
+			writespecinterpol = FALSE, 
+			samespecline = FALSE
+			))
 }
 

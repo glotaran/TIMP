@@ -5,12 +5,9 @@
     model <- multimodel@modellist[[1]]
     if(plotoptions@residplot)
          plotFLIMresid(multimodel, multitheta, plotoptions) 
-    plotrow <- 3
-    plotcol <- 4  
-    par(mfrow = c(plotrow, plotcol))
     par(plotoptions@paropt)
-    par(omi = c(.5, .2, .1, .3), cex.main=.95)
-    
+    par(mgp = c(2, 1, 0), mar=c(3,3,3,2), oma = c(1,0,4,0), cex.main=.95,
+	mfrow=c(plotoptions@summaryplotrow, plotoptions@summaryplotcol))
     nt <- model@nt
     nl <- model@nl
     x <- model@x
@@ -27,7 +24,9 @@
     conmax <- list()
     spectralist <- getSpecList(multimodel, t)
     for (i in 1:length(m)) {
-        spec <- spectralist[[i]]
+	spec <- spectralist[[i]]
+	if( (m[[i]]@cohcol != 0)[1])
+		spec <- spectralist[[i]][,-m[[i]]@cohcol]
         for (j in 1:dim(spec)[2]) {
             hist(spec[, j], xlab = paste("tau=", signif(1/k[j], 5)), 
 	    main = paste("Comp.", j, "amplitude"))
@@ -35,6 +34,8 @@
     }
     for (i in 1:length(m)) {
         spec <- spectralist[[i]]
+	if( (m[[i]]@cohcol != 0)[1])
+           spec <- spectralist[[i]][,-m[[i]]@cohcol]
         if (dim(spec)[2] > 1) {
             sumspec <- rep(0, dim(spec)[1])
             sumAv <- matrix(0, length(k), model@nl)

@@ -348,9 +348,9 @@
             par(las = 2)
         }
 	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
-	#plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
-	#writeEst(multimodel, multitheta, plotoptions, plotEstout)
-        #displayEst(plotoptions)
+	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
+	writeEst(multimodel, multitheta, plotoptions, plotEstout)
+        displayEst(plotoptions)
 
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
             dev.print(device = postscript, file = paste(plotoptions@makeps, 

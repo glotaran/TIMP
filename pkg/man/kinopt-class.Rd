@@ -43,30 +43,7 @@ following elements:
      \item{kinspecest}{Object of class \code{"logical"} that defaults to 
     \code{FALSE}; if \code{TRUE}, make a plot of the spectra associated with
     the kinetic components as well as the lifetime estimates. }
- \item{kinspecerr}{Object of class \code{"logical"} that defaults to 
-    \code{FALSE}; if \code{TRUE}, add standard error estimates to the spectra
-    a plot generated with \code{kinspecest=TRUE}.  This option can only be 
-    used if the estimates were generated during fitting via the option 
-    \code{stderrclp=TRUE}}
- \item{specinterpol}{Object of class \code{"logical"} that defaults to 
-    \code{FALSE}; if \code{TRUE}, use spline instead of lines between 
-    the points representing estimated spectra}
-   \item{specinterpolpoints}{Object of class \code{"logical"} that defaults to 
-    \code{TRUE}; if \code{TRUE}, add points representing the actual estimates
-    for spectra to plots of the curves respresenting smoothed spectra}
-\item{specinterpolseg}{Object of class \code{"numeric"} that defaults to 
-    \code{50}; represents the number of segments used in a spline-based
-    representation of spectra}  
- \item{specinterpolbspline}{Object of class \code{"logical"} that defaults
-to \code{FALSE}; determines whether a B-spline based representation of
-spectra is used (when \code{specinterpol=TRUE}) or a piecewise polynomial 
-	representation} 
- \item{normspec}{Object of class \code{"logical"} that determines whether
-spectra are normalized in plots}
 
- \item{writespecinterpol}{Object of class \code{"logical"} that defaults to 
-    \code{FALSE}; if \code{TRUE}, a spline-based representation of spectra
-    is written to ASCII files}
  \item{writeplaincon}{Object of class \code{"list"}; if length is greater
 than 0, then the concentration model will be evaluated at the vector of 
 \code{x} values supplied as the element \code{"x"} of \code{writeplaincon} 
@@ -83,19 +60,6 @@ that defaults to \code{TRUE}; if \code{FALSE} then the spectra associated
 with the coherent artifact (pulse-follower) are not included in the summary
 plots
   }
- \item{ylimspecplus}{Object of class \code{"vector"} that defaults to 
-\code{vector()}; if changed, the first value should specify a vector to
-add to the y-limits of the plot of spectra}
-\item{samespecline}{Object of class \code{"logical"} that defaults to 
-\code{FALSE}; if \code{TRUE}, then the line-type for spectra is the same 
-for all datasets
-}
- \item{xlimspec}{Object of class \code{"vector"} that defaults to 
-\code{vector()}; if changed, it should specify the desired x-limits of 
-the plot of spectra}
- \item{ylimspec}{Object of class \code{"vector"} that defaults to 
-\code{vector()}; if changed, it should specify the desired y-limits of 
-the plot of spectra}
 }}
 \details{See \code{\link{opt-class}} and  \link{specopt-class} for 
 the specification of fitting/plotting options that are not specific to the 

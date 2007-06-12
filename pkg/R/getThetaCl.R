@@ -3,7 +3,6 @@ function (th, mod) {
 
 	modelspec <- mod@modelspec
 	modellist <- mod@modellist
-	
 	parorder <- mod@parorder
 	datasetind <- mod@datasetind 
 	thetaClasslist <- vector("list", length(datasetind))

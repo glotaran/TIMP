@@ -19,12 +19,10 @@
 		parapp <- if (length(rmpar) != 0) 
 			  unlist(slot(model, p))[-rmpar]
 			  else unlist(slot(model, p))
-	     if(length(parapp) != 0) {
+	     if(length(parapp) != 0) 
 		ind <- (length(th) + 1):(length(th) + length(parapp))
-	     }
-	     else {
+	     else 
 		  ind <- vector()
-	     }
 	     parorder[[length(parorder)+1]] <- list(name=p, ind=ind, 
 	     dataset = ds, rm=rmpar)
 	     if(p %in% model@positivepar && length(parapp) != 0) 

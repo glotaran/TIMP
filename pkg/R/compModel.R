@@ -30,9 +30,18 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
 	convalg = 1, shiftmea = shiftmea, 
 	kinpar2=kinpar2))
     }
-    if(!is.null(cohspec$type) && cohspec$type != "")
+    if(!is.null(cohspec$type) && cohspec$type != "") {
+	xx1<<-c.temp
+	xx2<<-compCoh(irfpar, x, cohspec, coh, 
+            dataset, cohirf, mirf = mirf, 
+	    measured_irf = measured_irf, convalg = convalf, 
+	    shiftmea = shiftmea, lamb = lamb)
         c.temp <- cbind(c.temp, compCoh(irfpar, x, cohspec, coh, 
-            dataset, cohirf))
+            dataset, cohirf, mirf = mirf, 
+	    measured_irf = measured_irf, convalg = convalf, 
+	    shiftmea = shiftmea, lamb = lamb))
+
+    }
     if (length(drel) != 0) {
         if (dscalspec$perclp) 
             c.temp <- drel[lamb] * c.temp

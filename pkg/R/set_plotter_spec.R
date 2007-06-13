@@ -86,10 +86,12 @@ function(){
 		residlist[[length(residlist)+1]] <- residuals 
 	}
 	limd<- max(  max(residlist[[1]]), abs(min(residlist[[1]]))) 
-	image(x, x2, residlist[[1]], xlab = plotoptions@xlab, 
-	ylab = plotoptions@ylab, main = "Residuals Dataset 1", 
-	zlim=c(-limd,limd), col=diverge_hcl(40, h = c(0, 120), c = 60, 
-	       l = c(45, 90), power = 1.2))
+	 if(!is.unsorted(x) && length(unique(x)) == nt 
+		&& length(unique(x2)) == nl )
+		image(x, x2, residlist[[1]], xlab = plotoptions@xlab, 
+		ylab = plotoptions@ylab, main = "Residuals Dataset 1", 
+		zlim=c(-limd,limd), col=diverge_hcl(40, h = c(0, 120), c = 60, 
+	        l = c(45, 90), power = 1.2))
 	if(nt > 1 && nl > 1){ 
 	      matplot(x, svdresidlist[[1]]$left, type = "l",
 	      main = "Left sing. vectors residuals ", log = "x", xlab =

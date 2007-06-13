@@ -19,7 +19,7 @@
 		          fitted[, j] <- fitted[,j]/m[[i]]@weightM[, j]
 		     
 		     irfmu[j] <- res[[i]]@irfvec[[j]][1]
-
+		     
 		}
 		if (m[[i]]@mirf) {
 		   irfstart <- m[[i]]@x[which(m[[i]]@measured_irf == 

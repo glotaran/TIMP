@@ -40,6 +40,13 @@ following elements:
     \item{FLIM:}{Object of class \code{"logical"} that defaults to 
     \code{FALSE}; if \code{TRUE}, the data represent a FLIM experiment and 
     special plots are generated. }
+\item{FLIMresidimag:}{Object of class \code{"logical"} that defaults to 
+    \code{TRUE}; if \code{FALSE} and a FLIM image is analyzed, the residuals
+are not plotted as an image.} 
+\item{noFLIMsummary:}{Object of class \code{"logical"} that defaults to 
+    \code{FALSE}; if \code{TRUE} and a FLIM image is analyzed, only other 
+plots requested by the user (such as traces or residuals) are generated, and 
+no summary plot in made.} 
      \item{kinspecest}{Object of class \code{"logical"} that defaults to 
     \code{FALSE}; if \code{TRUE}, make a plot of the spectra associated with
     the kinetic components as well as the lifetime estimates. }

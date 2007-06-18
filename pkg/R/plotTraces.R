@@ -42,7 +42,7 @@
 		}
 		if(length(plotoptions@title) != 0){
 			mtext(plotoptions@title, side=3,outer=TRUE,line=1)
-			par(las=2)
+			
 	        }
 		else 
     		    mtext(paste("Traces for dataset", i), side=3,outer=TRUE,

@@ -35,9 +35,9 @@
 		    linlogplot(x, m[[i]]@psi.df[, j], irfmu[j], 
 		    plotoptions@linrange, type = "l", xlab = plotoptions@xlab, 
 		    ylab = "amplitude",  main = signif(m[[i]]@x2[j]),  
-		    col = i, xlim = c(min(x), max(x)) )
+		    col = 1, xlim = c(min(x), max(x)) )
 		    lines(linloglines(x, irfmu[j], plotoptions@linrange), 
-		    fitted[, j], col = i, lty = 2, type = "l")
+		    fitted[, j], col = 2, lty = 2, type = "l")
                    }
 		}
 		if(length(plotoptions@title) != 0){

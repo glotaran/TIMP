@@ -80,7 +80,9 @@ Objects can be created by calls of the form \code{new("opt", ...)} or
 the plot of clp}
  \item{ylimspec}{Object of class \code{"vector"} that defaults to 
 \code{vector()}; if changed, it should specify the desired y-limits of 
-the plot of clp}
+the plot of clp. In the case of plotting the results of FLIM image 
+analysis, \code{ylimspec} can be used to determine the range used in the 
+image plot of lifetimes.  }
 \item{ylimspecplus}{Object of class \code{"vector"} that defaults to 
 \code{vector()}; if changed, the first value should specify a vector to
 add to the y-limits of the plot of clp}

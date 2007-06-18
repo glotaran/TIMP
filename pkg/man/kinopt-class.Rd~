@@ -60,8 +60,7 @@ that defaults to \code{TRUE}; if \code{FALSE} then the spectra associated
 with the coherent artifact (pulse-follower) are not included in the summary
 plots
   }
- 
-}
+}}
 \details{See \code{\link{opt-class}} and  \link{specopt-class} for 
 the specification of fitting/plotting options that are not specific to the 
 class type and for the \code{kin} class type, respectively. }

@@ -38,7 +38,8 @@ function ()
                   mirf = m@mirf, measured_irf = m@measured_irf, 
                   convalg = m@convalg, speckin2 = m@speckin2, 
 		  usekin2 = m@usekin2, kinpar2 = t@kinpar2, 
-		  kin2scal = t@kin2scal), clp_ind = group[[i]][1], 
+		  kin2scal = t@kin2scal, reftau = m@reftau), 
+		  clp_ind = group[[i]][1], 
                   clpCon = m@clpCon, clpequ = t@clpequ, 
 		  dataset = group[[i]][2])
 		 

@@ -94,7 +94,7 @@
                 convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
 		speckin2 = m[[i]]@speckin2, 
 		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
-		kin2scal = t[[i]]@kin2scal)
+		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau)
 	      if(plotoptions@writerawcon) 
 		 write.table(C, file=paste(plotoptions@makeps,
 		 "_rawconcen_dataset_", i, ".txt", sep=""), quote = FALSE,
@@ -114,7 +114,7 @@
                 convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
 		speckin2 = m[[i]]@speckin2, 
 		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
-		kin2scal = t[[i]]@kin2scal)
+		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau)
 	       write.table(CWRITE, file=paste(plotoptions@makeps,
 		 "_plaincon_dataset_", i, ".txt", sep=""), quote = FALSE,
 		  row.names = linloglines(xplot, irfvec[1], 0  ))

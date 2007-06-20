@@ -59,6 +59,11 @@ function (...)
     model@x <- model@x * model@scalx
     model@fvecind <- getFixed(model)
     model@pvecind <- getPrel(model)
+    constr <- getConstrained(model)
+    model@clinde <- constr$low
+    model@chinde <- constr$high
+    model@lowcon <- constr$lowcon
+    model@highcon <- constr$highcon
     model <- addPrel(model)
     model
 }

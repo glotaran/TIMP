@@ -16,7 +16,9 @@ function ()
         pvecind = "vector", nvecind = "vector",
 	iter = "numeric", free = "list",
         clpCon = "list", ncomp = "numeric", clpdep = "logical", 
-	inten = "matrix", positivepar="vector"), 
+	inten = "matrix", positivepar="vector", constrained ="list", 
+	clinde = "list", chinde = "list", highcon = "vector", 
+	lowcon = "vector"), 
         prototype = list(psi.df = matrix(), psi.weight = matrix(), 
             x = vector(), nt = integer(), x2 = vector(), nl = integer(), 
             C2 = matrix(), E2 = matrix(), sigma = numeric(), 
@@ -30,6 +32,8 @@ function ()
             scalx = 1, prel = vector(), prelspec = list(), fvecind = vector(), 
             pvecind = vector(), clpequ = vector(), free = list(),
             iter = 1, ncomp = numeric(), clpdep = logical(),inten = matrix(), 
-	    parnames=vector(), positivepar=vector()))
+	    parnames=vector(), positivepar=vector(), constrained =list(), 
+	    clinde = list(), chinde = list(), highcon = vector(), 
+	    lowcon = vector()))
 }
 

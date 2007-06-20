@@ -26,9 +26,16 @@
 	     parorder[[length(parorder)+1]] <- list(name=p, ind=ind, 
 	     dataset = ds, rm=rmpar)
 	     if(p %in% model@positivepar && length(parapp) != 0) 
-		  th <- append(th, log(parapp))
-	     else 
-		  th <- append(th, parapp)
+		  parapp <- log(parapp)
+	     else {
+		if(length(model@clinde[[p]]) > 0) 
+		  for(i in 1:length(model@clinde[[p]]))  
+			 parapp <- log(parapp[i])
+		if(length(model@chinde[[p]]) > 0) 
+		  for(i in 1:length(model@chinde[[p]]))  
+			 parapp <- log(parapp[i])
+	     }  	  
+	     th <- append(th, parapp)
            }
 	}  
     }

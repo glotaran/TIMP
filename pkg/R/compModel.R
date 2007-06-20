@@ -5,7 +5,7 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
     lamb = 1, dataset = 1, cohirf = vector(), mirf = FALSE, 
     measured_irf = vector(), convalg = 1, shiftmea = vector(), 
     speckin2 = list(), usekin2 = FALSE, kinpar2 = vector(), 
-    kin2scal = vector()) 
+    kin2scal = vector(), reftau = 0) 
 {
     if (fullk) {
         eig <- fullKF(k, kinscal, kmat, jvec)
@@ -16,7 +16,7 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
         if(length(shiftmea) != 0) shiftmea <- shiftmea[[1]]
         c.temp <- calcCirf(k=k, x=x, irfpar=irfpar, mirf=mirf, 
 	    measured_irf=measured_irf, convalg=convalg, shiftmea=shiftmea, 
-	    lamb=lamb)
+	    lamb=lamb, reftau = reftau)
     }
     else c.temp <- calcC(k, x)
     if (seqmod) 

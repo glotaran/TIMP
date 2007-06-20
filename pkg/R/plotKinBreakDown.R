@@ -95,7 +95,8 @@ function (multimodel, multitheta, plotoptions) {
 			      speckin2 = m[[i]]@speckin2, 
 			      usekin2 = m[[i]]@usekin2, 
 			      kinpar2 = t[[i]]@kinpar2, 
-			      kin2scal = t[[i]]@kin2scal), 
+			      kin2scal = t[[i]]@kin2scal, 
+			      reftau = m[[i]]@reftau), 
 			      breakl, m[[i]]@clpCon,
 			      t[[i]]@clpequ, dataset = i)
 

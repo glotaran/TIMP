@@ -14,7 +14,6 @@
 	init.opt()
 	init.kinopt()
 	init.specopt()
-	init.anispec()
 	setGenerics()
 	setMethods() 
 

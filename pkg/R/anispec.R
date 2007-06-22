@@ -1,0 +1,6 @@
+"anispec" <-
+function (...) 
+{
+    new("anispec", ...)
+}
+

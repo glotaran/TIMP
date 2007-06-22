@@ -27,10 +27,10 @@ function (model)
 			       model@nl) 
 	}
 	if(length(model@anispec$rammanest) != 0) {
-	    if(model@anispec$rammanest) {
+		cat("HERE")
+		xx<<-model 
 		numcohcol <- numcohcol + 1
 		model@ncolc <- model@ncolc + 1
-	     }
 	}
 	else model@anispec$rammanest <- FALSE
 	if(numcohcol > 0) 

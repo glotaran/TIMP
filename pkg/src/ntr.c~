@@ -536,6 +536,8 @@ void Conv9	(double *result, double *measured, int *lenx, double *rate,
 	for (i=0; i<(*lenx); i++){
 		result[i] = n*(1-eps)+measured[i]*(1-eps*I);
 		n = n*eps+measured[i]*eps*I;
+		if (result[i]>ampmax)
+			ampmax = result[i];
 	}
 
 }

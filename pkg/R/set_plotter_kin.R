@@ -49,6 +49,9 @@
 	muList <- list()       
 	contoplotList <- list() 
 	minc <- maxc <- 0 
+	if(m[[i]]@anispec$useparper) {
+		calcAniSignal(m, plotoptions)
+	}
 	for (i in 1:length(m)) {
             irfmu <- irftau <- vector()
             if (m[[i]]@dispmu) {
@@ -94,7 +97,9 @@
                 convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
 		speckin2 = m[[i]]@speckin2, 
 		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
-		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau)
+		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau, 
+		anispec = m[[i]]@anispec, 
+		anipar = t[[i]]@anipar, cohcol = m[[i]]@cohcol)
 	      if(plotoptions@writerawcon) 
 		 write.table(C, file=paste(plotoptions@makeps,
 		 "_rawconcen_dataset_", i, ".txt", sep=""), quote = FALSE,
@@ -114,7 +119,9 @@
                 convalg = m[[i]]@convalg, measured_irf = m[[i]]@measured_irf,
 		speckin2 = m[[i]]@speckin2, 
 		usekin2 = m[[i]]@usekin2, kinpar2 = t[[i]]@kinpar2, 
-		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau)
+		kin2scal = t[[i]]@kin2scal, reftau = m[[i]]@reftau, 
+		anispec = m[[i]]@anispec,  anipar = t[[i]]@anipar, 
+		cohcol = m[[i]]@cohcol)
 	       write.table(CWRITE, file=paste(plotoptions@makeps,
 		 "_plaincon_dataset_", i, ".txt", sep=""), quote = FALSE,
 		  row.names = linloglines(xplot, irfvec[1], 0  ))

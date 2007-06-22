@@ -5,8 +5,8 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
     lamb = 1, dataset = 1, cohirf = vector(), mirf = FALSE, 
     measured_irf = vector(), convalg = 1, shiftmea = vector(), 
     speckin2 = list(), usekin2 = FALSE, kinpar2 = vector(), 
-    kin2scal = vector(), reftau = 0, anispec = list(calcani=FALSE), 
-    anipar = vector(), cohcol = vector()) 
+    kin2scal = vector(), reftau = 0, anispec = list(), anipar = vector(), 
+    cohcol = vector()) 
 {
     if (fullk) {
         eig <- fullKF(k, kinscal, kmat, jvec)

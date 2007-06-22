@@ -45,14 +45,16 @@ function (m)
             m[[i]]@ncomp <- length(m[[i]]@specpar)
             m[[i]]@ncole <- array(m[[i]]@ncomp, m[[i]]@nt)
         }
-        if(m[[i]]@mod_type != "spec")
+        if(m[[i]]@mod_type != "spec") {
 	  if (length(m[[i]]@cohspec) != 0) 
             m[[i]] <- getCoh(m[[i]])
+	    m[[i]] <- getAnisotropy(m[[i]])    	
+	}
         m[[i]]@x <- m[[i]]@x * m[[i]]@scalx
         m[[i]]@fvecind <- getFixed(m[[i]])
         m[[i]]@pvecind <- getPrel(m[[i]])
 	m[[i]]@mvecind <- m[[i]]@nvecind <- getMvec(m[[i]])
-	
+	m[[i]] <- getConstrained(m[[i]])
         m[[i]] <- addPrel(m[[i]])
     }
     m

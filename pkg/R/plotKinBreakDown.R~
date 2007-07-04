@@ -95,7 +95,11 @@ function (multimodel, multitheta, plotoptions) {
 			      speckin2 = m[[i]]@speckin2, 
 			      usekin2 = m[[i]]@usekin2, 
 			      kinpar2 = t[[i]]@kinpar2, 
-			      kin2scal = t[[i]]@kin2scal), 
+			      kin2scal = t[[i]]@kin2scal, 
+			      reftau = m[[i]]@reftau, 
+			      anispec = m[[i]]@anispec, 
+			      anipar = t[[i]]@anipar, 
+			      cohcol = m[[i]]@cohcol), 
 			      breakl, m[[i]]@clpCon,
 			      t[[i]]@clpequ, dataset = i)
 
@@ -187,8 +191,12 @@ function (multimodel, multitheta, plotoptions) {
 	}		
              # MAKE PS
        if(dev.interactive() && length(plotoptions@makeps) != 0) {
-		dev.print(device=postscript, 
-		file=paste(plotoptions@makeps, "_breakdown.ps", sep=""))
+		if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript		
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, "_breakdown.", 
+		plotoptions@output, sep=""))
        }
     
 }

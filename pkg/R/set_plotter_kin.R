@@ -349,11 +349,18 @@
                     col = i)
                 }
         }
-        if (length(plotoptions@title) != 0) {
-            mtext(plotoptions@title, side = 3, outer = TRUE, 
-                line = 1)
-            par(las = 2)
-        }
+	if(length(plotoptions@title) != 0){
+			tit <- plotoptions@title
+			if(plotoptions@addfilename) tit <- paste(tit,m[[i]]@datafile)
+    }
+    else {
+                        tit <- ""
+		        if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
+    }
+    mtext(tit, side = 3, outer = TRUE, line = 1)
+    par(las = 2)
+
+  
 	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
 	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
 	writeEst(multimodel, multitheta, plotoptions, plotEstout)

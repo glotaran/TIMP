@@ -78,10 +78,17 @@ function(multimodel, multitheta, plotoptions)
             }
            }
 	 }
-         if(length(plotoptions@title) != 0){
-			mtext(plotoptions@title, side=3,outer=TRUE,line=1)
-			par(las=2)
-     }
+if(length(plotoptions@title) != 0){
+			tit <- plotoptions@title
+			if(plotoptions@addfilename) tit <- paste(tit,m[[i]]@datafile)
+    }
+    else {
+                        tit <- ""
+		        if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
+    }
+    mtext(tit, side = 3, outer = TRUE, line = 1)
+    par(las = 2)
+     
      # MAKE PS
         if(dev.interactive() && length(plotoptions@makeps) != 0) {
 		if(plotoptions@output == "pdf")

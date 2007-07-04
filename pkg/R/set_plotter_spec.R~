@@ -86,8 +86,8 @@ function(){
 		residlist[[length(residlist)+1]] <- residuals 
 	}
 	limd<- max(  max(residlist[[1]]), abs(min(residlist[[1]]))) 
-	 if(!is.unsorted(x) || length(unique(x)) < nt 
-		|| length(unique(x2)) < nl )
+	 if(!is.unsorted(x) && length(unique(x)) == nt 
+		&& length(unique(x2)) == nl )
 		image(x, x2, residlist[[1]], xlab = plotoptions@xlab, 
 		ylab = plotoptions@ylab, main = "Residuals Dataset 1", 
 		zlim=c(-limd,limd), col=diverge_hcl(40, h = c(0, 120), c = 60, 
@@ -184,8 +184,12 @@ function(){
 	}
        # MAKE PS
        if(dev.interactive() && length(plotoptions@makeps) != 0) {
-		dev.print(device=postscript, 
-		file=paste(plotoptions@makeps, "_summary.ps", sep=""))
+		if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, 
+		"_summary.ps", plotoptions@output, sep=""))
        }
        	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
 	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)

@@ -22,7 +22,6 @@ function (X, clp_ind, clpCon, clpequ, dataset)
 	
 	              X[,clpCon$clpMod[clp_ind,i] - cM ] <- X[,clpCon$clpMod[clp_ind,i] -cM ] + X[,clpCon$clpRem[clp_ind,i] -cR ] * clpequ[ctparam]
 		      
-		      
 		      X <-as.matrix(as.matrix(X)[,-(clpCon$clpRem[clp_ind,i] -cR)])
 		      ct[ (clpCon$clpRem[clp_ind,i] +1):colx ] <- ct[
 		       (clpCon$clpRem[clp_ind,i] +1):colx ] + 1

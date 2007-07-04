@@ -181,6 +181,8 @@ function for more information. }
     \item{\code{positivepar}:}{ Object of class \code{"vector"}  containing
     character strings of those parameter vectors to constrain to positivity,
     e.g., \code{positivepar=c("kinpar")}}
+\item{\code{datafile}:}{Object of class \code{"character"}  
+containing the name of a datafile associated with the \code{psi.df} }
   }
 }
 

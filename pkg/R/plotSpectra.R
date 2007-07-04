@@ -36,8 +36,11 @@ function (model, multimodel, multitheta, plotoptions)
         else mtext(paste("Spectra for dataset", i), side = 3, 
             outer = TRUE, line = 1)
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
-            dev.print(device = postscript, file = paste(plotoptions@makeps, 
-                "_", i, "_spectra.ps", sep = ""))
+            	if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript
+	    dev.print(device = pdev, file = paste(plotoptions@makeps, 
+                "_", i, "_spectra.", plotoptions@output, sep = ""))
         }
     }
 }

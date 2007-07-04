@@ -25,7 +25,6 @@ function (model)
 			constrained[[r]]$ind[2])
 		     else 
 			c1 <- constrained[[r]]$ind[2]
-		
 		}
 		cinde[[ constrained[[r]]$what ]] <- 
 		append( cinde[[ constrained[[r]]$what ]], c1)

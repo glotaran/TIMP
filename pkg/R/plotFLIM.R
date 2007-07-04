@@ -156,7 +156,7 @@
         xpos<- x
 	xpos[which(x<=0)]<-NA
     if (nt > 1 && nl > 1) {
-        matplot(xpos, svdresidlist[[1]]$left[,i], type = "l", 
+        matplot(xpos, svdresidlist[[1]]$left[,1], type = "l", 
 	main = "Left sing. vec. residuals ", 
             ylab = "", log = "x", xlab = plotoptions@xlab, col = 1)
     }
@@ -183,11 +183,16 @@
     if (length(plotoptions@title) != 0) {
        if(length(m) > 1) tit <- paste(plotoptions@title, ", dataset ", i,sep="")
        else tit <- plotoptions@title
+       if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
         mtext(tit, side = 3, outer = TRUE, line = 1)
     }
     if (dev.interactive() && length(plotoptions@makeps) != 0) {
-        dev.print(device = postscript, file = paste(plotoptions@makeps,
-	"dataset_", i, "_summary.ps", sep = ""), horizontal = TRUE)
+      if(plotoptions@output == "pdf")
+        pdev <- pdf 
+      else  pdev <- postscript
+        dev.print(device = pdev, file = paste(plotoptions@makeps,
+	"dataset_", i, "_summary.", plotoptions@output, 
+	sep = ""))
     }
   }
 

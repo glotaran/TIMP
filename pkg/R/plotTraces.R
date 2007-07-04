@@ -40,18 +40,25 @@
 		    fitted[, j], col = 2, lty = 2, type = "l")
                    }
 		}
+		
 		if(length(plotoptions@title) != 0){
-			mtext(plotoptions@title, side=3,outer=TRUE,line=1)
-			
+			tit <- plotoptions@title
+			if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
 	        }
-		else 
-    		    mtext(paste("Traces for dataset", i), side=3,outer=TRUE,
-		    line=1)
-	      			    
+		else {
+		    tit <- paste("Traces for dataset", i)
+		    if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
+    		    
+	      	}
+		mtext(tit, side=3,outer=TRUE, line=1)		    
            # MAKE PS
            if(dev.interactive() && length(plotoptions@makeps) != 0) {
-		dev.print(device=postscript, 
-		file=paste(plotoptions@makeps, "_", i, "_traces.ps", 
+		if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, "_", i, "_traces.",
+		 plotoptions@output, 
 		sep=""))
            }
       } 	       	 

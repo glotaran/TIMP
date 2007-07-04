@@ -49,7 +49,7 @@
 	muList <- list()       
 	contoplotList <- list() 
 	minc <- maxc <- 0 
-	if(m[[i]]@anispec$useparper) {
+	if(m[[i]]@anispec$useparperp) {
 		calcAniSignal(m, plotoptions)
 	}
 	for (i in 1:length(m)) {
@@ -360,8 +360,13 @@
         displayEst(plotoptions)
 
         if (dev.interactive() && length(plotoptions@makeps) != 0) {
-            dev.print(device = postscript, file = paste(plotoptions@makeps, 
-                "_summary.ps", sep = ""))
+	   if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+	   else  pdev <- postscript
+	    dev.print(device = pdev, file = paste(plotoptions@makeps, 
+                "_summary.",  
+		plotoptions@output,
+		sep = ""))
         }
         if (plotoptions@plotkinspec) {
             plotKinSpec(multimodel, t, plotoptions)

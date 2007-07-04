@@ -184,8 +184,12 @@ function(){
 	}
        # MAKE PS
        if(dev.interactive() && length(plotoptions@makeps) != 0) {
-		dev.print(device=postscript, 
-		file=paste(plotoptions@makeps, "_summary.ps", sep=""))
+		if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, 
+		"_summary.ps", plotoptions@output, sep=""))
        }
        	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
 	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)

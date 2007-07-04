@@ -80,6 +80,21 @@ greater than 0) then all parameters in the model are fixed.  Note that this
 option only should be applied to multiexperiment models in which at least one 
 parameter appling to some other dataset is optimized (\code{nls} always must 
 have at least one parameter to optimize).      }
+ \item{\code{constrained}:}{ Object of class \code{"list"} list whose elements
+ are lists containing a character vector \code{what}, a vector \code{ind}, and
+ either (but not both) a character vector \code{low} and \code{high}.
+ \code{what} should specify the parameter type to constrain.  \code{ind}
+ should give the index of the parameter to be constrained, e.g., \code{1} if
+ indexing into a vector, and \code{c(1,2)} if indexing into a list.
+ \code{low} gives a number that the parameter should always remain lower
+ than and \code{high} gives a number that the parameter should always remain
+ higher than (so that \code{low} bounds the parameter value from above and
+ \code{high} bounds the parameter value from below).  It is not now possible to
+ specify both \code{low} and \code{high} for a single parameter value.  An
+ example of a complete \code{constrained} specification is 
+ \code{constrained = list(list("what = "kinpar", ind = 2, low = .3), 
+list(what = "parmu", ind = c(1,1), high = .002))} 
+}
     \item{\code{clp0}:}{ Object of class \code{"list"}  list of lists with elements \code{low}, \code{high} and 
   \code{comp}, specifying the least value in  \code{x2} to constrain 
   to zero, the greatest value in  \code{x2} to 

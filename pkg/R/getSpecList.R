@@ -14,7 +14,6 @@ function (multimodel, t, getclperr = FALSE)
 	    nx <- m[[i]]@nt
 	    colc <- max(m[[i]]@ncole)
        }
-
 	X <- matrix(nrow = nx, ncol = colc)
 	if(getclperr) {
 	   cptemp <- resultlist[[i]]@std_err_clp

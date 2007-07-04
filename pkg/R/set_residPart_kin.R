@@ -44,7 +44,6 @@ function ()
 		  clp_ind = group[[i]][1], 
                   clpCon = m@clpCon, clpequ = t@clpequ, 
 		  dataset = group[[i]][2])
-		 
                 if (m@weight) 
                   concen_i <- weightNL(concen_i, m, group[[i]][1])
                 if (dim(concen_i)[2] != 0) {

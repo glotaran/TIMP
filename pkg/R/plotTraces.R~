@@ -42,7 +42,7 @@
 		}
 		if(length(plotoptions@title) != 0){
 			mtext(plotoptions@title, side=3,outer=TRUE,line=1)
-			par(las=2)
+			
 	        }
 		else 
     		    mtext(paste("Traces for dataset", i), side=3,outer=TRUE,
@@ -50,8 +50,12 @@
 	      			    
            # MAKE PS
            if(dev.interactive() && length(plotoptions@makeps) != 0) {
-		dev.print(device=postscript, 
-		file=paste(plotoptions@makeps, "_", i, "_traces.ps", 
+		if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, "_", i, "_traces.",
+		 plotoptions@output, 
 		sep=""))
            }
       } 	       	 

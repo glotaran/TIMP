@@ -24,6 +24,13 @@ Objects can be created by calls of the form \code{new("opt", ...)} or
     \code{"logical"} that defaults to \code{FALSE}; if \code{TRUE} then fit 
     is written to a txt file; row and column labels are \code{x} and 
     \code{x2}}
+    \item{\code{output}:}{Object of class 
+    \code{"character"} that defaults to \code{"ps"}, which means that 
+    plots written to file are postscript.  Alternatively, specify
+    \code{output = "pdf"}, and plots are written as pdf files} 
+     \item{\code{addfilename}:}{Object of class 
+    \code{"logical"} that, for each data file, tries to add the 
+    filename to plots associated with output for that data. }
     \item{\code{residplot}:}{Object of class \code{"logical"} defaults to 
     \code{FALSE}; if \code{TRUE} generate a plot of residuals in a 
     separate window.}

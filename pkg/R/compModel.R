@@ -22,7 +22,7 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
 	if(anispec$angle[dataset] != "MA") {
 	  k <- getAniK(k=k, dataset=dataset, ani=anispec, anipar=anipar)
 	  A <- getAniA(A=A, dataset=dataset, ani=anispec, anipar=anipar)
-        }
+	}
     }
     if (irf) {
         if(length(shiftmea) != 0) shiftmea <- shiftmea[[1]]
@@ -31,11 +31,9 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
 	    lamb=lamb, reftau = reftau)
     }
     else c.temp <- calcC(k, x)
-    ## now expand C and A to account for super ani
+    ## now expand A to account for super ani
     if(anispec$calcani) {
-		expanded <- getAniSuper(c.temp = c.temp, A = A, ani=anispec)
-		c.temp <- expanded$c.temp 
-		A <- expanded$A
+		A <- getAniSuper(A = A, ani=anispec)
     }
     if (seqmod || fullk || anispec$calcani)
         c.temp <- c.temp %*% A 

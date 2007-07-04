@@ -118,8 +118,10 @@
         par(las = 2)
     }
     if (dev.interactive() && length(plotoptions@makeps) != 0) {
-        
-	dev.print(device = postscript, file = paste(plotoptions@makeps, 
-	"_resids.ps", sep = ""), horizontal = TRUE)
+      if(plotoptions@output == "pdf")
+        pdev <- pdf 
+      else  pdev <- postscript
+        dev.print(device = pdev, file = paste(plotoptions@makeps,
+	"_resids.", plotoptions@output, sep = ""))
     }
 }

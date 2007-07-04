@@ -21,10 +21,12 @@ ylim=vector(), kinspecerr=FALSE)
 	specList <- list() 
 	maxs <- mins <- maxspecdim <- 0
 	specList <- getSpecList(multimodel, t)
+
 	for(i in 1:length(m)) {
 		      cohcol <- m[[i]]@cohcol 
 		      spec <- getSpecToPlot(specList[[i]], 1, 
 		      cohcol)
+		      
 		       if(!identical(m[[i]]@cohcol, 0))	      
 			   spec <- spec[,-cohcol] 
 		      specList[[i]] <- spec
@@ -128,8 +130,14 @@ ylim=vector(), kinspecerr=FALSE)
         }
 	abline(0,0)
 	if (dev.interactive() && length(plotoptions@makeps) != 0) {
-            dev.print(device = postscript, file = paste(plotoptions@makeps, 
-                "_kinspec.ps", sep = ""))
+	   	if(plotoptions@output == "pdf")
+				      pdev <- pdf 
+		else  pdev <- postscript		
+
+		dev.print(device=pdev, 
+		file=paste(plotoptions@makeps, "_kinspec.", 
+		plotoptions@output, sep=""))
+
         }
 }
 

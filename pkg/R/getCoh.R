@@ -33,8 +33,9 @@ function (model)
 	     }
 	}
 	else model@anispec$rammanest <- FALSE
-	if(numcohcol > 0) 
-		  model@cohcol <- (model@ncolc[1]-numcohcol+1):model@ncolc[1]
+	if(numcohcol > 0) {
+	           model@cohcol <- (model@ncolc[1]-numcohcol+1):model@ncolc[1]
+	}
 	model
 
 }

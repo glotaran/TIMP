@@ -4,7 +4,8 @@
 	datasetind <- rep(1, length(data))
     modellist <- vector("list", length(data))
     resultlist <- vector("list", length(data))
-    plugin <- c("psi.df", "x", "x2", "nt", "nl", "simdata", "inten")
+    plugin <- c("psi.df", "x", "x2", "nt", "nl", "simdata", "inten", 
+    "datafile")
     for(i in 1:length(data)) {
 	  resultlist[[i]] <- res() 
 	  modellist[[i]] <- modelspec[[datasetind[i] ]]

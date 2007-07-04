@@ -13,33 +13,43 @@
 	 mrel <- model@mvecind 
 	 ppars <- append(model@parnames, "prel")
 	 for (p in ppars) {
-	     if(length(slot(modelspec[[i]], p)) != 0) {  
+	     if(length(slot(modelspec[[datasetind[i]]], p)) != 0) {  
 		removepar <- sort(unique(c(fixed[[p]], prel[[p]])))
 		rmpar <- sort(unique(c(fixed[[p]], prel[[p]], mrel[[p]])))
-		parapp <- if (length(rmpar) != 0) 
-			  unlist(slot(model, p))[-rmpar]
-			  else unlist(slot(model, p))
-	     if(length(parapp) != 0) 
+		parapp <- unlist(slot(model, p))
+		if(length(model@clinde[[p]]) > 0) {
+		  for(j in 1:length(model@clinde[[p]]))  {
+			 ind <- model@clinde[[p]][j]
+			 parapp[ind] <- model@lowcon[[p]][j] - parapp[ind]
+			 if(! p %in% model@positivepar)
+			     parapp[ind] <- log(parapp[ind])
+	          }
+                }
+	        if(length(model@chinde[[p]]) > 0) { 
+		  for(j in 1:length(model@chinde[[p]]))  {
+			  ind <- model@chinde[[p]][j]
+			  parapp[ind] <- parapp[ind] + model@highcon[[p]][j]
+			  if(! p %in% model@positivepar)
+			     parapp[ind] <- log(parapp[ind])
+		  }
+	       }
+	       if (length(rmpar) != 0)
+		  parapp <- parapp[-rmpar]
+	       if(length(parapp) != 0) 
 		ind <- (length(th) + 1):(length(th) + length(parapp))
-	     else 
+	       else 
 		  ind <- vector()
 	     parorder[[length(parorder)+1]] <- list(name=p, ind=ind, 
 	     dataset = ds, rm=rmpar)
+	     
 	     if(p %in% model@positivepar && length(parapp) != 0) 
 		  parapp <- log(parapp)
-	     else {
-		if(length(model@clinde[[p]]) > 0) 
-		  for(i in 1:length(model@clinde[[p]]))  
-			 parapp <- log(parapp[i])
-		if(length(model@chinde[[p]]) > 0) 
-		  for(i in 1:length(model@chinde[[p]]))  
-			 parapp <- log(parapp[i])
-	     }  	  
+	       	  
 	     th <- append(th, parapp)
            }
 	}  
     }
-   .currModel@parorder <<- processOrder(parorder, mod) 
+    .currModel@parorder <<- processOrder(parorder, mod) 
    getDiffTheta(th, mod)
    
 }

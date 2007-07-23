@@ -27,14 +27,13 @@
     spectralist <- getSpecList(multimodel, t)
 	spec <- spectralist[[i]]
 	if( (m[[i]]@cohcol != 0)[1])
-		spec <- spectralist[[i]][,-m[[i]]@cohcol]
-        for (j in 1:dim(spec)[2]) {
+		spec <- as.matrix(spectralist[[i]][,-m[[i]]@cohcol])
+	xx<<-spec
+	for (j in 1:dim(spec)[2]) {
             hist(spec[, j], xlab = paste("tau=", signif(1/k[j], 5)), 
 	    main = paste("Comp.", j, "amplitude"))
         }
-        spec <- spectralist[[i]]
-	if( (m[[i]]@cohcol != 0)[1])
-           spec <- spectralist[[i]][,-m[[i]]@cohcol]
+        
         if (dim(spec)[2] > 1) {
             sumspec <- rep(0, dim(spec)[1])
             sumAv <- matrix(0, length(k), model@nl)

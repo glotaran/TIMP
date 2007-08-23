@@ -17,7 +17,7 @@
 TIMP is a problem solving environment for fitting superposition models 
 in the form of an R package.  The package has been extensively
 applied to modeling spectroscopy and Fluorescence Lifetime Imaging Microscopy
-(FLIM) datasets.
+(FLIM) datasets
       </li>
       <li> Follow the 
        <a href="install.html">
@@ -42,7 +42,7 @@ applied to modeling spectroscopy and Fluorescence Lifetime Imaging Microscopy
       <li>  
       The new R 2.5.0 series  
       features new nls options contributed by 
-      TIMP's developers.  
+      TIMP's developers  
       </li>
       <li>
       A

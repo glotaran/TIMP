@@ -32,10 +32,8 @@ investigating options for a cross-platform java-based GUI for TIMP.
 <a HREF="mailto:amarin@few.vu.nl"> Alessandro Marin </a > has 
 tested much of the code and contributed many 
 ideas for new options. <a HREF="mailto:ilstep@gmail.com"> Ilya Stepanenko 
-</a> has implmented <a HREF=ppviewer.html"> PPViewer</a>, 
-a LabView application for interactive 
-exploration of data and model fit that is useful for examining TIMP
-datafiles and model fit output.     
+</a> has implmented PPViewer, a LabView application for interactive 
+exploration of data and model fit returned by TIMP.   
 </p>
 
 <p>

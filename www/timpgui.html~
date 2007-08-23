@@ -1,37 +1,21 @@
 <HTML>
 <HEAD>
-<TITLE> TIMP - PPViewer </TITLE>
+<TITLE> TIMP - TIMPgui </TITLE>
 <LINK REL=STYLESHEET TYPE="text/css" HREF="R.css">
 </HEAD>
 
 <BODY>
 
-<h1>PPViewer</h1>
+<h1>TIMPgui</h1>
 
 <p>
 
 <h4> 
-PPViewer is a LabView program by  
-<a HREF="mailto:ilstep@gmail.com"> Ilya Stepanenko </a> for interactive 
-exploration of data and model fit.  It was designed 
-especially for time-resolved spectroscopy applications, and can 
-read model fit files output by TIMP, as well as datafiles in the wavelength-explicit format. 
+TIMPgui is a project to implement a java-based cross-platform, free and 
+open-source GUI to TIMP.  TIMPgui will be a full interface to TIMP, and 
+allow for interactive exploration of data and model fit. 
 
-<BR>
-</h4>  
-
-<table border="1" width="80%">
-  <tr>
-    <td> <h3>  PPViewer </h3>
-      	<ul>
-	  <li><a href="PPViewer.rar"> PPViewer Download (.rar) </a></li>
-	  <li><a href="PPViewer_User_Manual.pdf"> PPViewer User Manual Download  </a></li>
-	</ul>
-    </td>
-  </tr>
- <tr>
-</table>
-
-
+It is being implemented by <a HREF="http://www.nat.vu.nl/~jsnel/"> Joris Snellenburg </a> and 
+<a href="http://www.nat.vu.nl/~kate" target="_top"> Katharine Mullen</a>. 
 </body>
 </html>

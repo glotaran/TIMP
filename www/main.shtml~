@@ -60,13 +60,13 @@ applied to modeling spectroscopy and Fluorescence Lifetime Imaging Microscopy
       Fluorescence Lifetime Imaging Microscopy (FLIM) Data Analysis 
       with TIMP </a></strong>
        </li>
-        <li> 
-        <strong> 
+        <li> <strong>
       <a href="ppviewer.html" 
-      target="banner">PPViewer</a>, a program
+      target="banner">PPViewer</a></strong>, a program
       for interactive data and model fit exploration
-      written in LabView,
-      interfaces with TIMP
+      written in LabVIEW, can be used to examine TIMP
+datafiles and model fit output
+
 
       </strong>
        </li> 

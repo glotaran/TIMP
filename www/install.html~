@@ -29,7 +29,7 @@ CRAN </a> </h3>
 <a href="download.html"> here </a> 
  <br>
 2. if installing from source, as root execute the command 
-"R CMD INSTALL TIMP_1.2.tar.gz"; if installing under Windows 
+"R CMD INSTALL TIMP_1.3.tar.gz"; if installing under Windows 
 choose to install the package from source (from the "packages"
 menu in RGUI)
 

@@ -17,6 +17,14 @@ exploration of data and model fit.  It was designed
 especially for time-resolved spectroscopy applications, and can 
 read model fit files output by TIMP, as well as datafiles in the wavelength-explicit format. 
 
+If you don't have LabVIEW 8.2.1 or later, you can run PPViewer under Windows
+by installing the free  
+<a href="ftp://ftp.ni.com/support/labview/windows/runtime/8.2.1/LVRunTimeEng.exe"> 
+LabVIEW Run-time Engine (24MB)</a>.
+PPViewer itself doesn't need installation: just unpack the zip archive somewhere and launch PPViewer.exe.
+For now binaries, for other platforms are not available.  
+
+
 <BR>
 </h4>  
 
@@ -24,8 +32,9 @@ read model fit files output by TIMP, as well as datafiles in the wavelength-expl
   <tr>
     <td> <h3>  PPViewer </h3>
       	<ul>
-	  <li><a href="PPViewer.rar"> PPViewer Download (.rar) </a></li>
-	  <li><a href="PPViewer_User_Manual.pdf"> PPViewer User Manual Download  </a></li>
+	  <li><a href="PPViewer.zip"> PPViewer Windows Executable Download (.zip) </a></li>
+	   <li><a href="PPViewer_sources.zip"> PPViewer Source Code (.zip) </a></li>
+	  <li><a href="PPViewer_User_Manual.pdf"> PPViewer User Manual (.pdf) </a></li>
 	</ul>
     </td>
   </tr>

@@ -11,7 +11,7 @@
     m <- multimodel@modellist 
     for (i in 1:length(group)) {
 	res <- .currModel@fit@resultlist[[group[[i]][2]]]
-	if(m[[group[[i]][2] ]]@mod_type != "spec") { 
+	if(m[[group[[i]][2] ]]@mod_type == "kin") { 
 	  irfvec[[i]][which(is.na(irfvec[[i]]))]<-0
 	  if (length(m[[group[[i]][2]]]@cohspec$type) != 0) {
 		  if (m[[group[[i]][2]]]@cohspec$type == 

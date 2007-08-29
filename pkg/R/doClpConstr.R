@@ -31,14 +31,11 @@ function (X, clp_ind, clpCon, clpequ, dataset)
 	
    }
    if (dim(clpCon$clp0mat)[2] != 0) {
-        for (i in 1:(dim(clpCon$clp0mat)[2])) {
-            if (clpCon$clp0mat[clp_ind, i] != 0) {
-                X <- as.matrix(as.matrix(X)[, -(clpCon$clp0mat[clp_ind, 
-                  i] - ct[clpCon$clp0mat[clp_ind, i]] )])
-		ct[ (clpCon$clp0mat[clp_ind,i] +1):colx ] <- ct[
-		       (clpCon$clp0mat[clp_ind,i] +1):colx ] + 1
-            }
-        }
+        remov_col <- clpCon$clp0mat[clp_ind, ] - ct
+ 	remov <- which(remov_col > 0)
+	if(length(remov) > 0)
+		X <- X[, - remov]
+	
    }
    X
 }

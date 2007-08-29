@@ -192,6 +192,7 @@ static double erfce (double x)
     return p/q;
 }
 
+
 /* calcCirf */
 
 void calcCirf(double *cmat, double *k, double *x, double *tau, double *mu,
@@ -216,6 +217,44 @@ void calcCirf(double *cmat, double *k, double *x, double *tau, double *mu,
 	       cmat[i] = .5 * (1.0 + erf(thresh)) * exp(alpha * 
 							(alpha - 2.0 * beta));
 	    
+	}
+        if(row_cnt < ((*lenx)-1))
+            row_cnt++;
+        else{
+            row_cnt = 0;
+            col_cnt++;
+        }
+    }
+}
+/* calcCirf_multi 
+   for convolution using a per-component irf-mu and irf-tau
+*/
+
+void calcCirf_multi(double *cmat, double *k, double *x, double *tau, 
+double *mu, int *lenk, int *lenx){
+
+    int i;
+    int row_cnt = 0; 
+    int col_cnt = 0;
+    int len = (*lenk) * (*lenx);
+    double alpha, beta, thresh;
+    
+    for(i = 0; i < len; i++){
+      
+         if(k[col_cnt] == 0)
+	     cmat[i] = 0;
+	 else {
+	   
+	    alpha = (k[col_cnt] * tau[col_cnt]) / sqrt(2);
+	    beta = (x[row_cnt] - mu[col_cnt]) / (tau[col_cnt] * sqrt(2)); 
+	    thresh = beta - alpha;
+	    if(thresh < -1) 
+		cmat[i] = .5 * erfce(-thresh) * exp(- pow(beta,2));
+	    else 		 
+	       cmat[i] = .5 * (1.0 + erf(thresh)) * exp(alpha * 
+							(alpha - 2.0 * beta));
+	    
+	    Rprintf("alpha %f beta %f\n", alpha, beta);
 	}
         if(row_cnt < ((*lenx)-1))
             row_cnt++;
@@ -536,8 +575,6 @@ void Conv9	(double *result, double *measured, int *lenx, double *rate,
 	for (i=0; i<(*lenx); i++){
 		result[i] = n*(1-eps)+measured[i]*(1-eps*I);
 		n = n*eps+measured[i]*eps*I;
-		if (result[i]>ampmax)
-			ampmax = result[i];
 	}
 
 }

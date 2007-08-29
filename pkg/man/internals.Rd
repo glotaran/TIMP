@@ -101,6 +101,12 @@
 \alias{fillResult}
 \alias{processOrder}
 \alias{multiLin}
+\alias{set_getClpindepX_mass}
+\alias{set_initModelClass_kin}
+\alias{set_initModelClass_mass}
+\alias{set_initModelClass_spec}
+\alias{set_plotter_mass}
+\alias{set_residPart_mass}
 \title{TIMP function used internally}
 \description{TIMP function used internally}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}

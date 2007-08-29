@@ -5,7 +5,7 @@ import(graphics)
 import(vcd)
 importFrom(gplots, textplot)
 
-exportClasses(dat, kin, spec, theta, multimodel, res, multitheta, kinopt,
+exportClasses(dat, kin, spec, mass, theta, multimodel, res, multitheta, kinopt,
 specopt, opt, fit)
 
 exportMethods(getClpindepX, residPart, plotter)
@@ -13,7 +13,8 @@ exportMethods(getClpindepX, residPart, plotter)
 export(readData, preProcess, baseIRF, initModel, 
 fitModel, examineFit, sumKinSpecEst, modifyModel)
 
-export(dat, kin, spec, theta, multimodel, res, multitheta, kinopt, specopt,
+export(dat, kin, spec, mass, 
+theta, multimodel, res, multitheta, kinopt, specopt,
 opt, init.fit, fit, init.kinopt, init.specopt, init.opt, addDscal,
 getDiffThetaChange, plotFLIM, addPrelCl, getDiffThetaClChange,
 plotKinBreakDown, addPrel, getDiffThetaCl, plotKinSpec, applyWeightingModel,
@@ -31,5 +32,8 @@ init.multitheta, simpExp, init.res, simpPol, init.spec, skew, init.theta,
 specModel, irfparF, specparF, fillK, l2nu, linloglines, fullKF, linlogplot,
 gaus, getClpConstr, weightNL, getClpindepX, matlinlogplot, weightPsi,
 getClpList, weightSM, getCoh, writeEst, getCohToPlot, normdat, writeFit,
-getConToPlot, plotEst, plotKinSpecEst, fillResult, getResid, processOrder)
+getConToPlot, plotEst, plotKinSpecEst, fillResult, getResid, processOrder, 
+multiLin, set_plotter_mass, set_residPart_mass, set_getClpindepX_mass, 
+readclp0, set_initModelClass_kin,set_initModelClass_spec, 
+set_initModelClass_mass)
 

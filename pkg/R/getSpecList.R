@@ -1,7 +1,6 @@
 "getSpecList" <- 
 function (multimodel, t, getclperr = FALSE) 
 {   
-    
     m <- multimodel@modellist
     clpList <- list()
     resultlist <- multimodel@fit@resultlist

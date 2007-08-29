@@ -4,7 +4,10 @@
 \alias{kin}
 \title{Class "kin" for kinetic model storage.}
 \description{ 
-\code{kin} is the class for kinetic models; if \code{mod_type = "kin"} is an 
+\code{kin} is the class for kinetic models; 
+an object 
+of class "kin" is initialized if 
+\code{mod_type = "kin"} is an 
 argument of \code{initModel}.
 All objects of class \code{kin} are sub-classes of 
 class \code{dat}; see documentation for \code{dat} 

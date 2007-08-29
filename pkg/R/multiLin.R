@@ -1,10 +1,16 @@
 "multiLin" <-
 function (thetaClass, diffs, parvec) 
 {
+	d1<<-thetaClass
+	d2<<-diffs
+	d3<<-parvec
+
    cnt <- 1
    newpar <- 0
    if(is.list(diffs$ind2)) {
 	for(i in 1:length(diffs$ind2)) { 
+	      cat("SLO", slot(thetaClass, 
+	      diffs$what2[i] )[[diffs$ind2[[i]][1]]][diffs$ind2[[i]][2]], "\n")
 	      newpar <- newpar + ( parvec[cnt] * slot(thetaClass, 
 	      diffs$what2[i] )[[diffs$ind2[[i]][1]]][diffs$ind2[[i]][2]])
 	      cnt <- cnt + 1 

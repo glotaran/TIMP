@@ -6,7 +6,7 @@ function (theta, d=vector())
 	m <- .currModel@modellist
 	resid <- clpindepX <-list() 
 	for(i in 1:length(m)) 
-	      clpindepX[[i]] <- if(!m[[i]]@clpdep) 
+	      clpindepX[[i]] <- if(!m[[i]]@clpdep || m[[i]]@getX) 
 		               getClpindepX(model = m[[i]], theta =
 				.currTheta[[i]], multimodel = .currModel,
 				returnX = FALSE, rawtheta= theta, dind=0)

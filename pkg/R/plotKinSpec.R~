@@ -124,7 +124,17 @@ ylim=vector(), kinspecerr=FALSE)
 	     }
 	 }
 	 if (newplot && length(plotoptions@title) != 0) {
-	  
+	  if(length(plotoptions@title) != 0){
+			tit <- plotoptions@title
+			if(plotoptions@addfilename) tit <- paste(tit,m[[i]]@datafile)
+    }
+    else {
+                        tit <- ""
+		        if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
+    }
+    mtext(tit, side = 3, outer = TRUE, line = 1)
+    par(las = 2)
+    	  
         }
 	abline(0,0)
 	if (dev.interactive() && length(plotoptions@makeps) != 0) {

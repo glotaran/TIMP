@@ -6,7 +6,7 @@ opt = opt())
     envir = .GlobalEnv)
 
     theta <- getTheta(.currModel)
-
+	t1<<-theta
     assign(".currTheta", getThetaCl(theta, .currModel), envir = .GlobalEnv)
 
     iter <- opt@iter

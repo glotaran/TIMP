@@ -10,6 +10,7 @@ ylim=vector(), kinspecerr=FALSE)
 	   kinspecerr <- plotoptions@kinspecerr
 	}
 	superimpose <- plotoptions@superimpose 
+	if(length(superimpose) < 1) superimpose <- 1
 	if(is.na(max_x2) || is.na(max_x2))
 			 withlim <- FALSE 
 	else		 withlim <- TRUE

@@ -1,6 +1,10 @@
 "setGenerics" <-
 function () 
 {
+
+	setGeneric("initModelClass", function(model)
+	standardGeneric("initModelClass"))
+	
 	setGeneric("residPart", function(model, group, 
 	multimodel, thetalist, clpindepX, finished, returnX, rawtheta) 
 	standardGeneric("residPart"))

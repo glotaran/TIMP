@@ -15,10 +15,13 @@
 			  model <- modellist[[diff$dataset[1]]]
 			  removepar <- sort(append(fixed[[diff$what]],prel[[diff$what]]))
 			  if(length(diff$ind) == 2) {
-			     partmp <- slot(model, 
-	                     diff$what)[[diff$ind[1]]][diff$ind[2]]
-			    whichfree <- if(diff$ind[1] > 1) 
-			    (length(unlist(slot(model, diff$what))[[1:(diff$ind[1] - 1)]])) + diff$ind[2] else diff$ind[2]
+			    whichfree <- diff$ind[2]
+			    if(diff$ind[1] > 1) {
+			       slW<-slot(model, diff$what)
+			       whichfree <- whichfree + sum(unlist(lapply(slW, length))[1:(diff$ind[1]-1)]) 
+			    }
+			    partmp <- slot(model, diff$what)[[diff$ind[1]]][diff$ind[2]]
+
 			  }
 			  else { 
 			     partmp <- slot(model, 

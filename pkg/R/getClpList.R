@@ -5,7 +5,6 @@ function (multimodel, t)
     clpList <- list()
     resultlist <- multimodel@fit@resultlist 
     for(i in 1:length(m)) {
-
 	  cptemp <- resultlist[[i]]@cp
 	  if(m[[i]]@mod_type != "spec"){ 
 		numcol <- max(m[[i]]@ncolc)

@@ -19,24 +19,32 @@ ylim=vector(), kinspecerr=FALSE)
 	  allx2 <- append(allx2, m[[i]]@x2) 
 	  allx <- append(allx, m[[i]]@x)
 	}
-	specList <- list() 
-	maxs <- mins <- maxspecdim <- 0
 	specList <- getSpecList(multimodel, t)
+	
 
-	for(i in 1:length(m)) {
+        if(kinspecerr)   
+		errtList <- getSpecList(multimodel, t,  getclperr=TRUE) 
+        for(i in 1:length(m)) {
 		      cohcol <- m[[i]]@cohcol 
 		      spec <- getSpecToPlot(specList[[i]], 1, 
 		      cohcol)
 		      
-		       if(!identical(m[[i]]@cohcol, 0))	      
-			   spec <- spec[,-cohcol] 
-		      specList[[i]] <- spec
-	   if(i %in% superimpose) { 	
-		      maxs <- max(maxs, max(spec))
-		      mins <- min(mins, min(spec))
-		      maxspecdim <- max(maxspecdim, dim(spec)[2])
-	   }
+		       if(!identical(m[[i]]@cohcol, 0)) {	      
+                         spec <- spec[,-cohcol]
+
+                         if(kinspecerr)
+                           errtList[[i]] <-  errtList[[i]][,-cohcol]
+                       }
+                       specList[[i]] <- spec
+	
         }	      			      
+        maxA <- lapply(specList, max)
+	maxs <- max(unlist(maxA)[superimpose])
+
+	minA <- lapply(specList, min)
+	mins <- min(unlist(minA)[superimpose])
+
+        maxspecdim <- max(unlist(lapply(specList, ncol))[superimpose])
 	if(!withlim) 
 		xlim <- c(min(allx2),max(allx2))
 	else xlim <- c(min_x2, max_x2)
@@ -50,9 +58,9 @@ ylim=vector(), kinspecerr=FALSE)
 		ylim <- ylim + plotoptions@ylimspecplus
 	if (plotoptions@normspec)  
 		ylim <- c(-1,1)
-	if(kinspecerr)   
-		errtList <- getSpecList(multimodel, t,  getclperr=TRUE) 
-	plotted <- FALSE	
+
+	plotted <- FALSE
+	
         for(i in 1:length(m)) {
              if(i %in% superimpose) {		
 		if(kinspecerr) {
@@ -62,15 +70,12 @@ ylim=vector(), kinspecerr=FALSE)
 		          "_std_err_clp_", i, ".txt", sep=""), 
 		          quote = FALSE, row.names = m[[i]]@x2)
 	   
-			 if(!identical(m[[i]]@cohcol, 0))
-			   errtList[[i]] <- errtList[[i]][,-m[[i]]@cohcol] 
 	        }
 		if (plotoptions@normspec) 
 				    sp <-  normdat(specList[[i]])
 		      else 
 				    sp <- specList[[i]]
-	      
-	      for(j in 1:dim(sp)[2]) {
+	      for(j in 1:ncol(sp)) {
 		    if(plotoptions@specinterpol) { 
 		       xx <- predict(interpSpline(m[[i]]@x2, 
 			sp[,j], bSpline=plotoptions@specinterpolbspline),
@@ -81,7 +86,6 @@ ylim=vector(), kinspecerr=FALSE)
 			else i, main = "", xlab = plotoptions@xlab,
 			ylab="amplitude", xlim =xlim,ylim=ylim, col = j,
 			type="l")
-
 			}
 			else lines(xx, col = j, 
 			lty = if(plotoptions@samespecline) 1 else i)
@@ -91,8 +95,7 @@ ylim=vector(), kinspecerr=FALSE)
 			 col = j, sfrac = 0, type="p", gap = 0, add =TRUE,
 			 labels = "", lty = if(plotoptions@samespecline) 1
 			else i)
-		     
-		      if(plotoptions@writespecinterpol) 
+			if(plotoptions@writespecinterpol) 
 		          write.table(xx$y, file=paste(plotoptions@makeps,
 		          "dataset", i, 
 			  "_smoothedspectracomponent_", j, ".txt", sep=""), 

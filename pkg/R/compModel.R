@@ -57,3 +57,4 @@ function (k, kinscal = vector(), x, irfpar = vector(), irf = FALSE,
     }
     c.temp
 }
+

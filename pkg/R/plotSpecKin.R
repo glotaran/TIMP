@@ -26,7 +26,7 @@ ylim=vector(), kinspecerr=FALSE)
 	   if(i %in% superimpose) { 	
 		      maxs <- max(maxs, max(spec))
 		      mins <- min(mins, min(spec))
-		      maxspecdim <- max(maxspecdim, dim(spec)[2])
+		      maxspecdim <- max(maxspecdim, ncol(spec))
 	   }
         }	      			      
 	if(!withlim) 
@@ -59,7 +59,7 @@ ylim=vector(), kinspecerr=FALSE)
 		      else 
 				    sp <- specList[[i]]
 	      
-	      for(j in 1:dim(sp)[2]) {
+	      for(j in 1:ncol(sp)) {
 		    if(plotoptions@specinterpol) { 
 		       xx <- predict(interpSpline(m[[i]]@x, 
 			sp[,j], bSpline=plotoptions@specinterpolbspline),

@@ -2,31 +2,28 @@
 function (theta, model)
 {
 	peakpar <- theta@peakpar
-	ncomp <- model@ncomp
+	amp <- theta@amplitudes
 	if(model@peakfunct == "expmodgaus") {
-		widths <- vector()
-		locations <- vector()
-		rates <- vector() 
-		amp <- vector()
-		for(i in 1:ncomp) {
-			locations <- append(locations, peakpar[[i]][1])
-			widths <- append(widths, peakpar[[i]][2])
-			rates <- append(rates, peakpar[[i]][3])
-			if(length(peakpar[[i]]) > 3)
-				amp <- append(amp, peakpar[[i]][4])        
-	        	else amp <- append(amp, 1)
-		}
-		massm <- rep(0, model@nt * ncomp) 
+		fn1 <- function(x,ind) x[[ind]]
+		lpp <- length(peakpar)
+		locations <- unlist(lapply(peakpar, fn1, ind=1))
+		widths <- unlist(lapply(peakpar, fn1, ind=2))
+		rates <- unlist(lapply(peakpar, fn1, ind=3))
+		massm <- rep(0, model@nt * lpp) 
 		massm <- as.matrix(.C("calcCirf_multi", 
 		     cmat = as.double(massm), 
 		     as.double(rates), as.double(model@x), 
 		     as.double(widths), 
 		     as.double(locations), 
-		     as.integer(ncomp), 
+		     as.integer(lpp), 
             	     as.integer(model@nt), PACKAGE="TIMP")$cmat)
-           	dim(massm) <- c(model@nt, ncomp)
+           	dim(massm) <- c(model@nt, lpp)
 		massm <- t(t(massm)*amp)
 	}
+	if(model@lextracomp){
+		con <- theta@extracomp[[1]] 
+		massm <- cbind(massm, rep(con, model@nt))
+	} 
 	
 	massm
 }

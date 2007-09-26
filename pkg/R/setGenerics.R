@@ -1,7 +1,3 @@
-"setGenerics" <-
-function () 
-{
-
 	setGeneric("initModelClass", function(model)
 	standardGeneric("initModelClass"))
 	
@@ -16,6 +12,4 @@ function ()
 	setGeneric("plotter", function(model, multimodel, multitheta,  
 	plotoptions)
         standardGeneric("plotter"))
-
-}
 

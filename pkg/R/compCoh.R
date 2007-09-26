@@ -20,8 +20,6 @@ ani = anispec(), anipar = vector(), cohcol = vector())
 	        }
 		else
 			cohcols <- dnorm(x, irfpar[1], irfpar[2])
-	        
-	
 	}
 	if(type == "freeirfdisp") 
 		cohcols <- dnorm(x, cohirf[1], cohirf[2])

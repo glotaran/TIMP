@@ -122,7 +122,7 @@ list(what = "parmu", ind = c(1,1), high = .002))}
   starting value parameterizing this linear relation in the vector
   \code{clpequ}; if true equality is desired then fix the corresponding
   parameter in \code{clpequ} to 1.  Note that if multiple components are
-  constraints, the \code{from} in the sublists should be increasing order, 
+  constrainted, the \code{from} in the sublists should be increasing order, 
   (i.e., \code{(list(to=2, from=1, low=100, high=10000), 
 list(to=3, from=1, low=10000, high=100))}, not \code{list(to=3, from=1, low=10000, high=100), 
 list(to=2, from=1, low=10000, high=100)})}
@@ -181,6 +181,8 @@ function for more information. }
     \item{\code{positivepar}:}{ Object of class \code{"vector"}  containing
     character strings of those parameter vectors to constrain to positivity,
     e.g., \code{positivepar=c("kinpar")}}
+\item{\code{datafile}:}{Object of class \code{"character"}  
+containing the name of a datafile associated with the \code{psi.df} }
   }
 }
 

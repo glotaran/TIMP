@@ -5,7 +5,7 @@ function(multimodel, multitheta, plotoptions)
     m <- multimodel@modellist   
     t <- multitheta   
     res <- multimodel@fit@resultlist
-    groups <- multimodel@modeldiffs$groups 
+    groups <- multimodel@groups 
     if(length(plotoptions@superimpose) == 0) 
 	superimpose <- 1:length(m)			      
     else 

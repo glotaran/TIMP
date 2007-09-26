@@ -1,7 +1,7 @@
 "getFixed" <-
 function (model) 
 {
-	m0<<-model
+	
 	# model@fixed is a list of lists 
 	# eg
 	# fixed = list(kinpar = list( c(1,2), c(2,3)), irfpar = list(1,2)) 

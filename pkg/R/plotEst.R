@@ -6,7 +6,7 @@
 	parorder <- mod@parorder
 	x <- xret<- list()
 	cnt <- 0
-	freepar <- dim(sumonls$parameter)[1]
+	freepar <- nrow(sumonls$parameter)
 	for(i in 1:length(parorder)){
 	      removepar <- parorder[[i]]$rm 
 	      name <- parorder[[i]]$name

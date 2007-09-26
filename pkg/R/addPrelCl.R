@@ -10,7 +10,6 @@
      if(!addM) 
 	       parvec[model@mvecind[["prel"]]] <- prel[model@mvecind[["prel"]]]
      cnt <- 1
-	s0<<-thetaClass
      thetaClass@prel <- parvec
      for(diffs in prelspec){
            if(length(diffs$rel) == 0 || diffs$rel == "lin"){
@@ -20,9 +19,7 @@
 		    slot(thetaClass, diffs$what1)[diffs$ind1] <- newpar 
 	      if(length(diffs$ind1)==2) {
 		    slot(thetaClass, diffs$what1)[[diffs$ind1[1]]][diffs$ind1[2]] <- newpar 
-	      cat("NEW", newpar, "inds", diffs$ind1[1], diffs$ind1[2], "\n")
-	s1<<-thetaClass
-	s2<<-diffs      
+
 	}
 	      cnt <- cnt + 2       
 	   }

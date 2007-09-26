@@ -2,7 +2,7 @@
 function (theta, d=vector()) 
 {
 	assign(".currTheta", getThetaCl(theta, .currModel), envir = .GlobalEnv)
-	groups <- .currModel@modeldiffs$groups 
+	groups <- .currModel@groups 
 	m <- .currModel@modellist
 	resid <- clpindepX <-list() 
 	for(i in 1:length(m)) 

@@ -44,16 +44,7 @@
 \alias{getSpecToPlot} 
 \alias{getTheta} 
 \alias{getThetaCl} 
-\alias{init.dat}
-\alias{init.fc} 
-\alias{init.het} 
-\alias{init.kin} 
 \alias{initModellist}
-\alias{init.multimodel} 
-\alias{init.multitheta} 
-\alias{init.res}
-\alias{init.spec} 
-\alias{init.theta} 
 \alias{irfparF} 
 \alias{l2nu}
 \alias{linloglines} 
@@ -71,15 +62,6 @@
 \alias{plotTracesSuper} 
 \alias{rescomp} 
 \alias{sample_sel} 
-\alias{setGenerics}
-\alias{set_getClpindepX} 
-\alias{set_getClpindepX_kin}
-\alias{set_getClpindepX_spec} 
-\alias{setMethods} 
-\alias{set_plotter_kin}
-\alias{set_plotter_spec} 
-\alias{set_residPart_kin}
-\alias{set_residPart_spec} 
 \alias{simndecay_gen} 
 \alias{simpExp} 
 \alias{simpPol} 
@@ -92,21 +74,17 @@
 \alias{weightSM} 
 \alias{writeEst} 
 \alias{writeFit} 
-\alias{init.opt} 
-\alias{init.kinopt}
-\alias{init.specopt}
 \alias{plotKinSpecEst}
 \alias{plotEst}
-\alias{init.fit}
 \alias{fillResult}
 \alias{processOrder}
 \alias{multiLin}
-\alias{set_getClpindepX_mass}
-\alias{set_initModelClass_kin}
-\alias{set_initModelClass_mass}
-\alias{set_initModelClass_spec}
-\alias{set_plotter_mass}
-\alias{set_residPart_mass}
+\alias{scaleConList}
+\alias{getXsuper}
+\alias{getKinConcen}
+\alias{doConstrSuper}
+\alias{compModelMass}
+\alias{barplot3}
 \title{TIMP function used internally}
 \description{TIMP function used internally}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
@@ -117,5 +95,5 @@
 \code{\link{fitModel}},\code{\link{examineFit}}, 
 \code{\link{sumKinSpecEst}}  
 }
-\keyword{file}
+\keyword{internal}
 

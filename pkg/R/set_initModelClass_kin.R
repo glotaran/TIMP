@@ -1,5 +1,3 @@
-"set_initModelClass_kin" <- 
-function(){
   setMethod("initModelClass", signature(model="kin"), 
     function (model) 
     {
@@ -15,7 +13,7 @@ function(){
             0)
         model@clpdep <- model@wavedep
         if(model@fullk) 
-	    model@ncomp <- dim(model@kmat)[1] + length(model@kinpar2)
+	    model@ncomp <- nrow(model@kmat) + length(model@kinpar2)
 	else 
 	     model@ncomp <- length(model@kinpar) + length(model@kinpar2)
         model@ncolc <- array(model@ncomp, model@nl)
@@ -31,6 +29,7 @@ function(){
 	if (length(model@cohspec) != 0) 
             model <- getCoh(model)
 	    model <- getAnisotropy(model)  
+	
 	model
    }) 
-}
+

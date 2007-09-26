@@ -1,5 +1,3 @@
-"set_initModelClass_spec" <- 
-function(){
   setMethod("initModelClass", signature(model="spec"), 
     function (model) 
     {
@@ -10,4 +8,3 @@ function(){
         model@ncole <- array(model@ncomp, model@nt)
 	model
    }) 
-}

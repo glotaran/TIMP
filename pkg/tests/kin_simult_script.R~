@@ -89,7 +89,7 @@ cohspec = list( type = "seq", start = c(8000, 1800)))
 ## FIT NEW MODEL OBJECT
 ##############################
 
-denRes<-fitModel(dataDEN, list(model2),
+denRes<-fitModel(data = list(denS4, denS5), list(model2),
 modeldiffs = list(dscal = list(list(to=2,from=1,value=.457)), 
 free = list(
 list(what = "irfpar", ind = 1, dataset = 2, start=-.1932),

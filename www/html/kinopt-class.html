@@ -12,17 +12,16 @@
 
 <p>
 Class "kinopt" stores options for fitting and plotting kinetic
-models in particular; this is a subclass of class <code>opt</code> that contains 
-options applicable to all model types
+models in particular; this is a subclass of class <code>opt</code>
 </p>
 
 
 <h3>Details</h3>
 
 <p>
-See <code><a href="opt-class.html">opt-class</a></code> and  <a href="specopt-class.html">specopt-class</a> for 
+See <code><a href="opt-class.html">opt-class</a></code> for 
 the specification of fitting/plotting options that are not specific to the 
-class type and for the <code>kin</code> class type, respectively.
+class type.
 </p>
 
 
@@ -65,34 +64,34 @@ be superimposed if the dataset has an <code>x2</code> value at a value in
 <dt>FLIM:</dt><dd>Object of class <code>"logical"</code> that defaults to 
 <code>FALSE</code>; if <code>TRUE</code>, the data represent a FLIM experiment and 
 special plots are generated. </dd>
+<dt>FLIMresidimag:</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>TRUE</code>; if <code>FALSE</code> and a FLIM image is analyzed, the residuals
+are not plotted as an image.</dd> 
+<dt>noFLIMsummary:</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code> and a FLIM image is analyzed, only other 
+plots requested by the user (such as traces or residuals) are generated, and 
+no summary plot in made.</dd> 
 <dt>kinspecest</dt><dd>Object of class <code>"logical"</code> that defaults to 
 <code>FALSE</code>; if <code>TRUE</code>, make a plot of the spectra associated with
 the kinetic components as well as the lifetime estimates. </dd>
-<dt>kinspecerr</dt><dd>Object of class <code>"logical"</code> that defaults to 
-<code>FALSE</code>; if <code>TRUE</code>, add standard error estimates to the spectra
-a plot generated with <code>kinspecest=TRUE</code>.  This option can only be 
-used if the estimates were generated during fitting via the option 
-<code>stderrclp=TRUE</code></dd>
-<dt>specinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
-<code>FALSE</code>; if <code>TRUE</code>, use spline instead of lines between 
-the points representing estimated spectra</dd>
-<dt>specinterpolpoints</dt><dd>Object of class <code>"logical"</code> that defaults to 
-<code>TRUE</code>; if <code>TRUE</code>, add points representing the actual estimates
-for spectra to plots of the curves respresenting smoothed spectra</dd>
-<dt>specinterpolseg</dt><dd>Object of class <code>"numeric"</code> that defaults to 
-<code>50</code>; represents the number of segments used in a spline-based
-representation of spectra</dd>  
-<dt>specinterpolbspline</dt><dd>Object of class <code>"logical"</code> that defaults
-to <code>FALSE</code>; determines whether a B-spline based representation of
-spectra is used (when <code>specinterpol=TRUE</code>) or a piecewise polynomial 
-representation</dd> 
-<dt>normspec</dt><dd>Object of class <code>"logical"</code> that determines whether
-spectra are normalized in plots</dd>
 
 
-<dt>writespecinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
-<code>FALSE</code>; if <code>TRUE</code>, a spline-based representation of spectra
-is written to ASCII files</dd>
+<dt>writeplaincon</dt><dd>Object of class <code>"list"</code>; if length is greater
+than 0, then the concentration model will be evaluated at the vector of 
+<code>x</code> values supplied as the element <code>"x"</code> of <code>writeplaincon</code> 
+and the result will be written to file for each dataset.   
+</dd>
+<dt>writerawcon</dt><dd>Object of class <code>"logical"</code> 
+that defaults to <code>FALSE</code>; if <code>TRUE</code>, then the representation of 
+the concentration profiles before the application of constraints (to 
+account for the equality of spectra, etc.) is written to file for each 
+dataset.
+</dd>
+<dt>plotcohcolspec</dt><dd>Object of class <code>"logical"</code> 
+that defaults to <code>TRUE</code>; if <code>FALSE</code> then the spectra associated
+with the coherent artifact (pulse-follower) are not included in the summary
+plots
+</dd>
 </dl>
 
 <h3>Author(s)</h3>
@@ -110,6 +109,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
 
 </body></html>

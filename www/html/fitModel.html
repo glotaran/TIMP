@@ -29,7 +29,8 @@ fitModel(data, modspec=list(), datasetind = vector(), modeldiffs = list(),
 <table summary="R argblock">
 <tr valign="top"><td><code>data</code></td>
 <td>
-list of data objects of class <code>dat</code></td></tr>
+list of objects of class <code>dat</code> containing the data 
+to be modeled</td></tr>
 <tr valign="top"><td><code>modspec</code></td>
 <td>
 list whose elements are models of class <code>dat</code> 
@@ -45,7 +46,24 @@ use the first model given in <code>modspec</code>  </td></tr>
 <td>
 list whose elements specify any dataset-specific 
 model differences. 
-<ul> 
+<ul>
+<dt>linkclp</dt><dd>list of vectors containing the indices of datasets.  If the 
+two dataset indices are in the same vector, their conditionally linear 
+parameters will be equated if they represent the same condition (e.g., a 
+wavelength) within <code>thresh</code>.  For example, 
+<code>linkclp = list(1:10, 11:15)</code> will let datasets 1-10 and 11-15 
+have the same clp.  Note that if <code>linkclp</code> is not given, it will 
+default to <code>list{1:length(data)}</code>, so that the clp from all datasets
+are equated when they represent conditions within <code>thresh</code> of each 
+other.  
+<br>
+Consider the situation where the clp from many different datasets are 
+equated.  <B>
+Then it is important to note that the specification of constraints
+applicable to the clp will also be equated, and will be read from the model
+assigned to the first dataset in the group. </B>
+<br>
+</dd>  
 <dt>dscal</dt><dd>list of lists specifying linear scaling relations between 
 datasets; each list has elements <code>to, from, value</code>.  The index of the 
 dataset to be scaled is given in <code>to</code>; the index of the dataset on 
@@ -158,7 +176,7 @@ function; it is used to regenerate plots and other output by the
 </table>
 <p>
 
-normal-bracket116bracket-normal</p>
+normal-bracket125bracket-normal</p>
 
 <h3>Author(s)</h3>
 
@@ -186,6 +204,6 @@ multi-way spectroscopic measurements.'' Journal of Statistical Software,
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
 
 </body></html>

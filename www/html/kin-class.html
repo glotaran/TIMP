@@ -11,7 +11,10 @@
 <h3>Description</h3>
 
 <p>
-<code>kin</code> is the class for kinetic models; if <code>mod_type = "kin"</code> is an 
+<code>kin</code> is the class for kinetic models; 
+an object 
+of class "kin" is initialized if 
+<code>mod_type = "kin"</code> is an 
 argument of <code>initModel</code>.
 All objects of class <code>kin</code> are sub-classes of 
 class <code>dat</code>; see documentation for <code>dat</code> 
@@ -52,8 +55,11 @@ and <code>FALSE</code> otherwise</dd>
 <dt><code>mirf</code>:</dt><dd>Object of class <code>"logical"</code>  that is <code>TRUE</code> if a measured IRF is modeled and <code>FALSE</code>
 otherwise</dd>
 <dt><code>measured_irf</code>:</dt><dd>Object of class <code>"vector"</code>  containing a measured IRF</dd>
-<dt><code>convalg</code>:</dt><dd>Object of class <code>"numeric"</code>  1-4 determining the numerical convolution algorithm 
-used in the case of modeling a measured IRF</dd>
+<dt><code>convalg</code>:</dt><dd>Object of class <code>"numeric"</code>  1-6 determining the numerical convolution algorithm 
+used in the case of modeling a measured IRF; if <code>6</code> then supply a
+reference lifetime in the slot <code>reftau</code>.</dd>
+<dt><code>reftau</code>:</dt><dd>Object of class <code>"numeric"</code>  containing a
+reference lifetime to be used when <code>convalg=6</code></dd>
 <dt><code>irffun</code>:</dt><dd>Object of class <code>"character"</code>  describing the 
 function to use to describe the IRF, by default "gaus"</dd>
 <dt><code>irfpar</code>:</dt><dd>Object of class <code>"vector"</code>  of IRF parameters; for the common Gaussian IRF this 
@@ -136,6 +142,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
 
 </body></html>

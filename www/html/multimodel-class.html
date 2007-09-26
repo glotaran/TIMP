@@ -52,6 +52,17 @@ to the <code><a href="fitModel.html">fitModel</a></code> function</dd>
 <dt><code>fit</code>:</dt><dd>Object of class <code>"fit"</code>  containing a list of
 results per-dataset as well as the output of optimization returned by the
 <code>nls</code> function.</dd>
+<dt><code>groups</code>:</dt><dd>Object of class <code>"list"</code>  containing a list of
+lists of the groups of clp to link across datasets. Each component list 
+contains vectors of form (clp condition index, dataset index), and 
+such vectors in the same component list are linked between datasets. See
+<code>fitModel</code> for more details on the linking possibilities.  
+</dd>
+<dt><code>stderrclp</code>:</dt><dd>Object of class <code>"logical"</code>  
+describing whether standard error estimates on conditionally linear 
+parameters should be calculated; this is determined by the <code>opt</code> 
+argument of <code>fitModel</code> and defaults to <code>FALSE</code>
+</dd>
 </dl>
 
 <h3>Author(s)</h3>
@@ -69,6 +80,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
 
 </body></html>

@@ -19,7 +19,8 @@ all model types
 <h3>Details</h3>
 
 <p>
-See <code><a href="kinopt-class.html">kinopt-class</a></code> and  <code><a href="specopt-class.html">specopt-class</a></code> for 
+See <code><a href="kinopt-class.html">kinopt-class</a></code>, <code><a href="specopt-class.html">specopt-class</a></code> and
+<code><a href="massopt-class.html">massopt-class</a></code> for 
 the specification of fitting/plotting options that are specific to the 
 class type.
 </p>
@@ -49,6 +50,18 @@ written to a txt file; row labels are <code>x2</code></dd>
 <code>"logical"</code> that defaults to <code>FALSE</code>; if <code>TRUE</code> then fit 
 is written to a txt file; row and column labels are <code>x</code> and 
 <code>x2</code></dd>
+<dt><code>writeclperr</code>:</dt><dd>Object of class <code>"logical"</code>  
+that defaults to
+FALSE; if true then 
+the error bars for clp are written to a txt file.  This option is only 
+sensible with <code>stderrclp=TRUE</code>.</dd>
+<dt><code>output</code>:</dt><dd>Object of class 
+<code>"character"</code> that defaults to <code>"ps"</code>, which means that 
+plots written to file are postscript.  Alternatively, specify
+<code>output = "pdf"</code>, and plots are written as pdf files</dd> 
+<dt><code>addfilename</code>:</dt><dd>Object of class 
+<code>"logical"</code> that, for each data file, tries to add the 
+filename to plots associated with output for that data. </dd>
 <dt><code>residplot</code>:</dt><dd>Object of class <code>"logical"</code> defaults to 
 <code>FALSE</code>; if <code>TRUE</code> generate a plot of residuals in a 
 separate window.</dd>
@@ -93,7 +106,46 @@ to <code>FALSE</code>; if <code>TRUE</code>, estimates of the standard error of
 conditionally linear parameters are made</dd>
 <dt><code>addest</code>:</dt><dd>Object of class <code>"vector"</code> containing 
 character strings of which parameter estimates should be added to the 
-summary plot, e.g., <code>addest = c("kinpar", "irfpar")</code></dd>  
+summary plot, e.g., <code>addest = c("kinpar", "irfpar")</code></dd>
+<dt>kinspecerr</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, add standard error estimates to the clp
+a plot generated with <code>kinspecest=TRUE</code> or 
+<code>plotkinspec=TRUE</code>.  This option can only be 
+used if the estimates were generated during fitting via the option 
+<code>stderrclp=TRUE</code></dd>
+<dt>xlimspec</dt><dd>Object of class <code>"vector"</code> that defaults to 
+<code>vector()</code>; if changed, it should specify the desired x-limits of 
+the plot of clp</dd>
+<dt>ylimspec</dt><dd>Object of class <code>"vector"</code> that defaults to 
+<code>vector()</code>; if changed, it should specify the desired y-limits of 
+the plot of clp. In the case of plotting the results of FLIM image 
+analysis, <code>ylimspec</code> can be used to determine the range used in the 
+image plot of lifetimes.  </dd>
+<dt>ylimspecplus</dt><dd>Object of class <code>"vector"</code> that defaults to 
+<code>vector()</code>; if changed, the first value should specify a vector to
+add to the y-limits of the plot of clp</dd>
+<dt>samespecline</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, then the line-type for clp is the same 
+for all datasets
+</dd>
+<dt>specinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, use spline instead of lines between 
+the points representing estimated clp</dd>
+<dt>specinterpolpoints</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>TRUE</code>; if <code>TRUE</code>, add points representing the actual estimates
+for clp to plots of the curves respresenting smoothed clp</dd>
+<dt>specinterpolseg</dt><dd>Object of class <code>"numeric"</code> that defaults to 
+<code>50</code>; represents the number of segments used in a spline-based
+representation of clp</dd>  
+<dt>specinterpolbspline</dt><dd>Object of class <code>"logical"</code> that defaults
+to <code>FALSE</code>; determines whether a B-spline based representation of
+clp is used (when <code>specinterpol=TRUE</code>) or a piecewise polynomial 
+representation</dd> 
+<dt>normspec</dt><dd>Object of class <code>"logical"</code> that determines whether
+clp are normalized in plots</dd>
+<dt>writespecinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
+<code>FALSE</code>; if <code>TRUE</code>, a spline-based representation of clp
+is written to ASCII files</dd>
 </dl>
 
 <h3>Author(s)</h3>
@@ -111,6 +163,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.2 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
 
 </body></html>

@@ -28,5 +28,5 @@ specparF, fillK, l2nu, linloglines, fullKF, linlogplot, gaus,
 getClpConstr, weightNL, matlinlogplot, weightPsi, getCoh, writeEst,
 getCohToPlot, normdat, writeFit, getConToPlot, plotEst,
 plotKinSpecEst, fillResult, getResid, processOrder, multiLin,
-readclp0, compModelMass, barplot3, getXsuper, doConstrSuper)
+readclp0, compModelMass, barplot3, getXsuper, doConstrSuper, getKinConcen)
 

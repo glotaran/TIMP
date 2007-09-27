@@ -5,7 +5,11 @@
             filename <- paste(plotoptions@makeps, "_paramEst.txt", sep = "")
     else
 	   filename <- ".currParamEst"	
+    get(getOption("device"))()
+      if (dev.interactive()){
     local({
+      get(getOption("device"))()
+      if (dev.interactive()){
         tt <- tktoplevel()
         tkwm.title(tt, "Parameter estimates")
         txt <- tktext(tt, bg = "white", font = "courier 15")
@@ -21,5 +25,5 @@
         tkconfigure(txt, state = "disabled")
         tkmark.set(txt, "insert", "0.0")
         tkfocus(txt)
-    })
+    }})}
 }

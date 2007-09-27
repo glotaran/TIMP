@@ -10,7 +10,7 @@
   a list containing \code{theta} objects 
   for each of the n datasets analyzed in the call to \code{fitModel} is
   created.   To see the parameter estimates 
-  associated with the datasets, examine the object \code{currTheta}
+  associated with the datasets, examine the object \codecurrTheta}
   in the list returned by \code{fitModel}}
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("theta", ...)} or 

@@ -11,7 +11,7 @@ specopt, massopt, opt, fit)
 exportMethods(getClpindepX, residPart, plotter)
 
 export(readData, preProcess, baseIRF, initModel, 
-fitModel, examineFit, sumKinSpecEst, modifyModel)
+fitModel, examineFit, sumKinSpecEst)
 
 export(dat, kin, spec, mass, theta, multimodel, res, multitheta,
 kinopt, specopt, massopt, opt, fit, addDscal, getDiffThetaChange,

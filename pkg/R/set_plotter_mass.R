@@ -58,8 +58,7 @@
 	    minc <- min(minc, min(conList[[length(conList)]]))
 	    maxc <- max(maxc, max(conList[[length(conList)]]))
 	}
-	xx<<-conList
-	xx1 <<-getSpecList(multimodel, t)
+	
 	if(plotoptions@scale.concen) {
 			specList <- getSpecList(multimodel, t)	
 			conList <- scaleConList(conList, specList) 

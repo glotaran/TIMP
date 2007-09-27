@@ -5,7 +5,7 @@ function (X, Xlist, multimodel, thetalist, group)
     m <- multimodel@modellist[[dset]]
     colnames(X) <- m@compnames 
     if(multimodel@getXsuper) 
-	X <- getXsuper(Xlist, modellist, thetalist, group)
+	X <- getXsuper(Xlist, multimodel@modellist, thetalist, group)
     
     t <- thetalist[[ dset  ]]
     if(m@clpdep) {

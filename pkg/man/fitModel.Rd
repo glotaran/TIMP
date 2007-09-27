@@ -131,6 +131,12 @@ optimize nonlinear parameters and to solve for conditionally linear parameters
 }
 \value{list with element \code{toPlotter}.  
 \itemize{
+  \item{currTheta}{is a list of objects
+    of class \code{theta} whose elements contain the parameter estimates
+    associated with each dataset modeled.}
+  \item{currModel}{is an object of class \code{multimodel}
+    containing the results of fitting as well as the model
+    specification}
 \item{toPlotter}{is a list containing all arguments used by the plotting 
 function; it is used to regenerate plots and other output by the 
 \code{examineFit}  function}

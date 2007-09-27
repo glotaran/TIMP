@@ -2,7 +2,7 @@
 function (X, clp_ind, clpCon, clpequ, num_clpequ, usecompnames0, 
 usecompnamesequ)  
 {   
-    xs1<<-X
+
     #add equality constraints
     if(num_clpequ > 0) {
 	for(i in 1:num_clpequ) {
@@ -26,7 +26,7 @@ usecompnamesequ)
     if(length(rem) > 0 )
     	X <- as.matrix(X[, - rem])
     
-     xs2<<-X
+
     X
 }
 

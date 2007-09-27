@@ -11,11 +11,14 @@
 <h3>Description</h3>
 
 <p>
-<code>theta</code> is the class to store parameter estimates associated with possibly 
-many datasets; after a call to fitModel a list containing n theta objects 
-for each of the n datasets analyzed in the call to fitModel is created
-as the invisible object <code>.currTheta</code>.  To see the parameter estimates 
-associated with the ith dataset, examine <code>.currTheta[[i]]</code>
+<code>theta</code> is the class to store parameter estimates associated with
+possibly 
+many datasets; after a call to <code>fitModel</code>
+a list containing <code>theta</code> objects 
+for each of the n datasets analyzed in the call to <code>fitModel</code> is
+created.   To see the parameter estimates 
+associated with the datasets, examine the object <code>currTheta</code>
+in the list returned by <code>fitModel</code>
 </p>
 
 
@@ -24,7 +27,7 @@ associated with the ith dataset, examine <code>.currTheta[[i]]</code>
 <p>
 after a call to <code><a href="fitModel.html">fitModel</a></code>, an object of class 
 <code>theta</code> exists in the global environment as the variable 
-<code>.currTheta</code>
+<code>currTheta</code>
 </p>
 
 

@@ -9,7 +9,7 @@ results of fitting. }
 list of per-data models, a specification of per-dataset model differences, and 
 results for the analysis of possibly many datasets.  After a call to 
 \code{fitModel}
-an object \code{.currModel} is initialized of the \code{multimodel} class. }
+an object is initialized of the \code{multimodel} class. }
 
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("multimodel", ...)} or 
@@ -43,7 +43,7 @@ to the \code{\link{fitModel}} function}
 }
 \details{after a call to \code{\link{fitModel}}, an object of class 
 \code{multimodel} exists in the global environment as the variable 
-\code{.currModel} }
+\code{currModel} }
 \seealso{ \code{\link{fitModel} }}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 

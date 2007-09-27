@@ -5,7 +5,7 @@
 	if(length(modeldiff$change) != 0) {
 		thA <- getDiffThetaChange(th, mod)
 		th <- thA$th
-		.currModel@parorderchange <<- thA$parorder
+		mod@parorderchange <- thA$parorder
 	}
 	if(length(modeldiff$free)!=0 || length(modeldiff$add) !=0)
 		for(diff in append(mod@modeldiffs$free, mod@modeldiffs$add)){ 
@@ -82,7 +82,7 @@
 			}
 	        }
        }
-       .currModel@parorderdiff <<- parorder
-       th
+       mod@parorderdiff <- parorder
+       list(theta = th, mod = mod)
 }
 

@@ -1,6 +1,5 @@
 "plotTraces" <- function(multimodel, multitheta, plotoptions)
 {   
-    
     m <- multimodel@modellist   
     t <- multitheta   
     res <- multimodel@fit@resultlist

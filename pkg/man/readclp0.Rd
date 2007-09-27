@@ -19,7 +19,6 @@ file for the \code{"dat"} class.  Therefore a call to
 \code{"readclp0"} may be used inside a call to \code{"initModel"}, 
 as in \code{clp0 = readclp0("filename")}.
 }
-}
 \details{
 The file to be read in should have the following format: 
 1st line is not read.  Lines thereafter are 

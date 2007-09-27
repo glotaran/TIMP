@@ -1,7 +1,7 @@
 "compCoh" <-
 function (irfpar, x, cohspec, coh, dataset, cohirf, mirf = FALSE, 
 measured_irf = vector(), convalg = 1, shiftmea = vector(), lamb = 1, 
-ani = anispec(), anipar = vector(), cohcol = vector()) 
+ani = list(), anipar = vector(), cohcol = vector()) 
 {
 	type <- cohspec$type 
 	if(type == "irf") {

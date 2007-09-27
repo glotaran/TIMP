@@ -1,4 +1,4 @@
-"fillResult" <- function (group , multimodel, thetalist, clpindepX, rlist,
+"fillResult" <- function (group, multimodel, thetalist, clpindepX, rlist,
 	        rawtheta)
 {
     irfvec <- rlist$irfvec
@@ -24,7 +24,7 @@
    for (i in 1:length(group)) {
 	dset <- group[[i]][2] 
 	clpind <- group[[i]][1]
-	res <- .currModel@fit@resultlist[[dset]]
+	res <- multimodel@fit@resultlist[[dset]]
 	if(m[[dset]]@mod_type == "kin") { 
 	  irfvec[[i]][which(is.na(irfvec[[i]]))] <- 0
 	  if (length(m[[dset]]@cohspec$type) != 0) {
@@ -41,8 +41,8 @@
         res@fitted[[clpind]] <- fitted[cnt:(cnt + nt_or_nl - 1)]
         res@resid[[clpind]] <- resid[cnt:(cnt + nt_or_nl - 1)]        
 	cnt <- cnt + nt_or_nl 
-	.currModel@fit@rss <<- .currModel@fit@rss + sum(res@resid[[clpind]]^2)
-	.currModel@fit@resultlist[[dset]] <<- res
+	multimodel@fit@rss <- multimodel@fit@rss + sum(res@resid[[clpind]]^2)
+	multimodel@fit@resultlist[[dset]] <- res
    }
    if(multimodel@stderrclp) {
     ## note that this option does not return correct values if 
@@ -82,8 +82,8 @@
     Bloc1 <- tcrossprod(X_pseudo, X_pseudo) 
     std_err_clp <- sqrt( sigma_2 * diag(Bloc1 + crossprod(A_T, A_T)))
     for (i in 1:length(group)) 
-       .currModel@fit@resultlist[[ group[[i]][2] ]]@std_err_clp[[clpind]] <<- std_err_clp
+       multimodel@fit@resultlist[[ group[[i]][2] ]]@std_err_clp[[clpind]] <- std_err_clp
  }
-
+ multimodel
 }
 

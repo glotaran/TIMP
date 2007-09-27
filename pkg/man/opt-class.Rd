@@ -124,8 +124,6 @@ clp are normalized in plots}
   
 }
 
-
-}
 \details{See \code{\link{kinopt-class}}, \code{\link{specopt-class}} and
    \code{\link{massopt-class}} for 
 the specification of fitting/plotting options that are specific to the 

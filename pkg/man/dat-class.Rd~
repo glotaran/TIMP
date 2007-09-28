@@ -183,6 +183,9 @@ function for more information. }
     e.g., \code{positivepar=c("kinpar")}}
 \item{\code{datafile}:}{Object of class \code{"character"}  
 containing the name of a datafile associated with the \code{psi.df} }
+\item{\code{clpType}:}{Object of class \code{"character"}  
+that is "nt" if the model has clp in the "x" dimension and "nl" otherwise  
+(so that, e.g., if \code{mod\_type = "kin"}, then \code{clpType = "nl"}).} 
   }
 }
 

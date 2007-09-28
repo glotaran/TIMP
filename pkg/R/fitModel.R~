@@ -32,7 +32,9 @@ opt = opt())
     if (opt@plot) 
         plotter(currModel@modellist[[1]], currModel, currTheta, opt)
 
-    return(list(toPlotter = list(model = currModel@modellist[[1]], 
-    multimodel = currModel, multitheta = currTheta, plotoptions = opt),
-    currModel = currModel, currTheta = currTheta))
+    ret <- list( toPlotter = list(model = currModel@modellist[[1]],
+                multimodel = currModel, multitheta = currTheta,
+                plotoptions = opt), currModel = currModel, currTheta =
+                currTheta)
+    return(ret)
   }

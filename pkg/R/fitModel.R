@@ -26,9 +26,12 @@ opt = opt())
 
     currModel@finished <- TRUE
 
-    currModel <- rescomp(t=currModel@fit@nlsres$onls$m$getPars(),
+    resFinal <- rescomp(t=currModel@fit@nlsres$onls$m$getPars(),
                           currModel=currModel)
 
+    currModel <- resFinal$currModel
+    currTheta <- resFinal$currTheta
+    
     if (opt@plot) 
         plotter(currModel@modellist[[1]], currModel, currTheta, opt)
 

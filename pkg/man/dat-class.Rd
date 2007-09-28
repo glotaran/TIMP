@@ -102,7 +102,17 @@ list(what = "parmu", ind = c(1,1), high = .002))}
   respectively.  e.g., \code{clp0 = list(list(low=400, high = 600, comp=2), 
   list(low = 600, high = 650, comp=4))} applies zero constraints to the spectra 
   associated with components 2 and 4. }
-    \item{\code{makeps}:}{ Object of class \code{"character"} 
+\item{\code{autoclp0}:}{ Object of class \code{"list"} that has two
+  elements; \code{oldRes},
+  the output of \code{fitModel} and an index \code{ind} representing the
+  index of the dataset to use in \code{oldRes}; \code{ind} defaults to
+  one.   The clp that are negative in \code{oldRes} are constrained to
+  zero in the new model; this is primarily useful when fitting a model,
+  finding some negative clp, and constraining them to zero by fitting
+  again with this option.  See  also the help page for \code{opt} for
+  other ways to constrain the clp to non-negativity. 
+  }
+\item{\code{makeps}:}{ Object of class \code{"character"} 
   specifyies the prefix of files written to 
   postscript
     }

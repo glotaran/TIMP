@@ -26,7 +26,8 @@ function (theta, d = vector(), currModel)
               
               }
             }
-        if(currModel@finished) return(currModel=currModel, currTheta=currTheta)
+        if(currModel@finished) return(list(currModel=currModel,
+                                           currTheta=currTheta))
 	unlist(resid)
 
 }

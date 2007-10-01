@@ -1,7 +1,7 @@
 "plotSpectra" <-
 function (model, multimodel, multitheta, plotoptions) 
 {
-    get(getOption("device"))()
+
     m <- multimodel@modellist
     t <- multitheta
     res <- multimodel@fit@resultlist

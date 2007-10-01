@@ -26,7 +26,7 @@
             plotFLIM(multimodel, multitheta, plotoptions)
             return()
         }
-	get(getOption("device"))()
+	#get(getOption("device"))()
 	par(mgp = c(2, 1, 0), mar=c(3,3,3,2), oma = c(1,0,4,0), 
 	mfrow=c(plotoptions@summaryplotrow, plotoptions@summaryplotcol))
         m <- multimodel@modellist
@@ -315,11 +315,8 @@
 		        if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
     }
     mtext(tit, side = 3, outer = TRUE, line = 1)
-    par(las = 2)
-
-  
-	par(mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
-	plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
+    par(las = 2, mfrow=c(plotoptions@summaryplotrow,1), new=TRUE)
+    plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE)
 	writeEst(multimodel, multitheta, plotoptions, plotEstout)
         displayEst(plotoptions)
 
@@ -333,7 +330,7 @@
 		sep = ""))
         }
         if (plotoptions@plotkinspec) {
-            plotKinSpec(multimodel, t, plotoptions)
+            plotClp(multimodel, t, plotoptions)
         }
 	if (plotoptions@kinspecest) {
             plotKinSpecEst(t, plotoptions, multimodel)

@@ -53,7 +53,7 @@
 \alias{normdat} 
 \alias{plotFLIM} 
 \alias{plotKinBreakDown}
-\alias{plotKinSpec} 
+\alias{plotClp} 
 \alias{plotSelectedSpectra} 
 \alias{plotSelectedTraces}
 \alias{plotSelectedTracesSuper} 
@@ -85,6 +85,7 @@
 \alias{doConstrSuper}
 \alias{compModelMass}
 \alias{barplot3}
+\alias{getAutoClp0}
 \title{TIMP function used internally}
 \description{TIMP function used internally}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}

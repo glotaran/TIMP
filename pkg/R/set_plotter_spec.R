@@ -6,7 +6,7 @@
 	}
 	plotoptions@addest <- c("specpar")
 	plotoptions@paropt <-  par(mgp = c(2, 1, 0), mar=c(4,4,.5,.5))
-	get(getOption("device"))()
+	
 	if(!identical(model@title,""))
 		tit <- c(0,0,1,0)
 	else 
@@ -191,7 +191,7 @@
         displayEst(plotoptions)
        
        if(plotoptions@plotkinspec) {
-		      plotSpecKin(multimodel, t, plotoptions) 
+		      plotClp(multimodel, t, plotoptions) 
 	}
      })	
 

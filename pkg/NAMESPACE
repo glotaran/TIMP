@@ -16,7 +16,7 @@ fitModel, examineFit, sumKinSpecEst)
 export(dat, kin, spec, mass, theta, multimodel, res, multitheta,
 kinopt, specopt, massopt, opt, fit, addDscal, getDiffThetaChange,
 plotFLIM, addPrelCl, getDiffThetaClChange, plotKinBreakDown, addPrel,
-getDiffThetaCl, plotKinSpec, getDiffTheta, baseCorlambda, getFixed,
+getDiffThetaCl, plotClp, getDiffTheta, baseCorlambda, getFixed,
 baseCortime, applyWeightingModel, scaleConList, getGroups,
 plotSpectra, getModel, plotter, calcB, getPar, plotTraces, calcCirf,
 getPrel, plotTracesSuper, calcC, getPrelTheta, calcEbspline,
@@ -28,5 +28,6 @@ specparF, fillK, l2nu, linloglines, fullKF, linlogplot, gaus,
 getClpConstr, weightNL, matlinlogplot, weightPsi, getCoh, writeEst,
 getCohToPlot, normdat, writeFit, getConToPlot, plotEst,
 plotKinSpecEst, fillResult, getResid, processOrder, multiLin,
-readclp0, compModelMass, barplot3, getXsuper, doConstrSuper, getKinConcen)
+readclp0, compModelMass, barplot3, getXsuper, doConstrSuper,
+       getKinConcen, getAutoClp0)
 

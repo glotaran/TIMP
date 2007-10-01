@@ -117,6 +117,16 @@ constrain to zero, and the component to which to apply the zero constraint,
 respectively.  e.g., <code>clp0 = list(list(low=400, high = 600, comp=2), 
   list(low = 600, high = 650, comp=4))</code> applies zero constraints to the spectra 
 associated with components 2 and 4. </dd>
+<dt><code>autoclp0</code>:</dt><dd>Object of class <code>"list"</code> that has two
+elements; <code>oldRes</code>,
+the output of <code>fitModel</code> and an index <code>ind</code> representing the
+index of the dataset to use in <code>oldRes</code>; <code>ind</code> defaults to
+one.   The clp that are negative in <code>oldRes</code> are constrained to
+zero in the new model; this is primarily useful when fitting a model,
+finding some negative clp, and constraining them to zero by fitting
+again with this option.  See  also the help page for <code>opt</code> for
+other ways to constrain the clp to non-negativity. 
+</dd>
 <dt><code>makeps</code>:</dt><dd>Object of class <code>"character"</code> 
 specifyies the prefix of files written to 
 postscript

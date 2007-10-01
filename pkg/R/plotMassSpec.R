@@ -3,7 +3,6 @@ function(multimodel, t, plotoptions)
 {
 	m <- multimodel@modellist
 	resultlist <- multimodel@fit@resultlist 
-	get(getOption("device"))()
 
 	kinspecerr <- plotoptions@kinspecerr
 	superimpose <- plotoptions@superimpose 

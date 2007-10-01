@@ -11,7 +11,7 @@ specopt, massopt, opt, fit)
 exportMethods(getClpindepX, residPart, plotter)
 
 export(readData, preProcess, baseIRF, initModel, 
-fitModel, examineFit, sumKinSpecEst, modifyModel)
+fitModel, examineFit, sumKinSpecEst)
 
 export(dat, kin, spec, mass, theta, multimodel, res, multitheta,
 kinopt, specopt, massopt, opt, fit, addDscal, getDiffThetaChange,
@@ -28,5 +28,6 @@ specparF, fillK, l2nu, linloglines, fullKF, linlogplot, gaus,
 getClpConstr, weightNL, matlinlogplot, weightPsi, getCoh, writeEst,
 getCohToPlot, normdat, writeFit, getConToPlot, plotEst,
 plotKinSpecEst, fillResult, getResid, processOrder, multiLin,
-readclp0, compModelMass, barplot3, getXsuper, doConstrSuper, getKinConcen)
+readclp0, compModelMass, barplot3, getXsuper, doConstrSuper,
+       getKinConcen, getAutoClp0)
 

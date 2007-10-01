@@ -5,25 +5,23 @@
             filename <- paste(plotoptions@makeps, "_paramEst.txt", sep = "")
     else
 	   filename <- ".currParamEst"	
-    get(getOption("device"))()
-      if (dev.interactive()){
-    local({
-      get(getOption("device"))()
-      if (dev.interactive()){
-        tt <- tktoplevel()
-        tkwm.title(tt, "Parameter estimates")
-        txt <- tktext(tt, bg = "white", font = "courier 15")
-        scr <- tkscrollbar(tt, repeatinterval = 5, command = function(...) tkyview(txt, 
+    if(FALSE){##(dev.interactive()){
+        local({
+          if (dev.interactive()){
+            tt <- tktoplevel()
+            tkwm.title(tt, "Parameter estimates")
+            txt <- tktext(tt, bg = "white", font = "courier 15")
+            scr <- tkscrollbar(tt, repeatinterval = 5, command = function(...) tkyview(txt, 
             ...))
-        tkconfigure(txt, yscrollcommand = function(...) tkset(scr, 
+            tkconfigure(txt, yscrollcommand = function(...) tkset(scr, 
             ...))
-        tkpack(txt, side = "left", fill = "both", expand = TRUE)
-        tkpack(scr, side = "right", fill = "y")
-        chn <- tclopen(filename)
-        tkinsert(txt, "end", tclread(chn))
-        tclclose(chn)
-        tkconfigure(txt, state = "disabled")
-        tkmark.set(txt, "insert", "0.0")
-        tkfocus(txt)
-    }})}
-}
+            tkpack(txt, side = "left", fill = "both", expand = TRUE)
+            tkpack(scr, side = "right", fill = "y")
+            chn <- tclopen(filename)
+            tkinsert(txt, "end", tclread(chn))
+            tclclose(chn)
+            tkconfigure(txt, state = "disabled")
+            tkmark.set(txt, "insert", "0.0")
+            tkfocus(txt)
+          }})}
+  }

@@ -53,7 +53,7 @@
 \alias{normdat} 
 \alias{plotFLIM} 
 \alias{plotKinBreakDown}
-\alias{plotKinSpec} 
+\alias{plotClp} 
 \alias{plotSelectedSpectra} 
 \alias{plotSelectedTraces}
 \alias{plotSelectedTracesSuper} 
@@ -80,7 +80,6 @@
 \alias{processOrder}
 \alias{multiLin}
 \alias{scaleConList}
-\alias{massopt}
 \alias{getXsuper}
 \alias{getKinConcen}
 \alias{doConstrSuper}

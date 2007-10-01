@@ -23,7 +23,7 @@ function (model)
     if(length(model@autoclp0) > 0)
       model@clp0 <- getAutoClp0(model)
     model@clpCon <- getClpConstr(
-			 if (model@clpType == "nt")
+			 if (model@clpType == "x")
 			 clp = model@x else clp = model@x2,
 			 clp0 = model@clp0, 
 			 clpequspec = model@clpequspec, 

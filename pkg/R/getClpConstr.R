@@ -9,7 +9,7 @@ function (clp, clp0, clpequspec, ncomp, compnames) {
     clpMod <- matrix(0, length(clp), length(clpequspec))
 
     if (length(clp0) != 0) 
-        for (i in 1:length(clp0)) {
+        for (i in 1:length(clp0)){
             to0 <- intersect(which(clp >= clp0[[i]]$low), which(clp <= 
                   clp0[[i]]$high))
 	    if(length(to0>0)) {

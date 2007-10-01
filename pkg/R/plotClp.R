@@ -1,25 +1,26 @@
-"plotKinSpec" <-
-function(multimodel, t, plotoptions, newplot=TRUE, max_x2=NA, min_x2=NA, 
+"plotClp" <-
+function(multimodel, t, plotoptions, newplot=TRUE, max_clp=NA, min_clp=NA, 
 ylim=vector(), kinspecerr=FALSE)
 {
 	m <- multimodel@modellist
 	resultlist <- multimodel@fit@resultlist 
 	if(newplot) {
-	   par(oma = c(0,0,4,0),cex=1.5)
+	   par(oma = c(3,3,3,0), mfrow= c(1,1))
 	   kinspecerr <- plotoptions@kinspecerr
 	}
 	superimpose <- plotoptions@superimpose 
 	if(length(superimpose) < 1) superimpose <- 1
-	if(is.na(max_x2) || is.na(max_x2))
+        clp <- m[[1]]@clpType
+        if(clp == "x") inp <- "x2" else inp <- "x" 
+        if(is.na(max_clp) || is.na(max_clp))
 			 withlim <- FALSE 
 	else		 withlim <- TRUE
-        allx2 <- allx <- vector() 
+        allclp <- allinp <- vector() 
 	for(i in 1:length(m)) {
-	  allx2 <- append(allx2, m[[i]]@x2) 
-	  allx <- append(allx, m[[i]]@x)
+	  allclp <- append(allclp, slot(m[[i]], clp) )
+	  allinp <- append(allinp, slot(m[[i]], inp))
 	}
 	specList <- getSpecList(multimodel, t)
-	
 
         if(kinspecerr)   
 		errtList <- getSpecList(multimodel, t,  getclperr=TRUE) 
@@ -45,8 +46,8 @@ ylim=vector(), kinspecerr=FALSE)
 
         maxspecdim <- max(unlist(lapply(specList, ncol))[superimpose])
 	if(!withlim) 
-		xlim <- c(min(allx2),max(allx2))
-	else xlim <- c(min_x2, max_x2)
+		xlim <- c(min(allclp),max(allclp))
+	else xlim <- c(min_clp, max_clp)
 	if(length(plotoptions@xlimspec) == 2) 
 		xlim <- plotoptions@xlimspec
 	if(length(plotoptions@ylimspec) == 2) 
@@ -67,7 +68,7 @@ ylim=vector(), kinspecerr=FALSE)
 		          write.table(errtList[[i]], 
 			  file=paste(plotoptions@makeps,
 		          "_std_err_clp_", i, ".txt", sep=""), 
-		          quote = FALSE, row.names = m[[i]]@x2)
+		          quote = FALSE, row.names = slot(m[[i]], clp))
 	   
 	        }
 		if (plotoptions@normspec) 
@@ -76,20 +77,21 @@ ylim=vector(), kinspecerr=FALSE)
 				    sp <- specList[[i]]
 	      for(j in 1:ncol(sp)) {
 		    if(plotoptions@specinterpol) { 
-		       xx <- predict(interpSpline(m[[i]]@x2, 
+		       xx <- predict(interpSpline(slot(m[[i]],clp), 
 			sp[,j], bSpline=plotoptions@specinterpolbspline),
 			nseg = plotoptions@specinterpolseg)
 			
 		       if(!plotted) {
 			plot(xx, lty = if(plotoptions@samespecline) 1
 			else i, main = "", xlab = plotoptions@xlab,
-			ylab="amplitude", xlim =xlim,ylim=ylim, col = j,
+			ylab="", xlim =xlim,ylim=ylim, col = j,
 			type="l")
 			}
 			else lines(xx, col = j, 
 			lty = if(plotoptions@samespecline) 1 else i)
 			if(kinspecerr)
-			 plotCI(m[[i]]@x2, sp[,j], uiw=errtList[[i]][,j], pch
+			 plotCI(slot(m[[i]],clp),
+                                sp[,j], uiw=errtList[[i]][,j], pch
 			 = if(plotoptions@specinterpolpoints) 26-j else NA,
 			 col = j, sfrac = 0, type="p", gap = 0, add =TRUE,
 			 labels = "", lty = if(plotoptions@samespecline) 1
@@ -102,23 +104,23 @@ ylim=vector(), kinspecerr=FALSE)
 		     }
 		     else 
 		      if(kinspecerr)
-		       plotCI(m[[i]]@x2, sp[,j], 
+		       plotCI(slot(m[[i]],clp), sp[,j], 
 		       uiw=errtList[[i]][,j], 
 		       main = "", xlab = plotoptions@xlab,
-		       ylab="amplitude", lty = if(plotoptions@samespecline) 1
+		       ylab="", lty = if(plotoptions@samespecline) 1
 			else i, xlim =xlim,ylim=ylim,
 		       col = j, sfrac = 0,  type="l", gap = 0,
 		       add = !(i == 1 &&	j == 1), labels = "")
 		      else {
 		       if(!plotted) {
-			plot(m[[i]]@x2, sp[, j], 
+			plot(slot(m[[i]],clp), sp[, j], 
 			lty = if(plotoptions@samespecline) 1 else i, 
 			main = "", xlab = plotoptions@xlab,
-			ylab="amplitude", xlim =xlim,ylim=ylim, col = j,
+			ylab="", xlim =xlim,ylim=ylim, col = j,
 			type="l")
                         plotted<-TRUE 
 		       }
-			else lines(m[[i]]@x2, sp[, j], col = j, 
+			else lines(slot(m[[i]],clp), sp[, j], col = j, 
 			lty = if(plotoptions@samespecline) 1 else i)
 
 		     }

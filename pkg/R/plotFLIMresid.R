@@ -1,6 +1,5 @@
 "plotFLIMresid" <- function (multimodel, multitheta, plotoptions, dind) 
 {
-    get(getOption("device"))()
     model <- multimodel@modellist[[1]]
     if (!identical(model@title, "")) 
         tit <- c(0, 0, 1, 0)

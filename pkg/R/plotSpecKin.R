@@ -5,8 +5,7 @@ ylim=vector(), kinspecerr=FALSE)
 	m <- multimodel@modellist
 	resultlist <- multimodel@fit@resultlist 
 	if(newplot) {
-	   get(getOption("device"))()
-	   par(oma = c(0,0,4,0),cex=1.5)
+	   par(oma = c(0,0,2,0))
 	   kinspecerr <- plotoptions@kinspecerr
 	}
 	superimpose <- plotoptions@superimpose 

@@ -1,10 +1,9 @@
 "plotKinSpecEst" <-
 function(t, plotoptions, multimodel)
 {
-	get(getOption("device"))()
 	resultlist <- multimodel@fit@resultlist
 	par(mfrow=c(1,2), mar=c(5,2,2,2))
-	plotKinSpec(multimodel, t, plotoptions, newplot=FALSE, 
+	plotClp(multimodel, t, plotoptions, newplot=FALSE, 
 	kinspecerr = plotoptions@kinspecerr)
 	plotEst(multimodel, plotoptions) 
 	if (length(plotoptions@title) != 0) {

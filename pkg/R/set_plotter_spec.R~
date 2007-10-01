@@ -6,7 +6,7 @@
 	}
 	plotoptions@addest <- c("specpar")
 	plotoptions@paropt <-  par(mgp = c(2, 1, 0), mar=c(4,4,.5,.5))
-	get(getOption("device"))()
+	
 	if(!identical(model@title,""))
 		tit <- c(0,0,1,0)
 	else 
@@ -31,7 +31,8 @@
                         add=!(i==1), lty=i, ylab = "concentration", 
                         xlab=plotoptions@xlab,main = "Concentrations")
        }
-	# SPECTRA 
+	# SPECTRA
+        specList <- vector("list", length(m))
 	for(i in 1:length(m)) {
 		   if(m[[i]]@timedep)
 		     specpar <- specparF(t[[i]]@specpar, m[[i]]@x[1], 
@@ -46,24 +47,14 @@
 		  	 num_clpequ = length(m[[i]]@clpequspec), 
 			 usecompnames0 = m[[i]]@usecompnames0, 
 			 usecompnamesequ = m[[i]]@usecompnamesequ)
-
+                   specList[[i]] <- spectra 
 		      matplot(m[[i]]@x2, spectra, type = "l", 
 		      main = "Spectra", 
 		      xlab = plotoptions@ylab, ylab="amplitude", lty = i, 
 		      add = !(i ==1)) 
         }
 	for(i in 1:length(m)) {
-		   if(m[[i]]@timedep)
-		     specpar <- specparF(t[[i]]@specpar, m[[i]]@x[1], 
-			1, m[[i]]@specref, m[[i]]@specdispindex, 
-			t[[i]]@specdisppar, parmufunc = m[[i]]@parmufunc)
-		   else 
-		     specpar <- t[[i]]@specpar 
-		   spectra <- doClpConstr(specModel(specpar, m[[i]]),
-			  clp_ind = 1, clpCon = m[[i]]@clpCon, 
-			  clpequ = t[[i]]@clpequ, 
-			  num_clpequ = length(m[[i]]@clpequspec))
-		      matplot(m[[i]]@x2, normdat(spectra), type = "l", 
+		      matplot(m[[i]]@x2, normdat(specList[[i]]), type = "l", 
 		      main = "Normalized spectra", xlab = plotoptions@ylab, 
 		      ylab="amplitude", lty = i, add = !(i ==1)) 
 	}
@@ -200,7 +191,7 @@
         displayEst(plotoptions)
        
        if(plotoptions@plotkinspec) {
-		      plotSpecKin(multimodel, t, plotoptions) 
+		      plotKinSpec(multimodel, t, plotoptions) 
 	}
      })	
 

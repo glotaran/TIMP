@@ -33,7 +33,7 @@ customtitle="", preps="", ylimlist=list(), kinspecerr=TRUE ) {
 	      if(length(plotoptions@addest) == 0)
 		plotoptions@addest <- c("kinpar")
 	      
-	      plotKinSpec(multimodel, t, plotoptions, kinspecerr=kinspecerr,
+	      plotClp(multimodel, t, plotoptions, kinspecerr=kinspecerr,
 	      newplot=FALSE, min_clp=min_x2,max_clp=max_x2, ylim=limlist[[i]])
 
 	      plotEst(multimodel, plotoptions) 

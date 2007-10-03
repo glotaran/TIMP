@@ -43,6 +43,7 @@ function(multimodel, t, plotoptions)
 	if(kinspecerr)   
 		errtList <- getSpecList(multimodel, t,  getclperr=TRUE) 
 	plotted <- FALSE	
+        get(getOption("device"))()
         for(i in 1) {  ## note that are just plotting dataset's spectra
              if(i %in% superimpose) {		
 		if(kinspecerr) {

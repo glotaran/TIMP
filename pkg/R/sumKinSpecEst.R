@@ -5,6 +5,7 @@ customtitle="", preps="", ylimlist=list(), kinspecerr=TRUE ) {
 	par(mai = c(0.5, 0.6, .5, 0.5))
 	par(mgp = c(2, 1, 0), mar=c(1,3,1,1))
 	par(oma = c(1,0,4,0))
+        get(getOption("device"))()
 	if(length(customtitle) != 0) 
 	     tit <- customtitle 
 	else

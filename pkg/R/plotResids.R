@@ -1,6 +1,6 @@
 "plotResids" <- function (multimodel,  multitheta,  plotoptions)
 {
-
+  get(getOption("device"))()
 	plotrow<-2
 	plotcol<-2
 	par(plotoptions@paropt)

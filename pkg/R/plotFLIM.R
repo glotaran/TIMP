@@ -10,7 +10,7 @@
     for(i in 1:length(m)) {
       k <- t[[i]]@kinpar
       model <- m[[i]]
-
+      if(dev.cur() != 1) get(getOption("device"))()
       par(plotoptions@paropt)
       par(mgp = c(2, 1, 0), mar=c(3,3,3,2), oma = c(1,0,4,0), cex.main=.95,
 	mfrow=c(plotoptions@summaryplotrow, plotoptions@summaryplotcol))

@@ -1,8 +1,8 @@
 "plotKinBreakDown" <-
 function (multimodel, multitheta, plotoptions) 
 {
-
-    plotrow <- length(plotoptions@breakdown$plot)
+  get(getOption("device"))()
+  plotrow <- length(plotoptions@breakdown$plot)
     plotcol <- 1
     par(plotoptions@paropt)
     par(oma = c(0, 0, 4, 0))

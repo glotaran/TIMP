@@ -1,7 +1,8 @@
 "plotTracesSuper" <-
 function(multimodel, multitheta, plotoptions)
 {
-    m <- multimodel@modellist   
+  get(getOption("device"))() 
+  m <- multimodel@modellist   
     t <- multitheta   
     res <- multimodel@fit@resultlist
     groups <- multimodel@groups 

@@ -57,7 +57,6 @@
 \alias{plotSelectedSpectra} 
 \alias{plotSelectedTraces}
 \alias{plotSelectedTracesSuper} 
-\alias{plotSpectra} 
 \alias{plotTraces}
 \alias{plotTracesSuper} 
 \alias{rescomp} 

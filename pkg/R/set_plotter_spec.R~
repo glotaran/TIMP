@@ -13,8 +13,7 @@
 		tit <- c(0,0,0,0)
 	plotrow<-4
 	plotcol<-4
-        get(getOption("device"))()
-        par(plotoptions@paropt)
+	par(plotoptions@paropt)
 	par(mfrow = c(plotrow, plotcol))
 	nt <- model@nt
 	nl <- model@nl

@@ -81,7 +81,7 @@ function (multimodel, multitheta, plotoptions)
                 place <- grtoplot[[i]][[2]]
                 dset <- group[[place]][2]
                 contoplot <- getKinConcen(group, 
-                  multimodel, t, oneDS = place)
+                  multimodel, t, oneDS = place, weight = FALSE)
                 spec <- spectraList[[i]]
                 resP <- matrix(0, nrow(contoplot), ncol(contoplot))
                 for (xx in 1:ncol(contoplot)) resP[, xx] <- contoplot[, 

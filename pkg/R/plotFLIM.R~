@@ -52,6 +52,7 @@
     colvec <- gray(seq(from = 0, to = 1, length = 100))
     image.plot(model@inten, col = colvec, xlab = "", axes = FALSE, 
         ylab = "", main = "Intensity image")
+    require(gclus)
     tt <- (model@inten - min(model@inten))/max(model@inten - 
         min(model@inten))
     colmat <- gray(tt)
@@ -189,7 +190,8 @@
         pdev <- pdf 
       else  pdev <- postscript
       dev.print(device = pdev, file = paste(plotoptions@makeps,
-	"dataset_", i, "_summary.", plotoptions@output, sep = ""))
+	"dataset_", i, "_summary.", plotoptions@output, 
+                                 sep = ""))
     }
     }
       plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE,addplot=FALSE)

@@ -1,5 +1,6 @@
 "getKinConcen" <- function (group, multimodel, thetalist, 
-clpindepX=vector(), finished=FALSE, doConstr=TRUE, oneDS = 0) 
+clpindepX=vector(), finished=FALSE, doConstr=TRUE, oneDS = 0,
+                            weight=TRUE) 
 {
 	psi <- vector()
         concen <- matrix()
@@ -36,7 +37,7 @@ clpindepX=vector(), finished=FALSE, doConstr=TRUE, oneDS = 0)
 		  kin2scal = t@kin2scal, reftau = m@reftau, 
 		  anispec = m@anispec, anipar = t@anipar, 
 		  cohcol = m@cohcol)
-                if (m@weight) 
+                if (m@weight && weight) 
                   concen_i <- weightNL(concen_i, m, group[[i]][1])
                 if(m@getXsuper) 
 			Xlist[[i]] <- concen_i	

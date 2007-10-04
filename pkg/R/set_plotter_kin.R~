@@ -325,7 +325,9 @@
 				      pdev <- pdf 
 	   else  pdev <- postscript
 	    dev.print(device = pdev, file = paste(plotoptions@makeps, 
-                "_summary.",  plotoptions@output, sep = ""))
+                "_summary.",  
+		plotoptions@output,
+		sep = ""))
         }
         if (plotoptions@plotkinspec) {
             plotClp(multimodel, t, plotoptions)

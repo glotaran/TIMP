@@ -5,7 +5,7 @@
             filename <- paste(plotoptions@makeps, "_paramEst.txt", sep = "")
     else
 	   filename <- ".currParamEst"	
-    if(dev.interactive()){
+    if(FALSE){##(dev.interactive()){
         local({
           if (dev.interactive()){
             tt <- tktoplevel()

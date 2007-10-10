@@ -6,15 +6,38 @@
     psi <- rlist$psi 
     m <- multimodel@modellist 
     dset <- group[[1]][2]
-    if(multimodel@nonnegclp || multimodel@nnls) {
-	X <- qr.X(QR.temp)
-    	startval <- rep(0, ncol(X))
-    	fn1 <- function(par1) sum( ( psi - X %*% par1)^2)
-    	cp <- optim( startval, fn = fn1, lower = c(0,0),  
-			method="L-BFGS-B")$par
-	fitted <- X %*% cp 
-	resid <- psi - fitted
-   }
+    if(multimodel@nonnegclp || multimodel@nnls > 0) {
+      X <- qr.X(QR.temp)
+      if(multimodel@nonnegclp == 1 || multimodel@nnls == 1) {
+        
+        startval <- rep(0, ncol(X))
+        fn1 <- function(par1) sum( ( psi - X %*% par1)^2)
+        cp <- optim( startval, fn = fn1, lower = c(0,0),  
+                    method="L-BFGS-B")$par
+      
+      }
+      else if(multimodel@nonnegclp == 2 || multimodel@nnls == 2) {
+        MDA <- nrow(X)
+        M <- nrow(X) 
+        N <- ncol(X)
+        RNORM <- 0
+        W <- rep(0, N)
+        ZZ <- rep(0, M)
+        INDEX <- rep(0, N)
+        MODE <- 0
+        cp <- rep(0, ncol(X))
+        cp <- .Fortran("nnls", A = as.numeric(X), MDA =
+                       as.integer(MDA), M = as.integer(M), N =
+                       as.integer(N), B = as.numeric(psi), X =
+                       as.numeric(cp), RNORM = as.numeric(RNORM), W =
+                       as.numeric(W), ZZ = as.numeric(ZZ), INDEX =
+                       as.integer(INDEX), MODE = as.integer(MODE),
+                       PACKAGE="TIMP")$X
+
+        }
+        fitted <- X %*% cp 
+        resid <- psi - fitted
+   }     
    else {
 	cp <- qr.coef(QR.temp, psi)
    	resid <- qr.resid(QR.temp, psi)

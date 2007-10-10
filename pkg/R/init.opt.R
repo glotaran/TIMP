@@ -8,7 +8,7 @@
 			residplot = "logical", 
 			plot = "logical", 
 			output = "character",
-			nnls = "logical", 
+			nnls = "numeric", 
 			divdrel = "logical", 
 			plotkinspec = "logical",
 			superimpose = "vector",
@@ -35,7 +35,7 @@
 			samespecline = "logical",
 			normspec = "logical",
 			writespecinterpol = "logical", 
-			nonnegclp = "logical"
+			nonnegclp = "numeric"
 			), 
         prototype = list(writecon = FALSE, 
 			writespec = FALSE,
@@ -49,7 +49,7 @@
 			addfilename = FALSE,
 			divdrel = TRUE, 
 			output = "ps", 
-			nnls = FALSE,
+			nnls = 0,
 			superimpose = vector(),
 			paropt = list(),
 			title = "",
@@ -71,7 +71,7 @@
 			normspec = FALSE,
 			writespecinterpol = FALSE, 
 			samespecline = FALSE,
-			nonnegclp = FALSE
+			nonnegclp = 0
 			))
 
 setClass("kinopt", representation("opt",

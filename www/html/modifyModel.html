@@ -14,11 +14,11 @@ to be updated with the values found in fitting the model.</h2>
 
 <p>
 Allows the starting values for parameters associated with 
-a model to be updated with the values found in fitting the model.  
-A call <code>model_w_new_starting_vals &lt;- modifyModel(old_model)</code>
-will plug in the optimized parameter values the last model fit
-so that are the starting values in the model specification 
-<code>model_w_new_starting_vals</code>.
+a model to be updated with the values found in fitting the model.  That
+is, a model is specified with <code>initModel</code>.  Then <code>fitModel</code> 
+is used to optimize the starting values for parameters.  <code>modifyModel</code>
+allows modifification of the starting values in the model specification
+with the optimized values found via <code>fitModel</code>.
 </p>
 
 
@@ -72,6 +72,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
 
 </body></html>

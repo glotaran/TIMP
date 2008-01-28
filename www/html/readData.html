@@ -21,7 +21,7 @@ may be read from file into an R object for analysis.
 <h3>Usage</h3>
 
 <pre>
-readData(filenm, sep = "")
+readData(filenm, typ="", sep = "")
 </pre>
 
 
@@ -32,6 +32,11 @@ readData(filenm, sep = "")
 <td>
 This is the path to the file to read in, as a quoted
 string. </td></tr>
+<tr valign="top"><td><code>typ</code></td>
+<td>
+if <code>typ="plain"</code> the the file being read in stores 
+data as a plain matrix, with <code>x</code> values as the first element of 
+each row except the first and <code>x2</code> values as the first row. </td></tr>
 <tr valign="top"><td><code>sep</code></td>
 <td>
 This is an optional argument describing how the data is 
@@ -58,6 +63,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
 
 </body></html>

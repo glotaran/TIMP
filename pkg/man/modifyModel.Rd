@@ -3,11 +3,11 @@
 \title{Allows the starting values for parameters associated with a model
 to be updated with the values found in fitting the model. }
 \description{  Allows the starting values for parameters associated with 
-a model to be updated with the values found in fitting the model.  
-A call \code{model_w_new_starting_vals <- modifyModel(old_model)}
-will plug in the optimized parameter values the last model fit
-so that are the starting values in the model specification 
-\code{model_w_new_starting_vals}.  
+a model to be updated with the values found in fitting the model.  That
+is, a model is specified with \code{initModel}.  Then \code{fitModel} 
+is used to optimize the starting values for parameters.  \code{modifyModel}
+allows modifification of the starting values in the model specification
+with the optimized values found via \code{fitModel}.  
 }
 \usage{
 modifyModel(model = list(), newest = list(), exceptslots = vector() )
@@ -33,4 +33,3 @@ calling \code{initModel} with the new starting values.
 \seealso{ \code{\link{initModel}}, \code{\link{fitModel}}}
 
 \keyword{file}
-

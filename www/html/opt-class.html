@@ -37,8 +37,32 @@ Objects can be created by calls of the form <code>new("opt", ...)</code> or
 <h3>Slots</h3>
 
 <dl>
+<dt><code>nls</code>:</dt><dd>Object of class <code>"logical"</code>  that defaults to
+<code>TRUE</code>; if <code>nls=TRUE</code> the Gauss-Newton algorithm implemented in the
+function <code>nls</code> is used for parameter optimization; if
+<code>nls=FALSE</code> the Levenberg-Marquardt algorithm ported from MINPACK
+by the <code>nls.lm</code> function of the package "minpack.lm" is
+used.  </dd>
+<dt><code>nnls</code>:</dt><dd>Object of class <code>"numeric"</code>  that defaults to
+<code>0</code>.  It has the following meaning:
+<dl>
+<dt><code>0</code>:</dt><dd>Do not constrain the conditionally linear parameters
+to nonnegativity</dd> 
+<dt><code>1</code>:</dt><dd>Constrain the conditionally linear parameters
+to nonnegativity via an nonnegative least squares algorithm as
+implemented via the function <code>optim</code> with <code>method="L-BFGS-B"</code></dd> 
+<dt><code>2</code>:</dt><dd>Constrain the conditionally linear parameters
+to nonnegativity via an nonnegative least squares algorithm as
+implemented via the function <code>nnls</code> from the package by the same
+name.</dd> 
+<dt><code>3</code>:</dt><dd>Constrain the conditionally linear parameters
+to nonnegativity via an nonnegative least squares algorithm as
+implemented via a quadratic program using the function
+<code>solve.qp</code>  from the package "quadprog".</dd> 
+</dl>
+</dd>
 <dt><code>writecon</code>:</dt><dd>Object of class <code>"logical"</code>  that defaults to
-FALSE; if true then 
+<code>FALSE</code>; if true then 
 concentrations are written to a txt file; row labels are <code>x</code></dd>
 <dt><code>writespec</code>:</dt><dd>Object of class <code>"logical"</code> that defaults to
 <code>FALSE</code>; if <code>TRUE</code> then 
@@ -146,6 +170,11 @@ clp are normalized in plots</dd>
 <dt>writespecinterpol</dt><dd>Object of class <code>"logical"</code> that defaults to 
 <code>FALSE</code>; if <code>TRUE</code>, a spline-based representation of clp
 is written to ASCII files</dd>
+<dt>nlsalgorithm</dt><dd>Object of class <code>"character"</code> that defaults to 
+<code>"default"</code> and determines the algorithm used by <code>nls</code>, if
+<code>nls</code> is used in optimization.  See <code>help(nls)</code> for other
+possibilities, such as <code>"port"</code>, which is more stable with
+respect to starting values but requires more time.  </dd>
 </dl>
 
 <h3>Author(s)</h3>
@@ -163,6 +192,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
 
 </body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Class "mass" for mass spectrometry model storage.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for mass-class {TIMP}"><tr><td>mass-class {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Class "mass" for mass spectrometry model storage.</h2>
+
+
+<h3>Description</h3>
+
+<p>
+<code>mass</code> is the class for mass spectrometry models; an object 
+of class "mass" is initialized if 
+<code>mod_type = "mass"</code> is an 
+argument of <code>initModel</code>.
+All objects of class <code>mass</code> are sub-classes of 
+class <code>kin</code>; see documentation for <code>kin</code> 
+for a description of 
+these slots.
+</p>
+
+
+<h3>Details</h3>
+
+<p>
+See <code><a href="kin-class.html">kin-class</a></code> for an 
+example of the initialization of a 
+<code>kin</code> object via the <code>initModel</code> function.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>
+Objects can be created by calls of the form <code>new("mass", ...)</code> or 
+<code>kin(...)</code>.
+</p>
+
+
+<h3>Slots</h3>
+
+<dl>
+<dt>peakpar</dt><dd>list of vectors of starting values for the parameters
+of components; one vector of values is used to parameterize 
+each component. 
+</dd>
+<dt><code>peakfunct</code>:</dt><dd>Object of class <code>"character"</code>  
+that specifies the function by which components are parameterized in time; 
+this is by default "expmodgaus" for the exponentially modified Gaussian 
+function.</dd>
+<dt><code>lzerofile</code>:</dt><dd>Object of class <code>"character"</code>  that 
+specifies the filename of the lzero specification to read in from file.  This
+file has the format: 1st line not read; lines thereafter 
+are the space-delimited index of the component to constrain, the 
+lower bound of the constraint, and the upper bound of the 
+constraint, e.g., <code>1 218.800000000000011 220.099999999999994</code>
+</dd>
+<dt><code>extracomp</code>:</dt><dd>Object of class <code>"logical"</code>  that
+defaults to <code>TRUE</code> and determines whether a component with 
+constant concentration in time is added to the model to represent 
+a baseline.</dd>  
+<dt><code>shift</code>:</dt><dd>Object of class <code>"vector"</code> that represents
+a shift of the location of each elution profile peak; this can be
+specified per-component, in which case <code>length(shift)</code> is the 
+number of components (not including a baseline component) or for
+all components, in which case <code>length(shift == 1)</code>. 
+</dd>
+</dl>
+
+<h3>Extends</h3>
+
+<p>
+Class <code><a href="kin-class.html">kin-class</a></code>, directly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="kin-class.html">kin-class</a></code>, <code><a href="spec-class.html">spec-class</a></code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
+
+</body></html>

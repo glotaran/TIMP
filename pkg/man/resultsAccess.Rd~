@@ -1,0 +1,38 @@
+\name{resultsAccess}
+\alias{onls}
+\alias{sumnls}
+\alias{parEst}
+\title{Functions to print and return parts of the object returned
+by the fitting routines. }
+\description{Functions to print and return parts of the object returned
+    by \code{fitModel}.  \code{onls} returns the output of the
+    \code{nls}
+    function.  \code{sumonls} returns the summary of the output of the
+  \code{nls} function.  \code{parEst} returns a summary of model
+  parameter estimates. 
+}
+\usage{
+onls(result)
+
+sumnls(result) 
+
+parEst(result, param = "", dataset = NA, verbose = TRUE)
+}
+\arguments{
+  \item{result}{return value of \code{fitModel}}
+  \item{param}{character vector of the particular parameters to return;
+  if \code{param==""} then all parameters are given. }
+\item{verbose}{logical that defaults to \code{TRUE} that determines
+whether \code{parEst} just returns a list invisibly or prints as well. }
+}
+\value{
+  \code{sumnls} returns an object of class \code{"summary.nls"}.
+
+  \code{onls} returns an object of class \code{"nls"}.
+
+  \code{parEst} returns an object of class \code{"list"}.
+}
+\author{Katharine M. Mullen, Ivo H. M. van Stokkum}
+\seealso{ \code{\link{fitModel}} }
+\keyword{file}
+

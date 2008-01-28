@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Functions to print and return parts of the object returned
+by the fitting routines.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for getResults {TIMP}"><tr><td>getResults {TIMP}</td><td align="right">R Documentation</td></tr></table>
+<h2>Functions to print and return parts of the object returned
+by the fitting routines.</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Functions to print and return parts of the object returned
+by <code>fitModel</code>.  <code>onls</code> returns the output of the
+<code>nls</code>
+function.  <code>sumonls</code> returns the result of calling <code>summary</code>
+on <code>onls</code> function.  <code>parEst</code> returns a summary of model
+parameter estimates.  The remaining functions return lists
+representing various aspects of the results returned by the function
+fitModel.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+onls(result)
+sumnls(result) 
+parEst(result, param = "", dataset = NA, verbose = TRUE)
+getXList(result)
+getCLPList(result, getclperr = FALSE) 
+getDataList(result, numsing = 2)
+getResidualList(result, numsing = 2)
+getTracesList(result)
+getdim1List(result) 
+getdim2List(result)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>result</code></td>
+<td>
+return value of <code>fitModel</code></td></tr>
+<tr valign="top"><td><code>param</code></td>
+<td>
+character vector of the particular parameters to return;
+if <code>param==""</code> then all parameters are given. </td></tr>
+<tr valign="top"><td><code>dataset</code></td>
+<td>
+index of the dataset from which to return results; by
+default <code>dataset=NA</code> in which case results from all datasets
+are returned</td></tr>
+<tr valign="top"><td><code>verbose</code></td>
+<td>
+logical that defaults to <code>TRUE</code> that determines
+whether <code>parEst</code> just returns a list invisibly or prints as well. </td></tr>
+<tr valign="top"><td><code>getclperr</code></td>
+<td>
+logical that defaults to <code>FALSE</code> that determines
+whether a list containing the standard error estimates associated with
+the conditionally linear parameters, as opposed to the conditionally
+linear parameters themselves</td></tr>
+<tr valign="top"><td><code>numsing</code></td>
+<td>
+integer that defaults to 2; determines the number of
+singular vectors to return</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+<code>sumnls</code> returns an object of class <code>"summary.nls"</code>.
+<br>
+<code>onls</code> returns an object of class <code>"nls"</code>.
+<br>
+<code>parEst</code> returns an object of class <code>"list"</code> representing
+the parameter estimates.
+<br>
+<code>XList</code> returns a <code>"list"</code> of length equal to the number of
+datasets modeled, where each element represents the matrix determined
+by the nonlinear parameters (under a kinetic model, the concentrations). 
+<br>
+<code>CLPList</code> returns a <code>"list"</code> of length equal to the number of
+datasets modeled, where each element represents the matrix determined
+as conditionally linear parameters (under a kinetic model, the spectra).
+<br>
+<code>getDataList</code> returns a <code>"list"</code> of length 2.
+The first element is named <code>svddatalist</code> and is a 
+<code>"list"</code> of length equal to the number of
+datasets modeled, where each element is a list with elements
+<code>values</code>, <code>left</code> and <code>right</code>, where  <code>values</code>
+contains the singular values, <code>left</code> contains <code>numsing</code>
+left singular vectors, and  <code>right</code> contains <code>numsing</code>
+right singular vectors, all of the residuals. 
+The second
+element is named "datalist" and   
+is a <code>"list"</code> of length equal to the number of
+datasets modeled, where each element represents the matrix of
+unweighted data.
+<br>
+<code>getResidualList</code> returns a <code>"list"</code> of length 2.
+The first element is named <code>svdresidlist</code> and is a 
+<code>"list"</code> of length equal to the number of
+datasets modeled, where each element is a list with elements
+<code>values</code>, <code>left</code> and <code>right</code>, where  <code>values</code>
+contains the singular values, <code>left</code> contains <code>numsing</code>
+left singular vectors, and  <code>right</code> contains <code>numsing</code>
+right singular vectors, all of the residuals. 
+The second
+element is named "residlist" and   
+is a <code>"list"</code> of length equal to the number of
+datasets modeled, where each element represents the matrix of
+residuals.
+<br>
+<code>getTracesList</code>  returns a <code>"list"</code> of length equal to the
+number of datasets modeled, where each element is a  <code>"list"</code> of
+length equal to the number of <code>x2</code> values in the dataset
+(wavelengths for kinetic models).  Each of the <code>x2</code> elements
+represents the trace, that is, fit with respect to time, at the
+corresponding <code>x2</code>-value.  
+<br>
+<code>getdim1List</code>  returns a <code>"list"</code> of length equal to the
+number of datasets modeled, where each element is a  <code>"vector"</code> of
+length equal to the number of <code>x</code> values in the dataset
+(times for kinetic models).
+<br>
+<code>getdim2List</code>  returns a <code>"list"</code> of length equal to the
+number of datasets modeled, where each element is a  <code>"vector"</code> of
+length equal to the number of <code>x2</code> values in the dataset
+(wavelengths for kinetic models).</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Katharine M. Mullen, Ivo H. M. van Stokkum
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="fitModel.html">fitModel</a></code>
+</p>
+
+
+
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
+
+</body></html>

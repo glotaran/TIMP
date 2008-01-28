@@ -93,30 +93,61 @@ compartmental model</dd>
 <dt><code>kmatfit</code>:</dt><dd>Object of class <code>"array"</code>  of fitted values for a compartmental model</dd>
 <dt><code>cohspec</code>:</dt><dd>Object of class <code>"list"</code>   describing the model for 
 coherent artifact/scatter component(s) containing the element  <code>type</code>
-and optionally the element <code>numdatasets</code>
-if <code>type</code> is <code>"irf"</code>, the coherent artifact/scatter has the 
-time profile of 
-the IRF.  if <code>type</code> is <code>"freeirfdisp"</code> the  coherent 
+and optionally the element <code>numdatasets</code>.  The element
+<code>type</code> can be set as follows: 
+<dl>
+<dt><code>"irf"</code>:</dt><dd>if <code>type="irf"</code>, the coherent artifact/scatter has the 
+time profile of  the IRF.</dd> 
+<dt><code>"freeirfdisp"</code>:</dt><dd>if <code>type="freeirfdisp"</code>, the  coherent 
 artifact/scatter has  a
 Gaussian time profile whose location and width are parameterized in the 
-vector <code>coh</code>.  if <code>type</code> is <code>"irfmulti"</code> the time profile of 
+vector <code>coh</code>.  </dd>
+<dt><code>"irfmulti"</code>:</dt><dd>if <code>type="irfmulti"</code> the time profile of 
 the IRF is used for
 the coherent artifact/scatter model, but the IRF parameters are taken per 
 dataset (for the multidataset case), and the integer argument 
 <code>numdatasets</code> must be equal to the 
-number of datasets modeled.  if <code>type</code> is <code>"seq"</code> 
-a sequential exponential decay 
-model is applied, whose parameters are contained in <code>coh</code>.
-if <code>type</code> is <code>"mix"</code> a sequential exponential decay 
+number of datasets modeled.</dd>  
+<dt><code>"seq"</code>:</dt><dd>if <code>type="seq"</code> a sequential exponential decay 
+model is applied, whose starting value are contained in an additional
+list element <code>start</code>. This
+often models oscillating behavior well, where the number of
+oscillations is the number of parameter starting values given in
+<code>start</code>.  The starting values after optimization will be found in
+the slot <code>coh</code> of the object of class <code>theta</code> corresponding
+to each dataset modeled. </dd>
+<dt><code>"mix"</code>:</dt><dd>if <code>type="mix"</code> if <code>type="mix"</code> a sequential exponential decay 
 model is applied along with a model that follows the time profile of the IRF;
 the coherent artifact/scatter is then a linear superposition of these two 
-models.  </dd>
+models; see the above description of <code>seq</code> for how to supply the
+starting values. </dd></dl></dd>
 <dt><code>coh</code>:</dt><dd>Object of class <code>"vector"</code>  of starting values for the parameterization of a  
 coherent artifact</dd>
 <dt><code>wavedep</code>:</dt><dd>Object of class <code>"logical"</code>  describing whether the kinetic model is dependent on
 <code>x2</code> index (i.e., whether there is clp-dependence)</dd>
 <dt><code>lambdac</code>:</dt><dd>Object of class <code>"numeric"</code>  for the center wavelength to be used in a polynomial 
 description of <code>x2</code>-dependence </dd>
+<dt><code>amplitudes</code>:</dt><dd>Object of class <code>"vector"</code>  
+that may be used to multiply the concentrations by a square diagonal 
+matrix with the number of columns that the concentration matrix has;
+the diagonal is given in <code>amplitudes</code> and these values will be
+treated as parameters to be optimized.
+</dd>
+<dt><code>streak</code>:</dt><dd>Object of class <code>"logical"</code>  
+that defaults to <code>FALSE</code>; if <code>streak=TRUE</code> then 
+the period of the laser is expected via <code>streakT</code>.</dd>
+<dt><code>streakT</code>:</dt><dd>Object of class <code>"numeric"</code>  
+the period of the laser; this will be used to add a 
+backsweep term to the concentration matrix and should be 
+set in conjunction <code>streak=TRUE</code>.</dd> 
+<dt><code>doublegaus</code>:</dt><dd>Object of class <code>"logical"</code>  
+that defaults to <code>FALSE</code> and determines whether a double
+Gaussian should be used to model the IRF. If   <code>doublegaus=TRUE</code>
+then <code>irfpar</code> should contain four numeric values corresponding to
+the location (mean) of the IRF, the FWHM of the first Gaussian, the 
+FWHM of the second Gaussian, and the relative amplitude of the 
+second Gaussian, respectively. 
+</dd>
 </p>
 
 
@@ -142,6 +173,6 @@ Katharine M. Mullen, Ivo H. M. van Stokkum
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
 
 </body></html>

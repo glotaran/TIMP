@@ -25,17 +25,6 @@ including those for the simultaneous analysis of multiple datasets collected
 under different experimental conditions.  The package has been extensively
 applied to modeling data arising in spectroscopy experiments.
 }
-\details{
-Package: TIMP
-Type: Package
-Title: a problem solving environment for fitting superposition models
-Version: 1.4
-Author: Katharine M. Mullen, Ivo H. M. van Stokkum 
-Maintainer: Katharine M. Mullen <kate@nat.vu.nl>
-Depends: R (>= 2.5.0), methods, tcltk, vcd, fields, gplots, splines
-Suggests: gclus
-License: GPL version 2 or newer
-}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum  
 Maintainer: Katharine M. Mullen \email{kate@nat.vu.nl} 
 }

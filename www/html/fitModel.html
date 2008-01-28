@@ -69,7 +69,7 @@ datasets; each list has elements <code>to, from, value</code>.  The index of the
 dataset to be scaled is given in <code>to</code>; the index of the dataset on 
 which the scaling is to be based is given in <code>from</code>.  The starting 
 value parameterizing the relationship is given as <code>value</code>. For 
-example, <code>dscal = list(list(to=2,from=1,value=.457))</code>.     
+example, <code>dscal = list(list(to=2,from=1,value=.457))</code>. </dd>    
 <dt>thresh</dt><dd>numeric describing the tolerance with which clp from 
 different datasets are to be considered as equal.  
 For instance, for 
@@ -81,13 +81,13 @@ See Section 2.2 of the paper in the references for the model equations. </dd>
 <dt>free</dt><dd>list of lists specifying individual 
 parameters to free for a given dataset. each sublist has 
 named elements 
-<ul> 
+<dl> 
 <dt>what</dt><dd>character string naming parameter type, e.g., "kinpar"</dd>
 <dt>ind</dt><dd>vector of indices into parameter vector or list, e.g.,
 <code>c(2,3)</code> or <code>4</code></dd>
 <dt>dataset</dt><dd>dataset index in which parameter is to be freed</dd>
 <dt>start</dt><dd>starting value for freed parameter</dd>
-</ul>  
+</dl>  
 For example, <code>free = list(
 list(what = "irfpar", ind = 1, dataset = 2, start=-.1932),
 list(what = "kinpar", ind = 5, dataset = 2, start=.0004),
@@ -143,7 +143,10 @@ will depend</dd>
 between parameters; defaults to "lin" for linear relationship </dd>
 <dt>start</dt><dd>starting value or vector of values parameterizing 
 relationship between parameters  </dd>
-</dd> 
+</dd>
+<dt>weightlist</dt><dd>List of new weights for the datasets returned
+by the function <code>outlierCorrs</code> (as the element
+<code>weightList</code> of the list that is the return value of this function). 
 </dd>
 </ul>
 </td></tr>
@@ -165,7 +168,7 @@ optimize nonlinear parameters and to solve for conditionally linear parameters
 <h3>Value</h3>
 
 <p>
-list with element <code>toPlotter</code>.  
+A list is returned containing the following elements: 
 </p>
 <table summary="R argblock">
 <tr valign="top"><td><code>currTheta</code></td>
@@ -186,7 +189,7 @@ function; it is used to regenerate plots and other output by the
 </table>
 <p>
 
-normal-bracket131bracket-normal</p>
+normal-bracket134bracket-normal</p>
 
 <h3>Author(s)</h3>
 
@@ -214,6 +217,6 @@ multi-way spectroscopic measurements.'' Journal of Statistical Software,
 
 
 
-<hr><div align="center">[Package <em>TIMP</em> version 1.4 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>TIMP</em> version 1.5 <a href="00Index.html">Index]</a></div>
 
 </body></html>

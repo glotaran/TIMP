@@ -1,12 +1,12 @@
 Package: TIMP
 Type: Package
-Title: a problem solving environment for fitting superposition models
-Version: 1.4
+Title: a problem solving environment for fitting separable nonlinear models in physics and chemistry applications
+Version: 1.5
 Author: Katharine M. Mullen, Ivo H. M. van Stokkum 
 Maintainer: Katharine M. Mullen <kate@nat.vu.nl>
 Depends: R (>= 2.6.0), methods, tcltk, vcd, fields, gplots, splines, gclus, nnls, quadprog, minpack.lm
-Description: Measurements often represent a superposition of the contributions of distinct sub-systems resolved with respect to many experimental variables (time, temperature, wavelength, pH, polarization, etc).  TIMP allows parametric models for such superpositions to be fit and validated.  The package has been extensively applied to modeling data arising in spectroscopy and FLIM-FRET experiments.
-License: GPL version 2 or newer
+Description: TIMP is a problem solving environment for fitting separable nonlinear models to measurements arising in physics and chemistry experiments, and has been extensively applied to time-resolved spectroscopy and FLIM-FRET data.
+License: GPL-2 | GPL-3
 
 
      

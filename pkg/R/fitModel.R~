@@ -74,6 +74,6 @@ opt = opt())
   currModel@optlist[[1]] <- opt
   
   ret <- list(currModel = currModel, currTheta = currTheta)
-  
+
   return(ret)
 }

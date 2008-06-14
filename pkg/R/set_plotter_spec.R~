@@ -113,8 +113,8 @@ setMethod("plotter", signature(model="spec"),
                 }
 	      }
             }
-                                        ## DATA
-                                        ## make a list of svd data	
+                                        # DATA
+                                        # make a list of svd data	
             
             svddatalist <- list() 
             for(i in 1:length(m)) {
@@ -166,6 +166,17 @@ setMethod("plotter", signature(model="spec"),
 	          else 
 		    lines(m[[i]]@x2, t[[i]]@drel, type = "l", col = i) 
                 }	        
+            }
+            for(i in 1:length(m)) {
+              datarev <- t(apply(m[[i]]@psi.df, 2, rev))
+              
+              xr <- rev(m[[i]]@x2)
+              x2lab <- xr[seq(1,length(xr), length=10)]
+              x2at <- m[[i]]@x[seq(1,length(xr), length=10)]
+              image(x=m[[1]]@x2, y=m[[i]]@x, z=datarev, xlab = plotoptions@xlab,
+                    yaxt="n",main = "Data",
+                    ylab=plotoptions@ylab, col=tim.colors())
+              axis(2, at=x2at, labels=x2lab)
             }
             
             

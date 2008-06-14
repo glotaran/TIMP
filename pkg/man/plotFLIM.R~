@@ -27,8 +27,8 @@ by the fitting routines. }
 \usage{
 onls(result)
 sumnls(result) 
-parEst(result, param = "", dataset = NA, verbose = TRUE, file="")
-getXList(result, group = vector())
+parEst(result, param = "", dataset = NA, verbose = TRUE)
+getXList(result)
 getCLPList(result, getclperr = FALSE) 
 getData(result, dataset = 1, weighted = FALSE)
 getResiduals(result, dataset = 1)
@@ -54,11 +54,6 @@ getdim2List(result)
   singular vectors to return}
 \item{weighted}{logical indicating whether to return weighted or
   unweighted data}
-\item{file}{character vector; if not \code{""} writes the results to a
-  file with name \code{file}. }
-\item{group}{The value at which to determine the X matrix (maybe a
-  wavelenth index, for example)}
-  
 }
 \value{
   \code{sumnls} returns an object of class \code{"summary.nls"}.

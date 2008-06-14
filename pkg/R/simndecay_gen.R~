@@ -6,7 +6,7 @@ function (kinpar, tmax, deltat, specpar=vector(), lmin, lmax, deltal,
           fullk = FALSE, kmat = matrix(), jvec = vector(), specfun = "gaus", 
           nupow = 1, irffun = "gaus", kinscal = vector(), 
           lightregimespec = list(),
-          specdisp = FALSE, specdisppar=list(), parmufunc = "exp",
+          specdisp = TRUE, specdisppar=list(), parmufunc = "exp",
           specdispindex = list(), specref=0) 
 {
     x <- seq(0, tmax, deltat)

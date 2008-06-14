@@ -285,10 +285,8 @@ setMethod("plotter", signature(model = "kin"),function(model,
     if(plotoptions@addfilename) tit <- paste(tit, m[[i]]@datafile)
   }
   mtext(tit, side = 3, outer = TRUE, line = 1)
-  
-  writeEst(multimodel, multitheta, plotoptions)
-  displayEst(plotoptions)
-  
+  ##plotEstout <- plotEst(multimodel, plotoptions, tr=TRUE, addplot=FALSE)
+  ##writeEst(multimodel, multitheta, plotoptions, plotEstout)
   if (dev.interactive() && length(plotoptions@makeps) != 0) {
     if(plotoptions@output == "pdf")
       pdev <- pdf 

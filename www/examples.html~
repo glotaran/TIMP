@@ -77,7 +77,7 @@ PCP1.-50000fs.PP.txt </a></li>
    <tr>
     <td> <h3> Model for simultaneous analysis of multiple FLIM datasets </h3>
       	<ul>
-	  <li><a href="examples/FLIM_multidataset.R"> FLIM_multidataset.R </a></li>
+	  <li><a href="examples/"> FLIM_multidataset.R </a></li>
 	  <li><a href="examples/c-001"> c-001</a></li>
 	   <li><a href="examples/c-002"> c-002</a></li>
 	  <li><a href="examples/c-003"> c-003</a></li>

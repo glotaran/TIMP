@@ -43,7 +43,8 @@ getdim2List <- function(result) {
     waveList[[i]] <- m[[i]]@x2
   waveList
 }
-parEst <- function(result, param = "", dataset = NA, verbose = TRUE) {
+parEst <- function(result, param = "", dataset = NA, verbose = TRUE,
+                   file = "") {
   currTheta <- result$currTheta
   reslist <- list()
   if(param == "")
@@ -56,11 +57,11 @@ parEst <- function(result, param = "", dataset = NA, verbose = TRUE) {
       if(length( slot(currTheta[[j]], nm)) > 0) {
         if(is.null(reslist[[nm]])) {
           reslist[[nm]] <- list()
-          if(verbose) cat("Parameters:", nm, "\n")
+          if(verbose) cat("Parameters:", nm, "\n", file=file)
         }
         reslist[[nm]][[length(reslist[[nm]])+1]] <- slot(currTheta[[j]], nm)
         if(verbose) cat("dataset ", j, ": ", toString(slot(currTheta[[j]], nm)),
-                        "\n", sep="")   
+                        "\n", sep="", file=file)   
       }
     }
   }

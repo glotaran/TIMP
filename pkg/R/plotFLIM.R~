@@ -176,7 +176,7 @@
              ylab = "", main = tit)
 }
 "plotSelIntenImage" <- function (multimodel, t, i=1,
-                                 tit=c("Region of Interest"), cex=1) { 
+                                 tit=c("Region of Interest"), cex=3) { 
   model <- multimodel@modellist[[i]]
   colvec <- gray(seq(from = 0, to = 1, length = 100))
   tt <- (model@inten - min(model@inten))/max(model@inten - min(model@inten))

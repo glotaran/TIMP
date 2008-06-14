@@ -26,7 +26,7 @@
     cat("Residual standard error:", s$sigma, "on", s$df[2], "degrees
     of freedom\n\n\n", file = fileparam)
   }
-  parEst(list(currModel=multimodel, currTheta=multitheta), file=fileparam)
+  parEst(list(multimodel, multitheta), file=fileparam)
   
   close(fileparam)
 }

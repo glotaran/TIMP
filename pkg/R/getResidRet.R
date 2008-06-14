@@ -43,8 +43,8 @@
     }
     mod <- X %*% cp
     xx<-2*sum(psi*log(psi/mod),na.rm=TRUE)
-    #xx[which(is.na(xx))] <- 0
-    retval <- xx #sum(xx)
+    ##xx[which(is.na(xx))] <- 0
+    retval <- xx ##sum(xx)
     
   }
   retval

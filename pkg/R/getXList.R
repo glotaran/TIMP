@@ -1,4 +1,4 @@
-getXList <- function(result) {
+getXList <- function(result, group=vector()) {
   modtype <- result$currModel@modellist[[1]]@mod_type
   resultlist <- result$currModel@fit@resultlist
   m <- result$currModel@modellist
@@ -12,19 +12,25 @@ getXList <- function(result) {
     f1<-function(x){x[[1]]}   
     f2<-function(x){x[[2]]}
     ## will plot the first concentration from each dataset
-    grtoplot <- vector("list", length(m)) 
+    grtoplot <- vector("list", length(m))
+    
     for(i in 1:length(m)) {
-      cnt <- 1
-      notfound <- TRUE 
-      while(notfound) {
-        for(j in 1:length(groups[[cnt]])) {
-              if(groups[[cnt]][[j]][2] == i) {
-                grtoplot[[i]]<-list(groups[[cnt]],j)
-                notfound<-FALSE
-              }
+      if(length(group)==0) {
+        cnt <- 1
+        notfound <- TRUE 
+        while(notfound) {
+          for(j in 1:length(groups[[cnt]])) {
+            if(groups[[cnt]][[j]][2] == i) {
+              grtoplot[[i]]<-list(groups[[cnt]],j)
+              notfound<-FALSE
             }
-        cnt<-cnt+1
-      }	
+          }
+          cnt<-cnt+1
+        }	
+      }
+      else{
+        grtoplot[[i]] <- list(groups[[group]], 1)
+      }
     }
     for(i in 1:length(m)) {
       group <- grtoplot[[i]][[1]]

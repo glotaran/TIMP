@@ -30,7 +30,7 @@ function (theta, model)
                           as.integer(model@nt), PACKAGE="TIMP")$cmat)
     dim(massm) <- c(model@nt, lpp)
     if(length(amp) > 0)
-      massm <- t(t(massm)*amp)
+      massm <- massm %*% diag(amp)
   }
   if(model@extracomp)
     massm <- cbind(massm, rep(eamp, model@nt))

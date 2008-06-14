@@ -55,10 +55,8 @@ getdim2List(result)
 \item{weighted}{logical indicating whether to return weighted or
   unweighted data}
 \item{file}{character vector; if not \code{""} writes the results to a
-  file with name \code{file}. }
-\item{group}{The value at which to determine the X matrix (maybe a
-  wavelenth index, for example)}
-  
+  file with name \code{file}.
+}
 }
 \value{
   \code{sumnls} returns an object of class \code{"summary.nls"}.

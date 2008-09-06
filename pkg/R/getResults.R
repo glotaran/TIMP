@@ -2,6 +2,8 @@
 ## return various results
 getCLPList <- function(result, getclperr = FALSE) 
   getSpecList(result$currModel, result$currTheta, getclperr)
+getCLP <- function(result, getclperr = FALSE, dataset=1) 
+  getSpecList(result$currModel, result$currTheta, getclperr)[[dataset]]
 getData <- function(result, dataset = 1, weighted = FALSE) {
   if(weighted)   
     datamat <- result$currModel@data[[dataset]]@psi.weight
@@ -9,7 +11,7 @@ getData <- function(result, dataset = 1, weighted = FALSE) {
     datamat <- result$currModel@data[[dataset]]@psi.df
   datamat
 }
-getSVDData <- function(result, numsing = 2, dataset) {
+getSVDData <- function(result, numsing = 2, dataset=1) {
   datamat <- getData(result, dataset) 
   doSVD(datamat, numsing, numsing)
 }
@@ -29,30 +31,20 @@ getTraces <- function(result, dataset=1) {
   dim(tracesmat) <- c(length(fitted[[1]]), length(fitted) )
   tracesmat
 }
-getdim1List <- function(result) {
-  m <- result$currModel@modellist
-  timesList <- vector("list", length(m))
-  for(i in 1:length(m))
-    timesList[[i]] <- m[[i]]@x
-  timesList
-}
-getdim2List <- function(result) {
-  m <- result$currModel@modellist
-  waveList <- vector("list", length(m))
-  for(i in 1:length(m))
-    waveList[[i]] <- m[[i]]@x2
-  waveList
-}
+getdim1 <- function(result, dataset=1) 
+  result$currModel@modellist[[dataset]]@x
+getdim2 <- function(result, dataset=1) 
+  result$currModel@modellist[[dataset]]@x2
 parEst <- function(result, param = "", dataset = NA, verbose = TRUE,
                    file = "") {
   currTheta <- result$currTheta
   reslist <- list()
   if(param == "")
-    x <- slotNames(theta()) 
+    param <- slotNames(theta()) 
   if(is.na(dataset))
     dataset <- 1:length(currTheta)
   
-  for(nm in x) {
+  for(nm in param) {
     for(j in dataset) {
       if(length( slot(currTheta[[j]], nm)) > 0) {
         if(is.null(reslist[[nm]])) {

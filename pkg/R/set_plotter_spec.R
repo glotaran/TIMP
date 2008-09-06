@@ -1,7 +1,8 @@
 setMethod("plotter", signature(model="spec"),
           function (model,multimodel, multitheta, plotoptions) {  
-            if(plotoptions@residplot) 
+            if(plotoptions@residplot) {
               plotResids(multimodel, multitheta, plotoptions) 
+            }
             if(plotoptions@residtraces)
               plotTracesResids(multimodel, multitheta, plotoptions)
             if (!plotoptions@notraces) 
@@ -28,7 +29,19 @@ setMethod("plotter", signature(model="spec"),
             t <- multitheta 
             resultlist <- multimodel@fit@resultlist
             conmax <- list()       
-            conlist <- getSpecList(multimodel, t) 
+            conlist <- getSpecList(multimodel, t)
+
+	    if(plotoptions@adddataimage){
+	            for(i in 1:length(m)) {
+			datarev <- t(apply(m[[i]]@psi.df, 2, rev))
+			xr <- rev(m[[i]]@x)
+			x2lab <- xr[seq(1,length(xr), length=10)]
+			x2at <- m[[i]]@x[seq(1,length(xr), length=10)]
+			image(x=m[[i]]@x2, y=m[[i]]@x, z=datarev, ylab = plotoptions@xlab, yaxt="n",main = "Data", xlab = plotoptions@ylab, col=tim.colors())
+			axis(2, at=x2at, labels=x2lab)
+            	}
+	    }
+
             for(i in 1:length(m)) {
               contoplot <- conlist[[i]]
               matplot(m[[i]]@x, contoplot,
@@ -113,8 +126,8 @@ setMethod("plotter", signature(model="spec"),
                 }
 	      }
             }
-                                        ## DATA
-                                        ## make a list of svd data	
+                                        # DATA
+                                        # make a list of svd data	
             
             svddatalist <- list() 
             for(i in 1:length(m)) {
@@ -166,9 +179,7 @@ setMethod("plotter", signature(model="spec"),
 	          else 
 		    lines(m[[i]]@x2, t[[i]]@drel, type = "l", col = i) 
                 }	        
-            }
-            
-            
+        }
             if(length(plotoptions@title) != 0){
               tit <- plotoptions@title
               if(plotoptions@addfilename) tit <- paste(tit,m[[i]]@datafile)

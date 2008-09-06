@@ -34,6 +34,7 @@
                             paropt="list", 
                             addfilename = "logical",
                             addest="vector", 
+                            adddataimage = "logical",
                             kinspecerr = "logical",
                             xlimspec = "vector",
                             ylimspec = "vector",
@@ -77,6 +78,7 @@
           getStartTri = TRUE,
           triStart = list(),
           addfilename = FALSE,
+	  adddataimage = FALSE,
           divdrel = TRUE, 
           output = "ps", 
           nnls = FALSE,
@@ -125,7 +127,9 @@ setClass("kinopt", representation("opt",
                                   writerawcon = "logical",
                                   plotcohcolspec = "logical", 
                                   kinspecest = "logical",
-                                  writeplaincon = "list"),
+                                  writeplaincon = "list",
+                                  plotpulsefol = "logical",
+                                  ylimcomp = "vector"),
          prototype = list( 
            breakdown = list(),
            writerawcon = FALSE,
@@ -139,13 +143,15 @@ setClass("kinopt", representation("opt",
            xlab = "time",
            ylab = "wavelength",
            kinspecest = FALSE,
-           writeplaincon = list()))
+           writeplaincon = list(),
+           plotpulsefol = FALSE,
+           ylimcomp = vector()
+          ))
 
 setClass("massopt", representation("kinopt", axis.by = "numeric",
         scale.concen = "logical", nummaxtraces = "numeric"), prototype
         = list(normspec = TRUE, axis.by = 30, scale.concen = TRUE,
         nummaxtraces = 0) )
-
 
 setClass("specopt", representation("opt", nospectra = "logical",
 			   selectedspectra = "vector"), prototype =

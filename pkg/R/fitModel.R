@@ -16,10 +16,10 @@ opt = opt())
   assign(".currModel", currModel, envir = .GlobalEnv)
   
   if(opt@algorithm == "nls") {
-    d <- vector()
-    dummy <- as.data.frame(d)
-    currModel@fit@nlsres$onls <- nls(~rescomp(t=t, d=d, currModel=currModel),
-                                     data=dummy, control =
+    
+    currModel@fit@nlsres$onls <- nls(~rescomp(t=t,d=d,currModel=currModel),
+                                     data=list(d=vector(),currModel=currModel), 
+                                     control =
                                      nls.control(maxiter = iter,
                                                  minFactor = opt@minFactor,
                                                  warnOnly = TRUE,

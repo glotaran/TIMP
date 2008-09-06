@@ -21,7 +21,8 @@
     cat("Error:", onls$value, "\n\n", 
         file = fileparam)
   }
-  if(plotoptions@algorithm=="nls.lm" || plotoptions@algorithm=="nls") {
+  if(plotoptions@sumnls && (plotoptions@algorithm=="nls.lm" ||
+                            plotoptions@algorithm=="nls")) {
     s <- summary(onls, multimodel)
     cat("Residual standard error:", s$sigma, "on", s$df[2], "degrees
     of freedom\n\n\n", file = fileparam)

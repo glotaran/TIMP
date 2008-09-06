@@ -33,10 +33,10 @@ export(dat, kin, spec, mass, amp, theta, multimodel, res, multitheta,
        getXsuper, doConstrSuper, getKinConcen, getAutoClp0,
        outlierCorr, linlogtics, unitstep, modifyModel, parEst, onls,
        sumnls, getCLPList, getData, getSVDResiduals, getSVDData,
-       getTraces, getdim1List, getdim2List, getResiduals, getXList,
+       getTraces, getdim1, getdim2, getX, getCLP, getResiduals, getXList,
        getSelectedTracesMax, writeAverage, efit2file, divergeZimage,
        plotHistAmp, plotHistNormComp, plotIntenImage, plotTau,
-       plotNormComp)
+       plotNormComp, plotSelIntenImage)
 
 S3method("summary", "timp.nls.lm")
 S3method("summary", "timp.nls")

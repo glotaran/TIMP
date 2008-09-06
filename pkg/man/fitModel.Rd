@@ -101,24 +101,24 @@ list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}.
   list of lists specifying parameters to relate between datasets
   each sublist has named elements 
   \itemize{ 
-   \item{what1}{character string naming parameter type to be determined in 
-   relation to some other parameter type , e.g., "kinpar"}
-   \item{what2}{character string naming parameter type on which another 
-   parameter type is to depend, e.g., "kinpar"}
-   \item{ind1}{vector of indices into parameter vector or 
-   list, e.g., \code{c(2,3)} or \code{4} of the dependent parameter. }}
-   \item{ind2}{vector or numeric of indices into parameter vector or 
-   list, e.g., \code{c(2,3)} or \code{4} of the parameter on which another 
-parameter will depend }
-   \item{dataset1}{ dataset index of the dependent parameter}
+    \item{what1}{character string naming parameter type to be determined in 
+      relation to some other parameter type , e.g., "kinpar"}
+    \item{what2}{character string naming parameter type on which another 
+      parameter type is to depend, e.g., "kinpar"}
+    \item{ind1}{vector of indices into parameter vector or 
+      list, e.g., \code{c(2,3)} or \code{4} of the dependent parameter. }
+    \item{ind2}{vector or numeric of indices into parameter vector or 
+      list, e.g., \code{c(2,3)} or \code{4} of the parameter on which another 
+      parameter will depend }
+    \item{dataset1}{ dataset index of the dependent parameter}
     \item{dataset2}{ dataset index of the parameter on which another parameter
-    will depend}
+      will depend}
     \item{rel}{ optional character string describing functional relationship 
-    between parameters; defaults to "lin" for linear relationship }
-     \item{start}{starting value or vector of values parameterizing 
-     relationship between parameters  }
-   }
-   \item{weightlist}{List of new weights for the datasets returned
+      between parameters; defaults to "lin" for linear relationship }
+    \item{start}{starting value or vector of values parameterizing 
+      relationship between parameters  }
+  }}
+  \item{weightlist}{List of new weights for the datasets returned
   by the function \code{outlierCorrs} (as the element
   \code{weightList} of the list that is the return value of this function). 
   }

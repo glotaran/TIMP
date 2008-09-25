@@ -72,11 +72,10 @@ getXList <- function(result, group=vector(), file="") {
     attributes(XList[[i]])<-NULL
     dim(XList[[i]])<- xdim
     if(file!="") 
-      for(i in 1:length(XList))
-        write.table(XList[[i]], file=paste(file,
-                                  "_concen_dataset_", i, ".txt",
-                                  sep=""), quote = FALSE,
-                    row.names = m[[i]]@x)
+      write.table(XList[[i]], file=paste(file,
+                                "_concen_dataset_", i, ".txt",
+                                sep=""), quote = FALSE,
+                  row.names = m[[i]]@x)
   }
   
   XList

@@ -37,7 +37,7 @@ getCLP(result, getclperr = FALSE, dataset=1, file="")
 getData(result, dataset = 1, weighted = FALSE)
 getResiduals(result, dataset = 1)
 getSVDResiduals(result, numsing = 2, dataset = 1)
-getTraces(result, dataset = 1, file="")
+getTraces(result, dataset = 1)
 getdim1(result, dataset = 1) 
 getdim2(result, dataset = 1)
 }

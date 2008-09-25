@@ -46,7 +46,7 @@ getTraces <- function(result, dataset=1, file="") {
   dim(tracesmat) <- c(length(fitted[[1]]), length(fitted) )
   if(file!="")
     write.table(tracesmat, file=paste(file,
-                             "fit.txt", sep=""),
+                             "fit_dataset_", i, ".txt", sep=""),
                 col.names = result$currModel@modellist[[i]]@x2,
                 row.names = result$currModel@modellist[[i]]@x,
                 quote=FALSE) 

@@ -8,12 +8,9 @@
     if (plotoptions@noFLIMsummary) 
         return()
     if(plotoptions@writecon)
-      {
-        fn <- ifelse(plotoptions@makeps == "", "flimcon", plotoptions@makeps)
-        xx<-getXList(result=list(currModel=multimodel, currTheta=multitheta),
-                     group=vector(), 
-                     file=fn) 
-      }
+      xx<-getXList(result=list(currModel=multimodel, currTheta=multitheta),
+                   group=vector(), writefile=TRUE,
+                   fileprefix=plotoptions@makeps) 
     for (i in 1:length(m)) {
         k <- t[[i]]@kinpar
         model <- m[[i]]

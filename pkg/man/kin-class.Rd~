@@ -126,21 +126,7 @@ then \code{irfpar} should contain four numeric values corresponding to
 the location (mean) of the IRF, the FWHM of the first Gaussian, the 
 FWHM of the second Gaussian, and the relative amplitude of the 
 second Gaussian, respectively. 
-}
-\item{\code{numericalintegration}:}{*** Object of class \code{"logical"}  
-
-}
-\item{\code{initialvals}:}{*** Object of class \code{"vector"}  
-
-}
-\item{\code{reactantstoichiometrymatrix}:}{*** Object of class \code{"vector"}  
-
-}
-\item{\code{stoichiometrymatrix}:}{*** Object of class \code{"vector"}  
-
-}
-
-}}
+}}}
 \section{Extends}{
 Class \code{\link{dat-class}}, directly.
 }

@@ -21,7 +21,7 @@ for installation instructions of the stable version from CRAN.
     <td> <h3>Precompiled binary distribution of TIMP for 
       <strong>Windows (95 and later) </strong> </h3>
       	<ul>
-	  <li><a href="TIMP_1.5.zip"> TIMP_1.5.zip </a></li>
+	  <li><a href="TIMP_1.7.zip"> TIMP_1.7.zip </a></li>
 	</ul>
     </td>
   </tr>
@@ -30,7 +30,7 @@ for installation instructions of the stable version from CRAN.
       Windows users most likely want precompiled binary listed in the upper 
       box, not the source code. 
 	<ul>
-	  <li> <a href="TIMP_1.5.tar.gz"> TIMP_1.5.tar.gz </a> </li>
+	  <li> <a href="TIMP_1.7.tar.gz"> TIMP_1.7.tar.gz </a> </li>
 	</ul>
 	</td>
   </tr>

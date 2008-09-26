@@ -128,16 +128,25 @@ FWHM of the second Gaussian, and the relative amplitude of the
 second Gaussian, respectively. 
 }
 \item{\code{numericalintegration}:}{*** Object of class \code{"logical"}  
-
+that defaults to \code{FALSE} and determines whether a kinetic theory
+model of a reaction mechanism should be numerically integrated (using 
+\pkg{odesolve}) to find the concentrations. 
+If \code{numericalintegration=TRUE} then 
+\code{initialvals} should specify the initial concentrations and
+\code{reactantstoichiometrymatrix} and 
+\code{stoichiometrymatrix} should specify the reaction mechanism, 
+as per Puxty et. al. (2006).
 }
 \item{\code{initialvals}:}{*** Object of class \code{"vector"}  
-
+giving the concentrations at the initial time step.
 }
 \item{\code{reactantstoichiometrymatrix}:}{*** Object of class \code{"vector"}  
-
+giving the (integer) \dfn{stoichiometric coefficients} for the reactants; this
+is the matrix \bold{X}r of Puxty et. al. (2006) with \code{dim=NULL}.
 }
 \item{\code{stoichiometrymatrix}:}{*** Object of class \code{"vector"}  
-
+giving the (integer) stoichiometric coefficients for the reactions; this 
+is the matrix \bold{X} of Puxty et. al. (2006) with \code{dim=NULL}.
 }
 
 }}
@@ -148,7 +157,15 @@ Class \code{\link{dat-class}}, directly.
 \details{See \code{\link{dat-class}} for an 
 example of the initialization of a 
 \code{kin} object via the \code{initModel} function. } 
-\author{Katharine M. Mullen, Ivo H. M. van Stokkum}
+
+\references{
+Puxty, G., Maeder, M., and Hungerbuhler, K. (2006) Tutorial on the fitting of 
+kinetics models to mulivariate spectroscopic measurements 
+with non-linear least-squares regression, \emph{Chemometrics and Intelligent 
+Laboratory Systems} \bold{81}, 149-164.
+}
+
+\author{Katharine M. Mullen, David Nicolaides, Ivo H. M. van Stokkum}
 \seealso{
 \code{\link{dat-class}}, \code{\link{spec-class}}
 }

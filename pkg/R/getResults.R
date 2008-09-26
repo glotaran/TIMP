@@ -47,8 +47,8 @@ getTraces <- function(result, dataset=1, file="") {
   if(file!="")
     write.table(tracesmat, file=paste(file,
                              "fit.txt", sep=""),
-                col.names = result$currModel@modellist[[i]]@x2,
-                row.names = result$currModel@modellist[[i]]@x,
+                col.names = result$currModel@modellist[[dataset]]@x2,
+                row.names = result$currModel@modellist[[dataset]]@x,
                 quote=FALSE) 
   tracesmat
 }

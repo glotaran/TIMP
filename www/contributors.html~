@@ -8,31 +8,38 @@
 
 <p>
 TIMP has its origins in more than 15 years of software development for 
-applications in computational physics by Ivo van Stokkum.  
+applications in computational physics by 
+<a href="http://www.nat.vu.nl/~ivo" target="_top"> Ivo van Stokkum </a>.  
 </p>
  
-<p>  The primary developers are currently  
-</p>
-
-<ul>
- <li> <a href="http://www.nat.vu.nl/~ivo" target="_top"> Ivo van Stokkum </a>
- <li> <a href="http://www.nat.vu.nl/~kate" targ
-et="_top"> Katharine Mullen </a>
-</ul>
-
 <p>
+
+ <li> <a href="http://www.nat.vu.nl/~kate" 
+target="_top"> Katharine Mullen</a> is the 
+package maintainer and primary developer.
 <a
 href="http://www.wewur.wur.nl/wewur/visitecard.cfm?taal=en&o_nummer=48201" 
 target="_top">
 Sergey Laptenok </a>
 has contributed options for FLIM data and invaluable 
-experience and testing on the MS Windows OS.  
+experience and testing on the MS Windows OS. 
+<a HREF="mailto:dnicolaides@accelrys.com ">David Nicolaides</a >
+has contributed options
+for modeling reaction kinetics as described by kinetic theory models.
 <a HREF="http://www.nat.vu.nl/~jsnel/"> Joris Snellenburg </a >is currently
-investigating options for a cross-platform java-based GUI for TIMP.
-<a HREF="mailto:amarin@few.vu.nl"> Alessandro Marin </a > has 
-tested much of the code and contributed many 
+working in collaboration with  
+<a
+href="http://www.wewur.wur.nl/wewur/visitecard.cfm?taal=en&o_nummer=48201" 
+target="_top">
+Sergey Laptenok </a>) 
+to develop 
+<a HREF="http://r-forge.r-project.org/projects/timpgui/"> TIMPGUI</a>,
+a java-based cross-platform, free and 
+open-source GUI to TIMP.  
+<a HREF="mailto:amarin@few.vu.nl"> Alessandro Marin </a> has 
+contributed testing and 
 ideas for new options. <a HREF="mailto:ilstep@gmail.com"> Ilya Stepanenko 
-</a> has implmented <a HREF=ppviewer.html"> PPViewer</a>, 
+</a> has implmented <a HREF="ppviewer.html"> PPViewer</a>, 
 a LabVIEW application for interactive 
 exploration of data and model fit that is useful for examining TIMP
 datafiles and model fit output.     

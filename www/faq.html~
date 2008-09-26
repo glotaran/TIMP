@@ -17,7 +17,7 @@ in <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf"> pdf </a>
 and 
 <a href="http://cran.r-project.org/doc/manuals/R-intro.html"> html</a>.  There
 are other manuals on the  
-<a href="http://r-project.org"> R website</a>.
+<a href="http://r-project.org"> R website. </a>
 <BR><BR>
 <strong> What are classes, objects, and slots? </strong>
 A class is a definition of a data structure. For instance, it may be useful to

@@ -92,7 +92,8 @@ parEst <- function(result, param = "", dataset = NA, verbose = TRUE,
           cat("dataset ", j, ": ", toString(slot(currTheta[[j]], nm)),
               "\n", sep="", file=file)   
           if(stderr)
-            cat("    standard errors: ", toString(stderrlist[[nm]][[j]]),
+            cat("    standard errors: ",
+                toString(stderrlist[[nm]][[length(stderrlist[[nm]])]]),
                 "\n", sep="", file=file)
         }
       }

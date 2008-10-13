@@ -12,8 +12,7 @@
     plotHistAmp(multimodel, t, i=1)
     plotHistNormComp(multimodel, t, i=1)
     plotIntenImage(multimodel, t, i=1,  tit=c("Intensity Image"))
-    plotSelIntenImage(multimodel, t, i=1, tit=c("Region of Interest"),
-     cex=1)
+    plotSelIntenImage(multimodel, t, i=1, tit=c("Region of Interest"), cex=1)
     plotTau(multimodel, t, i=1, tit=" < tau > ", plotoptions=kinopt(),
      lifetimes=TRUE)
     plotNormComp(multimodel, t, i=1)

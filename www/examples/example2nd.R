@@ -71,7 +71,7 @@ kinetic_model <- initModel(mod_type = "kin", seqmod = FALSE, kinpar = kstart,
 
 kinetic_fit <- fitModel(data=list(kinetic_data), modspec = list(kinetic_model),
                         opt = kinopt(nnls = TRUE, iter=80,
-                          selected_traces = seq(1,,length=50 ))
+                          selectedtraces = seq(1,kinetic_data@nl,by=2)))
 
 ## look at estimated parameters
 
@@ -80,17 +80,14 @@ parEst(kinetic_fit)
 ## make a png of various results
 
 ## concentrations 
-png("con2ndEx.png")                        
 
 conRes <- getX(kinetic_fit)
 
 matplot(times, conRes, type="b", col=1,pch=21, bg=1:5, xlab="time (sec)",
         ylab="concentrations", main="Concentrations (2nd order kinetics)")
                         
-dev.off()
                         
 ## spectra 
-png("spec2ndEx.png")                        
 
 specRes <- getCLP(kinetic_fit)
 
@@ -98,7 +95,6 @@ matplot(wavelengths, specRes, type="b", col=1,pch=21, bg=1:5,
         xlab="wavelength (nm)",
         ylab="amplitude", main="Spectra")
 
-dev.off()
 
 ## see help(getResults) for how to get more results information from
 ## kinetic_fit

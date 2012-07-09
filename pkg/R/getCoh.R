@@ -26,11 +26,11 @@ function (model)
 
 	if(model@cohspec$type == "irfmulti") {
 		if(length(model@nl)==0) {
-		model@ncolc <- array(model@ncomp + model@cohspec$numdatasets, 
-		model@nl)
+		  model@ncolc <- array(model@ncomp + model@cohspec$numdatasets,
+		  1)
 		} else {
-		 model@ncolc <- array(model@ncomp + model@cohspec$numdatasets, 
-		1)
+		  model@ncolc <- array(model@ncomp + model@cohspec$numdatasets, 
+		  model@nl)
 		}
 		numcohcol <- model@cohspec$numdatasets 
 	}
@@ -38,12 +38,12 @@ function (model)
 		numcohcol <- length(model@cohspec$start) + 1
 		model@coh <- model@cohspec$start  
 		if(length(model@nl)==0) {
-		model@ncolc <- array(model@ncomp + length(model@coh) + 1, 
-			       1) 
-	} else {
-	  		model@ncolc <- array(model@ncomp + length(model@coh) + 1, 
-			       model@nl) 
-	}
+		  model@ncolc <- array(model@ncomp + length(model@coh) + 1, 
+		  1) 
+		} else {
+		  model@ncolc <- array(model@ncomp + length(model@coh) + 1, 
+		  model@nl) 
+		}
 	}
 	if(length(model@anispec$rammanest) != 0) {
 	    if(model@anispec$rammanest) {

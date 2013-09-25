@@ -14,6 +14,3 @@ Description: TIMP is a problem solving environment for fitting
         time-resolved spectroscopy and FLIM-FRET data.
 License: GPL (>= 2)
 URL: http://timp.r-forge.r-project.org/ http://www.nat.vu.nl/~kate/TIMP/ http://timpgui.org/
-Repository: CRAN
-Date/Publication: 2011-11-17 14:00:00
-Packaged: 2011-11-17 14:00:00 CET; jsnel

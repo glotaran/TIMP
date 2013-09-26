@@ -34,6 +34,7 @@
     
 }
 \examples{
+\dontrun{ 
 ##############################
 ## READ IN DATA,  PREPROCESS DATA
 ##############################
@@ -166,6 +167,7 @@ par(cex=1.5)
 plotTau(fitDA$currModel, fitD$currTheta, 2, tit="", plotoptions=plo,
         lifetimes=FALSE)
 
+}
 } 
 \author{Katharine M. Mullen, Sergey Laptenok, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{fitModel}} }

@@ -43,8 +43,9 @@ function (k, x, irfpar, mirf = FALSE, measured_irf = vector(),
       if(streak) {
         backsweep <- getStreakBacksweep(streakT, k, mu,x)
         m <- m + backsweep
-      }           
-              for( i in 1:(length(irfpar)-2)/3) {
+      }   
+          if(length(irfpar)>4) {
+              for( i in 1:((length(irfpar)-2)/3)) {
               # scal shift tau
               scal <- irfpar[1+(i-1)*3+2]
               shift <- irfpar[2+(i-1)*3+2]
@@ -53,6 +54,7 @@ function (k, x, irfpar, mirf = FALSE, measured_irf = vector(),
               if(streak) m2 <- m2 + backsweep
               m <- m + (scal * m2)
               }
+           }
             
     }
     

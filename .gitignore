@@ -1,3 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
+pkg/Rplots.pdf
+pkg/src/TIMP.so
+pkg/src/ntr.o

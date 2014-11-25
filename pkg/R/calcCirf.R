@@ -1,7 +1,8 @@
 "calcCirf" <-
 function (k, x, irfpar, mirf = FALSE, measured_irf = vector(), 
     convalg = 1, shiftmea = vector(), lamb = 1, reftau = 0, 
-    doublegaus = FALSE, streak = FALSE, streakT = 0, irffun = "gaus") 
+    doublegaus = FALSE, multiplegaus = FALSE,
+    streak = FALSE, streakT = 0, irffun = "gaus") 
 {
    
   if (!mirf) {
@@ -35,7 +36,7 @@ function (k, x, irfpar, mirf = FALSE, measured_irf = vector(),
             }
     }
     
-    if(irffun == "multiplegaus" || irffun == "multiplegauss") {
+    if(multiplegaus || irffun == "multiplegaus" || irffun == "multiplegauss") {
       mu <- irfpar[1]
       tau <- irfpar[2]
       m <- convGausExp(k, x, mu, tau)

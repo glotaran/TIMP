@@ -22,7 +22,7 @@ function (k, x, irfpar, mirf = FALSE, measured_irf = vector(),
         m <- m + backsweep
       }
             if(doublegaus || irffun == "doublegaus") {
-              scal <- irfpar[4] #note in multiplegauss, scal comes first
+              scal <- irfpar[4] #note in multiplegaus, scal comes first
               tau <- irfpar[3]
               m2 <- convGausExp(k, x, mu, tau)
               #m2 <- rep(0, length(x) * length(k))
@@ -36,7 +36,7 @@ function (k, x, irfpar, mirf = FALSE, measured_irf = vector(),
             }
     }
     
-    if(multiplegaus || irffun == "multiplegaus" || irffun == "multiplegauss") {
+    if(multiplegaus || irffun == "multiplegaus") {
       mu <- irfpar[1]
       tau <- irfpar[2]
       m <- convGausExp(k, x, mu, tau)

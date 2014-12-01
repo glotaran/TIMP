@@ -25,14 +25,16 @@
       model@clp0 <- getAutoClp0(model)
       model@autoclp0 <- list() ## don't want to store the old result
     }
-    if(model@irffun=="doublegaus") {
-      model@doublegaus <- TRUE
-    }
-    if(model@irffun=="multiplegaus") {
-      model@multiplegaus <- TRUE
-    }
-    if(model@dispmu && length(model@parmu[[1]])>0 && length(model@lambdac)==0){
-      warning(sprintf("model@dispmu = %s but lamdac not specified!",model@dispmu))
+    if(model@mod_type=="kin") {
+      if(model@irffun=="doublegaus") {
+        model@doublegaus <- TRUE
+      }
+      if(model@irffun=="multiplegaus") {
+        model@multiplegaus <- TRUE
+      }
+      if(model@dispmu && length(model@parmu[[1]])>0 && length(model@lambdac)==0){
+        warning(sprintf("model@dispmu = %s but lamdac not specified!",model@dispmu))
+      }
     }
     model@clpCon <- getClpConstr(
       if (model@clpType == "x")

@@ -1,7 +1,3 @@
-# generic function initModelClass called from initOneModel when mod_type is "kin", initializes fields in model class
-# Variables directly affected by this function:
-# Initialized: model@mirf, model@irf, model@dispmu,  model@disptau, model@fullk, model@wavedep, model@getX,  
-# Modified: model@seqmod, model@clpdep, model@ncomp, model@ncolc, model@cohspec$type, model@speckin2$seqmod, model@speckin2$fullk 
 setMethod("initModelClass", signature(model="kin"),                       
           function (model) 
           {

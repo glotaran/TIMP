@@ -1,7 +1,7 @@
 "irfparF" <-
 function (irfpar, lambdac, lambda, i, mudisp = FALSE, parmu=vector(), 
 	 taudisp = FALSE, partau = vector(), dispmufun = "",
-	 disptaufun = "", doublegaus = FALSE,multiplegauss=FALSE) 
+	 disptaufun = "", doublegaus = FALSE,multiplegaus=FALSE) 
 {
 	irfvec<-vector()
 	if(mudisp){ 
@@ -35,7 +35,7 @@ function (irfpar, lambdac, lambda, i, mudisp = FALSE, parmu=vector(),
 	}
 	## assuming no dispersion for 2nd, 3rd, etc gaussians
 	if(doublegaus) irfvec <- append(irfvec, irfpar[3:length(irfpar)])
-  if(multiplegauss) irfvec <- append(irfvec, irfpar[3:length(irfpar)])
+  if(multiplegaus) irfvec <- append(irfvec, irfpar[3:length(irfpar)])
 	irfvec
 }
 

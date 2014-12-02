@@ -7,7 +7,7 @@
       if((length(oscpar)>0)) {
         if((length(oscpar)>=3)) {
           if((length(oscpar) %% 3)!=0) {
-            warn(sprintf("oscpar is not a multiple of 3"))
+            warning(sprintf("oscpar is not a multiple of 3"))
           }
           ncolosc = floor(length(oscpar)/3)
           cohcols <- matrix(0, nrow = length(x), ncol = ncolosc)
@@ -27,6 +27,7 @@
         warning(sprintf("oscspec$type is %s but oscpar is empty",type))
       }
     }   
+      cohcols[is.na(cohcols)] <- 0
       cohcols   
   }
 

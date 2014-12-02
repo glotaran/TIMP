@@ -8,7 +8,7 @@
               FALSE, kinpar2 = vector(), kin2scal = vector(), reftau =
               0, anispec = list(calcani=FALSE), anipar = vector(),
             cohcol = vector(), amplitudes = vector(), streakT=0,
-            streak=FALSE, doublegaus = FALSE, multiplegauss = FALSE, fixedkmat=FALSE, irffun
+            streak=FALSE, doublegaus = FALSE, multiplegaus = FALSE, fixedkmat=FALSE, irffun
             = "gaus", kinscalspecial = list(), kinscalspecialspec =
               list(), lightregimespec = list(), nocolsums=FALSE,
             numericalintegration = FALSE, initialvals = vector(),

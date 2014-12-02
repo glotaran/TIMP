@@ -9,3 +9,5 @@ www/examples/*.ps
 www/examples/*.txt
 *~
 pkg/R/initModelClassTest.R
+TIMP_*.tar.gz
+_*

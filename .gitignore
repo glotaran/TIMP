@@ -1,6 +1,9 @@
+TIMP.Rproj
 .Rproj.user
 .Rhistory
 .RData
 pkg/Rplots.pdf
 pkg/src/TIMP.so
 pkg/src/ntr.o
+www/examples/*.ps
+www/examples/*.txt

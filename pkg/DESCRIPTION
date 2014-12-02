@@ -2,7 +2,7 @@ Package: TIMP
 Type: Package
 Title: a problem solving environment for fitting separable nonlinear
         models in physics and chemistry applications
-Version: 1.11.0
+Version: 1.12.0
 Author: Katharine M. Mullen, Joris J. Snellenburg, Sergey P. Laptenok, David Nicolaides, Ivo H.M. van Stokkum
 Maintainer: Joris J. Snellenburg  <j.snellenburg@vu.nl>
 Depends: R (>= 2.10.0), methods, tcltk, fields (>= 4.1)

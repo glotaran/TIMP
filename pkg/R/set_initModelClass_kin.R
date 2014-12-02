@@ -31,7 +31,7 @@ setMethod("initModelClass", signature(model="kin"),
             }
             
             if (length(model@cohspec$type) == 0) # TODO: find a better test
-              model@cohspec$type <- "XPM"
+              model@cohspec$type <- ""
             if (length(model@oscspec$type) == 0) # TODO: find a better test
               model@oscspec$type <- ""
             if(length(model@speckin2$seqmod) == 0)

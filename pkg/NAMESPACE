@@ -7,8 +7,8 @@ importFrom("colorspace",sequential_hcl,diverge_hcl)
 importFrom("splines",ns,bs,interpSpline)
 importFrom("minpack.lm",nls.lm)
 importFrom("gclus",plotcolors)
-import("maps")
-import("spam")
+# import("maps") # only needed when used in "Depends" in DESCRIPTION
+# import("spam") # likewise
 
 exportClasses(dat, kin, spec, mass, amp,
               theta, multimodel, res, multitheta, kinopt,

@@ -1,6 +1,6 @@
 In this repository there are 3 primary branches.
 To see the current branches, issue the command:
-$ git branch-a
+$ git branch -a
 >> start output
  * develop
  master
@@ -14,7 +14,7 @@ The information about remotes/r-forge-svn is found in <root>/.git/config, it con
  fetch = :refs/remotes/r-forge-svn
 << end output
 
-We always *only* work on the development branch, and branches off the development branch, never directly on master or god forbid remotes/r-forge-svn.
+We always *only* work on the development branch, and branches branched off from develop, never directly on master or god forbid remotes/r-forge-svn.
 To switch to the development branch, issue the command:
 $ git checkout develop
 Normal git operations consiting of commands:

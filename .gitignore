@@ -9,5 +9,7 @@ www/examples/*.ps
 www/examples/*.txt
 *~
 pkg/R/initModelClassTest.R
+*.kate-swp
 TIMP_*.tar.gz
 _*
+pkg/R/namespaceChecker.R

@@ -1,12 +1,28 @@
-importFrom("methods",slot,new,is,slotNames,selectMethod,setClass,representation,prototype,setMethod,signature,setGeneric)
-importFrom("fields",image.plot,tim.colors,two.colors)
-importFrom("nnls",nnls,nnnpls)
-importFrom("deSolve",lsoda)
-importFrom("gplots",plotCI)
-importFrom("colorspace",sequential_hcl,diverge_hcl)
-importFrom("splines",ns,bs,interpSpline)
-importFrom("minpack.lm",nls.lm)
-importFrom("gclus",plotcolors)
+importFrom("methods","slot","slot<-","new","is","slotNames","selectMethod",
+             "setClass","representation","prototype","setMethod",
+             "signature","setGeneric")
+importFrom("grDevices", "dev.cur", "dev.interactive", "dev.new",
+             "dev.off", "dev.print", "gray", "heat.colors", "n2mfrow",
+             "pdf", "postscript", "xy.coords")
+importFrom("graphics", "abline", "axTicks", "axis", "hist", "image",
+             "legend", "lines", "matlines", "matplot", "mtext", "par",
+             "plot", "plot.new", "plot.window", "points", "rect",
+             "segments", "title", "xinch", "yinch")
+importFrom("stats", "IQR", "approxfun", "coef", "deviance", "dnorm",
+             "formula", "na.omit", "naprint", "nls", "nls.control",
+             "numericDeriv", "optim", "predict", "printCoefmat", "pt",
+             "quantile", "rnorm", "symnum")
+importFrom("utils", "capture.output", "read.table", "tail",
+             "write.table")             
+importFrom("fields","image.plot","tim.colors","two.colors")
+importFrom("nnls","nnls","nnnpls")
+importFrom("deSolve","lsoda")
+importFrom("gplots","plotCI")
+importFrom("colorspace","sequential_hcl","diverge_hcl")
+importFrom("splines","ns","bs","interpSpline")
+importFrom("minpack.lm","nls.lm")
+importFrom("gclus","plotcolors")
+
 # import("maps") # only needed when used in "Depends" in DESCRIPTION
 # import("spam") # likewise
 

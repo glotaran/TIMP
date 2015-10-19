@@ -6,7 +6,7 @@ Author: Katharine M. Mullen, Joris J. Snellenburg, Sergey P. Laptenok, David Nic
 Maintainer: Joris J. Snellenburg  <j.snellenburg@vu.nl>
 Depends: R (>= 2.10.0), methods, fields (>= 4.1)
 Imports: deSolve, nnls (>= 1.1), colorspace, splines, minpack.lm (>= 1.1-1), gclus,
-	  gplots 
+	  gplots, grDevices, graphics, stats, utils
 Description: A problem-solving environment (PSE) for fitting
          separable nonlinear models to measurements arising in physics
          and chemistry experiments, and has been extensively applied to

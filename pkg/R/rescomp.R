@@ -1,10 +1,14 @@
 "rescomp" <-
   function (theta=vector(), d=vector(), currModel=currModel, currTheta=vector()) 
   {
+    # First get scaling if lscalpar == TRUE
+    # if(currModel.lscalpar == TRUE
+    # thetascal <- currModel@modellist
+    # theta = theta * thetascal
     if(length(currTheta) == 0) 
       currTheta <- getThetaCl(theta, currModel)
     groups <- currModel@groups 
-    m <- currModel@modellist
+    m <- currModel@modellist    
     resid <- clpindepX <-list()
     nexp <- length(m) 
     for(i in 1:nexp) {

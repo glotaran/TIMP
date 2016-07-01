@@ -19,7 +19,8 @@ setClass("dat", representation(psi.df = "matrix", psi.weight = "matrix",
 	clpType = "character", clpequspecBD = "list", compnames = "vector", 
 	getXsuper = "logical", usecompnames0 = "logical", 
 	usecompnamesequ = "logical", autoclp0 = "list", cohcol = "numeric",
-        weightList = "list", outMat = "matrix", satMat = "matrix"), 
+        weightList = "list", outMat = "matrix", satMat = "matrix", 
+	lscalpar = "logical", thetascal = "vector"), 
         prototype = list(psi.df = matrix(), psi.weight = matrix(), 
             x = vector(), nt = integer(), x2 = vector(), nl = integer(), 
             C2 = matrix(), E2 = matrix(), sigma = numeric(), 
@@ -39,7 +40,8 @@ setClass("dat", representation(psi.df = "matrix", psi.weight = "matrix",
 	    clpType = "", clpequspecBD = list(), compnames = vector(),
 	    getXsuper = FALSE, usecompnames0 = FALSE,  
 	    usecompnamesequ = FALSE, autoclp0 = list(), cohcol = 0,
-            weightList = list(), outMat = matrix(), satMat = matrix() ))
+            weightList = list(), outMat = matrix(), satMat = matrix(), 
+	    lscalpar = FALSE, thetascal = vector() ))
 
 setClass("kin", representation("dat", kinpar = "vector", specpar =
 "list", seqmod = "logical", irf = "logical", mirf = "logical", reftau

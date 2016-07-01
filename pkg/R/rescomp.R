@@ -1,10 +1,11 @@
 "rescomp" <-
   function (theta=vector(), d=vector(), currModel=currModel, currTheta=vector()) 
   {
-    # First get scaling if lscalpar == TRUE
-    # if(currModel.lscalpar == TRUE
-    # thetascal <- currModel@modellist
-    # theta = theta * thetascal
+    #browser()
+    if(currModel@modelspec[[1]]@lscalpar) {
+      thetascal <- currModel@modellist[[1]]@thetascal
+      theta = theta * thetascal
+    }
     if(length(currTheta) == 0) 
       currTheta <- getThetaCl(theta, currModel)
     groups <- currModel@groups 

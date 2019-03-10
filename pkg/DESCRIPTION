@@ -1,7 +1,7 @@
 Package: TIMP
 Type: Package
 Title: Fitting Separable Nonlinear Models in Spectroscopy and Microscopy
-Version: 1.13.0
+Version: 1.13.2
 Author: Katharine M. Mullen, Joris J. Snellenburg, Sergey P. Laptenok, David Nicolaides, Ivo H.M. van Stokkum
 Maintainer: Joris J. Snellenburg  <j.snellenburg@vu.nl>
 Depends: R (>= 2.10.0), methods, fields (>= 4.1)

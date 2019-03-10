@@ -1,15 +1,16 @@
+# Temp files
+*~
+*.kate-swp
+_*
+# RStudio related
 TIMP.Rproj
 .Rproj.user
 .Rhistory
 .RData
-pkg/Rplots.pdf
+.Rprofile
+packrat/
+# Build files
+TIMP_*.tar.gz
 pkg/src/TIMP.so
 pkg/src/ntr.o
-www/examples/*.ps
-www/examples/*.txt
-*~
-pkg/R/initModelClassTest.R
-*.kate-swp
-TIMP_*.tar.gz
-_*
-pkg/R/namespaceChecker.R
+

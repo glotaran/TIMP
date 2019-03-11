@@ -14,3 +14,4 @@ TIMP_*.tar.gz
 pkg/src/TIMP.so
 pkg/src/ntr.o
 
+packrat/lib*/

@@ -1,9 +1,0 @@
-^.*\.Rproj$
-^\.Rproj\.user$
-.git
-.gitignore
-^\.github$
-LICENSE.md
-README.md
-CONTRIBUTING.md
-git-workflow.txt

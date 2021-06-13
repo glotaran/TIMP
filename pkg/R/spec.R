@@ -1,5 +1,0 @@
-"spec" <-
-function(...){
-	new("spec",...)
-}
-

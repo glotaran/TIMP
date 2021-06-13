@@ -1,5 +1,0 @@
-"fit" <-
-function(...){
-	new("fit", ...)
-}
-

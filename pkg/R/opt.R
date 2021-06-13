@@ -1,6 +1,0 @@
-"opt" <-
-function (...) 
-{
-    new("opt", ...)
-}
-

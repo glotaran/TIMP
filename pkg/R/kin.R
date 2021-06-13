@@ -1,5 +1,0 @@
-"kin" <-
-function(...){
-	new("kin", ...)
-}
-

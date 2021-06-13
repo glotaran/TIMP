@@ -1,17 +1,8 @@
 # Temp files
 *~
-*.kate-swp
-_*
 # RStudio related
 TIMP.Rproj
 .Rproj.user
 .Rhistory
 .RData
 .Rprofile
-packrat/
-# Build files
-TIMP_*.tar.gz
-pkg/src/TIMP.so
-pkg/src/ntr.o
-
-packrat/lib*/

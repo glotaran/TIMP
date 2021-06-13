@@ -1,5 +1,0 @@
-"theta" <-
-function(...){
-	new("theta", ...)
-}
-

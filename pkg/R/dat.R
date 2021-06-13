@@ -1,6 +1,0 @@
-"dat" <-
-function (...) 
-{
-    new("dat", ...)
-}
-

@@ -43,3 +43,7 @@ docs/
 
 # translation temp files
 po/*~
+
+# build files
+*.o
+*.dll

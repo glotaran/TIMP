@@ -22,16 +22,12 @@
             applied to modeling spectroscopy and Fluorescence Lifetime Imaging Microscopy
             (FLIM) datasets
           </li>
-          <li> Follow the
-            <a href="install.html">
-              installation documentation </a>
-            to obtain TIMP
-            <p>
+          <li> Follow the <a href="install.html">installation documentation </a> to obtain TIMP
       </td>
     </tr>
     <tr>
       <td>
-        <h2>News:</h2>
+        <h2>Highlights:</h2>
         <ul>
           <li>
             TIMP is available on <strong>
@@ -40,8 +36,8 @@
           </li>
 
           <li>
-            TIMP is a project formerly on <strong>
-              <a href="https://r-forge.r-project.org/projects/timp/" target="_blank">R-Forge</a> but now on </strong>
+            TIMP is <a href="https://github.com/glotaran/TIMP"> hosted and maintained on GitHub</a>
+            (formerly on <a href="https://r-forge.r-project.org/projects/timp/" target="_blank">R-Forge</a>)
           </li>
           <li>
             A
@@ -51,13 +47,16 @@
             <strong><a href="https://www.jstatsoft.org/issue/view/v018">
                 Journal of Statistical Software (JSS)</a></strong>
             contains two issues regarding TIMP:
-            <strong><a href="http://dx.doi.org/10.18637/jss.v018.i03">
-                TIMP: An R Package for Modeling Multi-way Spectroscopic Measurements
-              </a></strong>
-            and
-            <strong><a href="http://dx.doi.org/10.18637/jss.v018.i08">
-                Fluorescence Lifetime Imaging Microscopy (FLIM) Data Analysis
-                with TIMP </a></strong>
+            <ul>
+              <li>
+                <strong><a href="http://dx.doi.org/10.18637/jss.v018.i03">
+                    TIMP: An R Package for Modeling Multi-way Spectroscopic Measurements
+                  </a></strong>
+              </li>
+              <li><strong><a href="http://dx.doi.org/10.18637/jss.v018.i08">
+                    Fluorescence Lifetime Imaging Microscopy (FLIM) Data Analysis
+                    with TIMP </a></strong></li>
+            </ul>
           </li>
           <li> <strong>
               <a href="ppviewer.html" target="banner">PPViewer</a></strong>, a program

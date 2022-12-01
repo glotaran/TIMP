@@ -20,6 +20,9 @@
 # RStudio files
 .Rproj.user/
 
+# VScode files
+.vscode/
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
@@ -47,3 +50,9 @@ po/*~
 # build files
 *.o
 *.dll
+
+# Files created by scripts
+_summary.ps
+_selectedtraces.ps
+_paramEst.txt
+Rplots.pdf

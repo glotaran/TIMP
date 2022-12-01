@@ -44,11 +44,11 @@ most are most often made by invoking another function such as
   where each vector is of length 5 and 
   specifies an interval in which to weight the data.  
   \itemize{
-  \item{first\_x}{first(absolute, not an index) \code{x} to weight}
-  \item{last\_x}{last (absolute, not an index) \code{x} to weight} 
-  \item{first\_x2}{first (absolute, not an index)  \code{x2} to weight}
-  \item{last\_x2}{last (absolute, not an index)  \code{x2} to weight} 
-  \item{weight}{numeric by which to weight data} 
+  \item{first_x: }{first(absolute, not an index) \code{x} to weight}
+  \item{last_x: }{last (absolute, not an index) \code{x} to weight} 
+  \item{first_x2: }{first (absolute, not an index)  \code{x2} to weight}
+  \item{last_x2: }{last (absolute, not an index)  \code{x2} to weight} 
+  \item{weight: }{numeric by which to weight data} 
   }
   Note that if vector elements 1-4 are \code{NA} (not a number), the firstmost 
   point of the data is taken for elements 1 and 3, and the lastmost points

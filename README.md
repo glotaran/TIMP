@@ -2,7 +2,7 @@
 
 TIMP is an R package for fitting superposition models that implements the partitioned variable projection algorithm.
 
-The package has been extensively applied to modeling [spectroscopy](http://www.jstatsoft.org/v18/i03/) and Fluorescence Lifetime Imaging Microscopy ([FLIM](http://www.jstatsoft.org/v18/i08/)) datasets.
+The package has been extensively applied to modeling [spectroscopy](https://www.jstatsoft.org/v18/i03/) and Fluorescence Lifetime Imaging Microscopy ([FLIM](https://www.jstatsoft.org/v18/i08/)) datasets.
 
 ## Installation
 
@@ -20,7 +20,7 @@ TIMP is part of the Glotaran ecosystem (glotaran.org). It functions as the compu
 
 TIMP can be cited as:
 
-Mullen KM, van Stokkum IHM (2007). TIMP: An R Package for Modeling Multi-way Spectroscopic Measurements. Journal of Statistical Software, 18(3). URL http://www.jstatsoft.org/v18/i03/.
+Mullen KM, van Stokkum IHM (2007). TIMP: An R Package for Modeling Multi-way Spectroscopic Measurements. Journal of Statistical Software, 18(3). URL https://www.jstatsoft.org/v18/i03/.
 
 See also [citation.html on CRAN](https://cran.r-project.org/web/packages/TIMP/citation.html)
 

@@ -17,10 +17,10 @@ data("denS5")
   intensity used to measure \code{denS4}.
 }
 \references{This data was described in
-Mullen KM, van Stokkum IHM (2007).  
+Mullen KM, van Stokkum IHM (2007).
 TIMP: An R Package for Modeling Multi-way Spectroscopic
-Measurements. \emph{Journal of Statistical Software}, \bold{18}(3), 
-\url{http://www.jstatsoft.org/v18/i03/}.
+Measurements. \emph{Journal of Statistical Software}, \bold{18}(3),
+\url{https://www.jstatsoft.org/v18/i03/}.
 }
 \examples{
 data("denS4")

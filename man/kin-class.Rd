@@ -349,6 +349,9 @@ matplot(wavelengths, specRes, type="b", col=1,pch=21, bg=1:5,
 
 ## see help(getResults) for how to get more results information from
 ## kinetic_fit
+## cleanup
+file.remove("_paramEst.txt")
+file.remove("Rplots.pdf")
 }
 
 \references{

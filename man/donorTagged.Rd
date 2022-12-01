@@ -19,7 +19,7 @@ data("donorTagged")
   The variable projection algorithm in time-resolved spectroscopy,
   microscopy and mass-spectroscopy applications,
   \emph{Numerical Algorithms}, \bold{in press},
-\url{https://dx.doi.org/10.1007/s11075-008-9235-2}.
+\doi{10.1007/s11075-008-9235-2}.
 }
 \details{
 See \code{\link{FLIMplots}} for examples using this data.

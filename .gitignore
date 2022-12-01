@@ -47,3 +47,9 @@ po/*~
 # build files
 *.o
 *.dll
+
+_summary.ps
+
+_selectedtraces.ps
+
+_paramEst.txt

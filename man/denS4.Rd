@@ -20,7 +20,7 @@ data("denS5")
 Mullen KM, van Stokkum IHM (2007).
 TIMP: An R Package for Modeling Multi-way Spectroscopic
 Measurements. \emph{Journal of Statistical Software}, \bold{18}(3),
-\url{https://www.jstatsoft.org/v18/i03/}.
+\url{https://doi.org/10.18637/jss.v018.i03}.
 }
 \examples{
 data("denS4")

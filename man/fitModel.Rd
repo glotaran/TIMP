@@ -152,7 +152,7 @@ is returned as an array of strings}
 \references{Mullen KM, van Stokkum IHM (2007).
 ``TIMP: an R package for modeling
 multi-way spectroscopic measurements.'' Journal of Statistical Software,
-18(3). \url{https://www.jstatsoft.org/v18/i03/.}}
+18(3). \url{https://doi.org/10.18637/jss.v018.i03}}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \examples{
 

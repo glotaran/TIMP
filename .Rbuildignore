@@ -4,5 +4,6 @@
 ^\.gitignore
 ^\.vscode
 ^\.github
+^\.builds
 README.md
 Rplots.pdf

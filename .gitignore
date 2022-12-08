@@ -56,3 +56,5 @@ _summary.ps
 _selectedtraces.ps
 _paramEst.txt
 Rplots.pdf
+
+.builds/

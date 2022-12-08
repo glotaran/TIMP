@@ -1,9 +1,12 @@
 Package: TIMP
-Type: Package
+Version: 1.13.6
 Title: Fitting Separable Nonlinear Models in Spectroscopy and Microscopy
-Version: 1.13.5
-Author: Katharine M. Mullen, Joris J. Snellenburg, Sergey P. Laptenok, David Nicolaides, Ivo H.M. van Stokkum
-Maintainer: Joris J. Snellenburg  <j.snellenburg@vu.nl>
+Authors@R: c(person(given="Katharine M.", family="Mullen", role = "aut", comment="Original package creator"),
+             person(given="Joris", family="Snellenburg", role = c("cre","ctb"), email = "j.snellenburg@vu.nl"),
+             person(given="Sergey P.", family="Laptenok", role = "ctb"),
+             person(given="David", family="Nicolaides", role = "ctb"),
+             person(given="Ivo H.M.", "van Stokkum", role = "aut", email = "i.h.m.van.stokkum@vu.nl")
+             )
 Depends: R (>= 2.10.0), methods, fields (>= 4.1)
 Imports: deSolve, nnls (>= 1.1), colorspace, splines, minpack.lm (>= 1.1-1), gclus,
 	  gplots, grDevices, graphics, stats, utils

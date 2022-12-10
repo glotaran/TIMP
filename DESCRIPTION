@@ -31,4 +31,5 @@ Description: A problem solving environment (PSE) for fitting separable nonlinear
     in the study of Förster Resonance Energy Transfer (FRET).
 License: GPL (>= 2)
 URL: https://github.com/glotaran/TIMP
+BugReports: https://github.com/glotaran/TIMP/issues
 Encoding: UTF-8

@@ -20,15 +20,15 @@ Authors@R: c(person(given="Katharine M.",
                     email = "i.h.m.van.stokkum@vu.nl")
              )
 Depends: R (>= 2.10.0), methods, fields (>= 4.1)
-Imports: deSolve, nnls (>= 1.1), colorspace, splines, minpack.lm (>= 1.1-1), gclus,
-	  gplots, grDevices, graphics, stats, utils
-Description: A problem-solving environment (PSE) for fitting
-         separable nonlinear models to measurements arising in physics
-         and chemistry experiments; has been extensively applied to
-         time-resolved spectroscopy and FLIM-FRET data.
+Imports: colorspace, deSolve, gclus, nnls (>= 1.1), graphics, grDevices, gplots,
+    minpack.lm (>= 1.1-1), splines, stats, utils
+Description: A problem solving environment (PSE) for fitting separable nonlinear
+    models to measurements arising in physics and chemistry experiments,
+    as described by Mullen & van Stokkum (2007) <doi:10.18637/jss.v018.i03>
+    for its use in fitting time resolved spectroscopy data, and as described by
+    Laptenok et al. (2007) <doi:10.18637/jss.v018.i08> for its use in fitting
+    Fluorescence Lifetime Imaging Microscopy (FLIM) data,
+    in the study of Förster Resonance Energy Transfer (FRET).
 License: GPL (>= 2)
 URL: https://github.com/glotaran/TIMP
-
-
-
-
+Encoding: UTF-8

@@ -231,6 +231,27 @@ specinterpol = TRUE, specinterpolpoints=FALSE,
 divdrel=TRUE, xlab="wavenumber",writeclperr = TRUE,
 makeps = "h20", linrange = 1, superimpose=1:3))
 
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c('h20_paramEst.txt', 'h20_rawconcen_dataset_1.txt',
+  'h20_rawconcen_dataset_2.txt', 'h20_rawconcen_dataset_3.txt',
+  'h20_spec_dataset_1.txt', 'h20_spec_dataset_2.txt',
+  'h20_spec_dataset_3.txt', 'h20_std_err_clp_1.txt',
+  'h20_std_err_clp_2.txt', 'h20_std_err_clp_3.txt',
+  'err_paramEst.txt', 'err_spec_dataset_1.txt', 'err_spec_dataset_2.txt',
+  'err_spec_dataset_3.txt', 'err_std_err_clp_1.txt',
+  'err_std_err_clp_2.txt', 'err_std_err_clp_3.txt')
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}
+
 }
 }
  \value{

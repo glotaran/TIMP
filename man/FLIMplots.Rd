@@ -33,6 +33,7 @@
     per-pixel should be for lifetimes or their inverse, decay rates.  }
     
 }
+\value{No return value, called for side effects}
 \examples{
 \dontrun{ 
 ##############################

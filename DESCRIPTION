@@ -36,6 +36,10 @@ Description: A problem solving environment (PSE) for fitting separable nonlinear
     Laptenok et al. (2007) <doi:10.18637/jss.v018.i08> for its use in fitting
     Fluorescence Lifetime Imaging Microscopy (FLIM) data,
     in the study of Förster Resonance Energy Transfer (FRET).
+    `TIMP` also serves as the computation backend for the `GloTarAn` software,
+    a graphical user interface for the package, as described in
+    Snellenburg et al. (2012) <doi:10.18637/jss.v049.i03>.
+Language: en-US
 License: GPL (>= 2)
 URL: https://github.com/glotaran/TIMP
 BugReports: https://github.com/glotaran/TIMP/issues

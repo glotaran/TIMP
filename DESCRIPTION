@@ -4,20 +4,27 @@ Title: Fitting Separable Nonlinear Models in Spectroscopy and Microscopy
 Authors@R: c(person(given="Katharine M.",
                     family="Mullen",
                     role = "aut",
-                    comment="Original package creator"),
+                    comment="Original package creator"
+                    ),
              person(given="Joris",
                     family="Snellenburg",
                     role = c("cre","ctb"),
-                    email = "j.snellenburg@vu.nl"),
+                    email = "j.snellenburg@vu.nl",
+                    comment = c(ORCID = "0000-0002-1428-0221")
+                    ),
              person(given="Sergey P.",
                     family="Laptenok",
-                    role = "ctb"),
+                    role = "ctb"
+                    ),
              person(given="David",
                     family="Nicolaides",
-                    role = "ctb"),
+                    role = "ctb"
+                    ),
              person(given="Ivo H.M.", "van Stokkum",
                     role = "aut",
-                    email = "i.h.m.van.stokkum@vu.nl")
+                    email = "i.h.m.van.stokkum@vu.nl",
+                    comment = c(ORCID = "0000-0002-6143-2021")
+                    )
              )
 Depends: R (>= 2.10.0), methods, fields (>= 4.1)
 Imports: colorspace, deSolve, gclus, nnls (>= 1.1), graphics, grDevices, gplots,

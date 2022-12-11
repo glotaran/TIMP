@@ -32,6 +32,6 @@ Sergey Laptenok has contributed options for FLIM data and invaluable experience 
 David Nicolaides has contributed options for modeling reaction kinetics as described by kinetic theory models.
 Alessandro Marin has contributed testing and ideas for new options.
 Ilya Stepanenko has implemented PPViewer, a LabVIEW application for interactive exploration of data and model fit that is useful for examining TIMP datafiles and model fit output.
-The members of the biophysics group of the Department of Physics and Astronomy of the Vrije Universiteit Amsterdam have motivated much of TIMP's development.
+The members of the biophysics group of the Department of Physics and Astronomy of the Vrije Universiteit Amsterdam have motivated much of the development of TIMP.
 
-The TIMP package is currently maintained by Joris Snellenburg, who also created created and maintains the [Glotaran GUI for TIMP]((https://github.com/glotaran/glotaran-legacy)).
+The package is currently maintained by Joris Snellenburg, who also created and maintains the [Glotaran GUI for TIMP]((https://github.com/glotaran/glotaran-legacy)).

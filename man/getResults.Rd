@@ -68,7 +68,7 @@ getdim2(result, dataset = 1)
 \item{file}{character vector; if not \code{""} writes the results to a
   file with name \code{file}. }
 \item{group}{The value at which to determine the X matrix (maybe a
-  wavelenth index, for example)}
+  wavelength index, for example)}
 \item{stderr}{Whether to return standard error estimates on parameters,
 if they were calculated in fitting.}
 }

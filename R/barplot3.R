@@ -11,7 +11,7 @@
 
 
 
-barplot3 <- 
+barplot3 <-
   function(
            height,
            width = 1,
@@ -35,9 +35,11 @@ barplot3 <-
        ci.color = "black", ci.lty = "solid", ci.lwd = 1,
        plot.grid = FALSE, grid.inc = NULL,
        grid.lty = "dotted", grid.lwd = 1, grid.col = "black",
-       add = FALSE, panel.first = NULL, panel.last = NULL, 
+       add = FALSE, panel.first = NULL, panel.last = NULL,
        names.side = 1, names.by = 1, ...)
 {
+    oldpar <- par(no.readonly = TRUE)
+    on.exit(par(oldpar))
     if (!missing(inside)) .NotYetUsed("inside", error = FALSE)# -> help(.)
 
     if (missing(space))
@@ -138,10 +140,10 @@ barplot3 <-
       # Check for NA values and issue warning if required
       height.na <- sum(is.na(height))
       if (height.na > 0)
-      {  
+      {
          warning(sprintf("%.0f values == NA in 'height' omitted from logarithmic plot",
                           height.na), domain = NA)
-      }   
+      }
 
       # Check for 0 values and issue warning if required
       # _FOR NOW_ change 0's to NA's so that other calculations are not
@@ -149,15 +151,15 @@ barplot3 <-
       # except for stacked bars, so don't change those.
       height.lte0 <- sum(height <= 0, na.rm = TRUE)
       if (height.lte0 > 0)
-      {  
+      {
         warning(sprintf("%0.f values <=0 in 'height' omitted from logarithmic plot",
                          height.lte0), domain = NA)
-        
+
         # If NOT stacked bars, modify 'height'
         if (beside)
           height[height <= 0] <- NA
-      }  
-      
+      }
+
       if (plot.ci && (min(ci.l) <= 0))
         stop("log scale error: at least one lower c.i. value <= 0")
 
@@ -173,12 +175,12 @@ barplot3 <-
       {
         rectbase <- c(height[is.finite(height)], ci.l)
         rectbase <- min(0.9 * rectbase[rectbase > 0])
-      }  
+      }
       else
       {
         rectbase <- height[is.finite(height)]
         rectbase <- min(0.9 * rectbase[rectbase > 0])
-      }  
+      }
 
       # if axis limit is set to < above, adjust bar base value
       # to draw a full bar
@@ -257,7 +259,7 @@ barplot3 <-
       # Execute the panel.first expression. This will work here
       # even if 'add = TRUE'
       panel.first
-      
+
       # Set plot region coordinates
       usr <- par("usr")
 
@@ -339,7 +341,7 @@ barplot3 <-
 
       # Execute the panel.last expression here
       panel.last
-      
+
       if (plot.ci)
       {
         # CI plot width = barwidth / 2
@@ -371,8 +373,8 @@ barplot3 <-
         }
         else w.m
 
-        axis(names.side, at = at.l[seq(1, length(at.l), by = names.by)], 
-	labels = names.arg[seq(1, length(at.l), by = names.by)], 
+        axis(names.side, at = at.l[seq(1, length(at.l), by = names.by)],
+	labels = names.arg[seq(1, length(at.l), by = names.by)],
 	lty = axis.lty, cex.axis = cex.names, ...)
       }
 

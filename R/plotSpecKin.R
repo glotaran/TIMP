@@ -1,71 +1,73 @@
 "plotSpecKin" <-
-function(multimodel, t, plotoptions, newplot=TRUE, max_x=NA, min_x=NA, 
+function(multimodel, t, plotoptions, newplot=TRUE, max_x=NA, min_x=NA,
 ylim=vector(), kinspecerr=FALSE)
 {
+	oldpar <- par(no.readonly = TRUE)
+	on.exit(par(oldpar))
 	m <- multimodel@modellist
-	resultlist <- multimodel@fit@resultlist 
+	resultlist <- multimodel@fit@resultlist
 	if(newplot) {
 	   par(oma = c(0,0,2,0))
 	   kinspecerr <- plotoptions@kinspecerr
 	}
-	superimpose <- plotoptions@superimpose 
+	superimpose <- plotoptions@superimpose
         if(length(superimpose) < 1 || any(superimpose > length(m)))
            superimpose <- 1:length(m)
 	if(is.na(max_x) || is.na(max_x))
-			 withlim <- FALSE 
+			 withlim <- FALSE
 	else		 withlim <- TRUE
-        allx2 <- allx <- vector() 
+        allx2 <- allx <- vector()
 	for(i in 1:length(m)) {
-	  allx2 <- append(allx2, m[[i]]@x2) 
+	  allx2 <- append(allx2, m[[i]]@x2)
 	  allx <- append(allx, m[[i]]@x)
 	}
-	specList <- list() 
+	specList <- list()
 	maxs <- mins <- maxspecdim <- 0
 	specList <- getSpecList(multimodel, t)
 	for(i in 1:length(m)) {
 	   spec <- specList[[i]]
-	   if(i %in% superimpose) { 	
+	   if(i %in% superimpose) {
 		      maxs <- max(maxs, max(spec))
 		      mins <- min(mins, min(spec))
 		      maxspecdim <- max(maxspecdim, ncol(spec))
 	   }
-        }	      			      
-	if(!withlim) 
+        }
+	if(!withlim)
 		xlim <- c(min(allx),max(allx))
 	else xlim <- c(min_x, max_x)
-	if(length(plotoptions@xlimspec) == 2) 
+	if(length(plotoptions@xlimspec) == 2)
 		xlim <- plotoptions@xlimspec
-	if(length(plotoptions@ylimspec) == 2) 
+	if(length(plotoptions@ylimspec) == 2)
 		ylim <- plotoptions@ylimspec
-	if(length(ylim) == 0) 
+	if(length(ylim) == 0)
 		ylim <- c(mins, maxs)
         if(length(plotoptions@ylimspecplus) == 2)
 		ylim <- ylim + plotoptions@ylimspecplus
-	if (plotoptions@normspec)  
+	if (plotoptions@normspec)
 		ylim <- c(-1,1)
-	if(kinspecerr)   
-		errtList <- getSpecList(multimodel, t,  getclperr=TRUE) 
-	plotted <- FALSE	
+	if(kinspecerr)
+		errtList <- getSpecList(multimodel, t,  getclperr=TRUE)
+	plotted <- FALSE
         for(i in 1:length(m)) {
-             if(i %in% superimpose) {		
+             if(i %in% superimpose) {
 		if(kinspecerr) {
-			if(plotoptions@writeclperr) 
-		          write.table(errtList[[i]], 
+			if(plotoptions@writeclperr)
+		          write.table(errtList[[i]],
 			  file=paste(plotoptions@makeps,
-		          "_std_err_clp_", i, ".txt", sep=""), 
+		          "_std_err_clp_", i, ".txt", sep=""),
 		          quote = FALSE, row.names = m[[i]]@x)
 	        }
-		if (plotoptions@normspec) 
+		if (plotoptions@normspec)
 				    sp <-  normdat(specList[[i]])
-		      else 
+		      else
 				    sp <- specList[[i]]
-	      
+
 	      for(j in 1:ncol(sp)) {
-		    if(plotoptions@specinterpol) { 
-		       xx <- predict(interpSpline(m[[i]]@x, 
+		    if(plotoptions@specinterpol) {
+		       xx <- predict(interpSpline(m[[i]]@x,
 			sp[,j], bSpline=plotoptions@specinterpolbspline),
 			nseg = plotoptions@specinterpolseg)
-			
+
 		       if(!plotted) {
 			plot(xx, lty = if(plotoptions@samespecline) 1
 			else i, main = "", xlab = plotoptions@xlab,
@@ -73,7 +75,7 @@ ylim=vector(), kinspecerr=FALSE)
 			type="l")
 
 			}
-			else lines(xx, col = j, 
+			else lines(xx, col = j,
 			lty = if(plotoptions@samespecline) 1 else i)
 			if(kinspecerr)
 			 plotCI(m[[i]]@x, sp[,j], uiw=errtList[[i]][,j], pch
@@ -81,17 +83,17 @@ ylim=vector(), kinspecerr=FALSE)
 			 col = j, sfrac = 0, type="p", gap = 0, add =TRUE,
 			 labels = "", lty = if(plotoptions@samespecline) 1
 			else i)
-		     
-		      if(plotoptions@writespecinterpol) 
+
+		      if(plotoptions@writespecinterpol)
 		          write.table(xx$y, file=paste(plotoptions@makeps,
-		          "dataset", i, 
-			  "_smoothedspectracomponent_", j, ".txt", sep=""), 
+		          "dataset", i,
+			  "_smoothedspectracomponent_", j, ".txt", sep=""),
 		          quote = FALSE, row.names = xx$x)
 		     }
-		     else 
+		     else
 		      if(kinspecerr)
-		       plotCI(m[[i]]@x, sp[,j], 
-		       uiw=errtList[[i]][,j], 
+		       plotCI(m[[i]]@x, sp[,j],
+		       uiw=errtList[[i]][,j],
 		       main = "", xlab = plotoptions@xlab,
 		       ylab="amplitude", lty = if(plotoptions@samespecline) 1
 			else i, xlim =xlim,ylim=ylim,
@@ -99,18 +101,18 @@ ylim=vector(), kinspecerr=FALSE)
 		       add = !(i == 1 &&	j == 1), labels = "")
 		      else {
 		       if(!plotted) {
-			plot(m[[i]]@x, sp[, j], 
-			lty = if(plotoptions@samespecline) 1 else i, 
+			plot(m[[i]]@x, sp[, j],
+			lty = if(plotoptions@samespecline) 1 else i,
 			main = "", xlab = plotoptions@xlab,
 			ylab="amplitude", xlim =xlim,ylim=ylim, col = j,
 			type="l")
-                        plotted<-TRUE 
+                        plotted<-TRUE
 		       }
-			else lines(m[[i]]@x, sp[, j], col = j, 
+			else lines(m[[i]]@x, sp[, j], col = j,
 			lty = if(plotoptions@samespecline) 1 else i)
 
 		     }
-		     plotted<-TRUE 
+		     plotted<-TRUE
 		}
 	     }
 	 }
@@ -125,14 +127,14 @@ ylim=vector(), kinspecerr=FALSE)
     }
     mtext(tit, side = 3, outer = TRUE, line = 1)
     par(las = 2)
-    
+
         }
 	abline(0,0)
 	if (dev.interactive() && length(plotoptions@makeps) != 0) {
 	   if(plotoptions@output == "pdf")
-				      pdev <- pdf 
+				      pdev <- pdf
 		else  pdev <- postscript
-            dev.print(device = pdev, file = paste(plotoptions@makeps, 
+            dev.print(device = pdev, file = paste(plotoptions@makeps,
                 "_speckin.", plotoptions@output, sep = ""))
         }
 }

@@ -129,8 +129,9 @@ parEst(fitD)
 parEst(fitDA) 
 
 ##############################
-## ADDITIONAL FIGURES 
+## ADDITIONAL FIGURES
 ##############################
+oldpar <- par(no.readonly = TRUE)
 
 par(mfrow=c(2,2), mar=c(1,3,1,12))
 
@@ -146,6 +147,7 @@ plotIntenImage(fitD$currModel, fitD$currTheta, 2, tit="")
 par(cex=1.5)
 plotIntenImage(fitDA$currModel, fitD$currTheta, 2, tit="")
 
+par(oldpar)
 ###############
 
 plo <- kinopt(ylimspec = c(.25,1.1), imagepal=grey(seq(1,0,length=100)))
@@ -168,8 +170,9 @@ par(cex=1.5)
 plotTau(fitDA$currModel, fitD$currTheta, 2, tit="", plotoptions=plo,
         lifetimes=FALSE)
 
+par(oldpar)
 }
-} 
+}
 \author{Katharine M. Mullen, Sergey Laptenok, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{fitModel}} }
 \keyword{hplot}

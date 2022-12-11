@@ -4,8 +4,11 @@
                             x2 = vector(), x= vector(),
                             plainmat = FALSE, ylab="wavelength (nm)",
                             xlab = "time (ns)") {
-  if(out)
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  if (out) {
     pdf(file)
+  }
   if(!plainmat) {
     x2 <- ob@x2
     x <- ob@x

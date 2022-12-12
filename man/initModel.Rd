@@ -117,6 +117,8 @@ stderrclp = TRUE, kinspecerr=TRUE, output="pdf",
 xlab = "time (ps)", ylab = "wavelength",
 breakdown = list(plot=c(643.50, 658.62, 677.5))))
 
+} # end donttest
+
 ##############################
 ## CLEANUP GENERATED FILES
 ##############################
@@ -132,7 +134,6 @@ for (f in file_list_cleanup) {
   }
 }
 
-}
 }
 \details{For examples, see the help files for \code{\link{dat-class}} and
 \code{\link{fitModel}}}

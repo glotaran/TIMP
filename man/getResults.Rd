@@ -290,7 +290,23 @@ sVcp <- getCLP(sV)
  matplot(dt4@x2,dt4@E2, add=TRUE, type="l", col=1, lty=2)
  abline(0,0)
 
+} # end donttest
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c(Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
 }
+
+
 }
 \seealso{ \code{\link{fitModel}} }
 \keyword{file}

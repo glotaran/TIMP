@@ -231,6 +231,7 @@ specinterpol = TRUE, specinterpolpoints=FALSE,
 divdrel=TRUE, xlab="wavenumber",writeclperr = TRUE,
 makeps = "h20", linrange = 1, superimpose=1:3))
 
+} # end donttest
 ##############################
 ## CLEANUP GENERATED FILES
 ##############################
@@ -253,7 +254,6 @@ for (f in file_list_cleanup) {
   }
 }
 
-}
 }
  \value{
 object of class \code{dat}.

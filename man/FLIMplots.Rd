@@ -172,6 +172,7 @@ plotTau(fitDA$currModel, fitD$currTheta, 2, tit="", plotoptions=plo,
         lifetimes=FALSE)
 
 par(oldpar)
+} # end donttest
 
 ##############################
 ## CLEANUP GENERATED FILES
@@ -191,7 +192,6 @@ for (f in file_list_cleanup) {
 }
 
 
-}
 }
 \author{Katharine M. Mullen, Sergey Laptenok, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{fitModel}} }

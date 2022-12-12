@@ -1,0 +1,20 @@
+linters: linters_with_defaults(
+    line_length_linter(120),
+    # Nice to haves
+    commented_code_linter = NULL,
+    object_name_linter=NULL,
+    single_quotes_linter = NULL,
+    commas_linter = NULL,
+    infix_spaces_linter = NULL,
+    cyclocomp_linter = NULL,
+    # Should haves
+    seq_linter = NULL,
+    object_usage_linter = NULL,
+    vector_logic_linter = NULL
+  )
+exclusions: list(
+  "inst",
+  "man",
+  "tests"
+ )
+encoding: "UTF-8"

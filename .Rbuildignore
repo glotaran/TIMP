@@ -3,7 +3,7 @@
 ^\.git
 ^\.gitignore
 ^\.vscode
-^\.github
+^\.github$
 ^\.builds
 README.md
 Rplots.pdf

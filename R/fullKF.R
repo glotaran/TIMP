@@ -10,7 +10,7 @@
       theta, kinscal, kmat, fixedkmat, kinscalspecial,
       kinscalspecialspec, nocolsums
     )
-    eigenlijk <- eigen(K, only.values = F)
+    eigenlijk <- eigen(K, only.values = FALSE)
     V <- eigenlijk$vectors
     gamma <- solve(V) %*% jvec
     for (j in 1:dimk) {

@@ -138,9 +138,8 @@ getX <- function(result, group = vector(), dataset = 1, file = "", lreturnA = FA
     if (lreturnA || lreturnC) {
       group <- list(c(1, dataset))
       XList <- getKinConcen(group, multimodel, t, oneDS = 1, lreturnA = lreturnA, lreturnC = lreturnC)
-    }
-    #        XList <- getKinConcen(group, multimodel, t, oneDS = place,lreturnA=lreturnA,lreturnC=lreturnC)
-    else {
+      #        XList <- getKinConcen(group, multimodel, t, oneDS = place,lreturnA=lreturnA,lreturnC=lreturnC)
+    } else {
       XList <- getConToPlot(
         getKinConcen(group, multimodel, t, oneDS = place),
         m[[dataset]]@cohspec, m[[dataset]]@cohcol

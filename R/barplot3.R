@@ -258,178 +258,176 @@ barplot3 <-
       names.side <- 2
     }
 
-    if (plot) ## -------- Plotting :
-      {
-        opar <-
-          if (horiz) {
-            par(xaxs = "i", xpd = xpd)
-          } else {
-            par(yaxs = "i", xpd = xpd)
-          }
-        on.exit(par(opar))
+    if (plot) { ## -------- Plotting :
+      opar <-
+        if (horiz) {
+          par(xaxs = "i", xpd = xpd)
+        } else {
+          par(yaxs = "i", xpd = xpd)
+        }
+      on.exit(par(opar))
 
-        # If add = FALSE open new plot window
-        # else allow for adding new plot to existing window
-        if (!add) {
-          plot.new()
-          plot.window(xlim, ylim, log = log, ...)
+      # If add = FALSE open new plot window
+      # else allow for adding new plot to existing window
+      if (!add) {
+        plot.new()
+        plot.window(xlim, ylim, log = log, ...)
+      }
+
+      # Execute the panel.first expression. This will work here
+      # even if 'add = TRUE'
+      panel.first
+
+      # Set plot region coordinates
+      usr <- par("usr")
+
+      # adjust par("usr") values if log scale(s) used
+      if (logx) {
+        usr[1] <- 10^usr[1]
+        usr[2] <- 10^usr[2]
+      }
+
+      if (logy) {
+        usr[3] <- 10^usr[3]
+        usr[4] <- 10^usr[4]
+      }
+
+      # if prcol specified, set plot region color
+      if (!missing(prcol)) {
+        rect(usr[1], usr[3], usr[2], usr[4], col = prcol)
+      }
+
+      # if plot.grid, draw major y-axis lines if vertical or x axis if horizontal
+      # R V1.6.0 provided axTicks() as an R equivalent of the C code for
+      # CreateAtVector.  Use this to determine default axis tick marks when log
+      # scale used to be consistent when no grid is plotted.
+      # Otherwise if grid.inc is specified, use pretty()
+
+      if (plot.grid) {
+        par(xpd = FALSE)
+
+        if (is.null(grid.inc)) {
+          if (horiz) {
+            grid <- axTicks(1)
+            abline(v = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
+          } else {
+            grid <- axTicks(2)
+            abline(h = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
+          }
+        } else {
+          if (horiz) {
+            grid <- pretty(xlim, n = grid.inc)
+            abline(v = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
+          } else {
+            grid <- pretty(ylim, n = grid.inc)
+            abline(h = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
+          }
         }
 
-        # Execute the panel.first expression. This will work here
-        # even if 'add = TRUE'
-        panel.first
+        par(xpd = xpd)
+      }
 
-        # Set plot region coordinates
-        usr <- par("usr")
+      xyrect <- function(x1, y1, x2, y2, horizontal = TRUE, ...) {
+        if (horizontal) {
+          rect(x1, y1, x2, y2, ...)
+        } else {
+          rect(y1, x1, y2, x2, ...)
+        }
+      }
 
-        # adjust par("usr") values if log scale(s) used
+      if (beside) {
+        xyrect(rectbase + offset, w.l, c(height) + offset, w.r,
+          horizontal = horiz,
+          angle = angle, density = density, col = col, border = border
+        )
+      } else {
+        for (i in 1:NC) {
+          xyrect(height[1:NR, i] + offset[i], w.l[i], height[-1, i] + offset[i], w.r[i],
+            horizontal = horiz, angle = angle, density = density,
+            col = col, border = border
+          )
+        }
+      }
+
+      # Execute the panel.last expression here
+      panel.last
+
+      if (plot.ci) {
+        # CI plot width = barwidth / 2
+        ci.width <- width / 4
+
+        if (horiz) {
+          segments(ci.l, w.m, ci.u, w.m, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(ci.l, w.m - ci.width, ci.l, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(ci.u, w.m - ci.width, ci.u, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+        } else {
+          segments(w.m, ci.l, w.m, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(w.m - ci.width, ci.l, w.m + ci.width, ci.l, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(w.m - ci.width, ci.u, w.m + ci.width, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+        }
+      }
+
+      if (axisnames && !is.null(names.arg)) { # specified or from {col}names
+        at.l <-
+          if (length(names.arg) != length(w.m)) {
+            if (length(names.arg) == NC) { # i.e. beside (!)
+              colMeans(w.m)
+            } else {
+              stop("incorrect number of names")
+            }
+          } else {
+            w.m
+          }
+
+        axis(names.side,
+          at = at.l[seq(1, length(at.l), by = names.by)],
+          labels = names.arg[seq(1, length(at.l), by = names.by)],
+          lty = axis.lty, cex.axis = cex.names, ...
+        )
+      }
+
+      if (!is.null(legend.text)) {
+        legend.col <- rep(col, length = length(legend.text))
+
+        if ((horiz & beside) || (!horiz & !beside)) {
+          legend.text <- rev(legend.text)
+          legend.col <- rev(legend.col)
+          density <- rev(density)
+          angle <- rev(angle)
+        }
+
+        # adjust legend x and y values if log scaling in use
         if (logx) {
-          usr[1] <- 10^usr[1]
-          usr[2] <- 10^usr[2]
+          legx <- usr[2] - ((usr[2] - usr[1]) / 10)
+        } else {
+          legx <- usr[2] - xinch(0.1)
         }
 
         if (logy) {
-          usr[3] <- 10^usr[3]
-          usr[4] <- 10^usr[4]
-        }
-
-        # if prcol specified, set plot region color
-        if (!missing(prcol)) {
-          rect(usr[1], usr[3], usr[2], usr[4], col = prcol)
-        }
-
-        # if plot.grid, draw major y-axis lines if vertical or x axis if horizontal
-        # R V1.6.0 provided axTicks() as an R equivalent of the C code for
-        # CreateAtVector.  Use this to determine default axis tick marks when log
-        # scale used to be consistent when no grid is plotted.
-        # Otherwise if grid.inc is specified, use pretty()
-
-        if (plot.grid) {
-          par(xpd = FALSE)
-
-          if (is.null(grid.inc)) {
-            if (horiz) {
-              grid <- axTicks(1)
-              abline(v = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
-            } else {
-              grid <- axTicks(2)
-              abline(h = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
-            }
-          } else {
-            if (horiz) {
-              grid <- pretty(xlim, n = grid.inc)
-              abline(v = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
-            } else {
-              grid <- pretty(ylim, n = grid.inc)
-              abline(h = grid, lty = grid.lty, lwd = grid.lwd, col = grid.col)
-            }
-          }
-
-          par(xpd = xpd)
-        }
-
-        xyrect <- function(x1, y1, x2, y2, horizontal = TRUE, ...) {
-          if (horizontal) {
-            rect(x1, y1, x2, y2, ...)
-          } else {
-            rect(y1, x1, y2, x2, ...)
-          }
-        }
-
-        if (beside) {
-          xyrect(rectbase + offset, w.l, c(height) + offset, w.r,
-            horizontal = horiz,
-            angle = angle, density = density, col = col, border = border
-          )
+          legy <- usr[4] - ((usr[4] - usr[3]) / 10)
         } else {
-          for (i in 1:NC) {
-            xyrect(height[1:NR, i] + offset[i], w.l[i], height[-1, i] + offset[i], w.r[i],
-              horizontal = horiz, angle = angle, density = density,
-              col = col, border = border
-            )
-          }
+          legy <- usr[4] - yinch(0.1)
         }
 
-        # Execute the panel.last expression here
-        panel.last
+        legend(legx, legy,
+          legend = legend.text, angle = angle, density = density,
+          fill = legend.col, xjust = 1, yjust = 1
+        )
+      }
 
-        if (plot.ci) {
-          # CI plot width = barwidth / 2
-          ci.width <- width / 4
+      title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
 
-          if (horiz) {
-            segments(ci.l, w.m, ci.u, w.m, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-            segments(ci.l, w.m - ci.width, ci.l, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-            segments(ci.u, w.m - ci.width, ci.u, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          } else {
-            segments(w.m, ci.l, w.m, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-            segments(w.m - ci.width, ci.l, w.m + ci.width, ci.l, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-            segments(w.m - ci.width, ci.u, w.m + ci.width, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          }
+      # if axis is to be plotted, adjust for grid "at" values
+      if (axes) {
+        if (plot.grid) {
+          axis(if (horiz) 1 else 2, at = grid, cex.axis = cex.axis, ...)
+        } else {
+          axis(if (horiz) 1 else 2, cex.axis = cex.axis, ...)
         }
+      }
 
-        if (axisnames && !is.null(names.arg)) # specified or from {col}names
-          {
-            at.l <-
-              if (length(names.arg) != length(w.m)) {
-                if (length(names.arg) == NC) { # i.e. beside (!)
-                  colMeans(w.m)
-                } else {
-                  stop("incorrect number of names")
-                }
-              } else {
-                w.m
-              }
-
-            axis(names.side,
-              at = at.l[seq(1, length(at.l), by = names.by)],
-              labels = names.arg[seq(1, length(at.l), by = names.by)],
-              lty = axis.lty, cex.axis = cex.names, ...
-            )
-          }
-
-        if (!is.null(legend.text)) {
-          legend.col <- rep(col, length = length(legend.text))
-
-          if ((horiz & beside) || (!horiz & !beside)) {
-            legend.text <- rev(legend.text)
-            legend.col <- rev(legend.col)
-            density <- rev(density)
-            angle <- rev(angle)
-          }
-
-          # adjust legend x and y values if log scaling in use
-          if (logx) {
-            legx <- usr[2] - ((usr[2] - usr[1]) / 10)
-          } else {
-            legx <- usr[2] - xinch(0.1)
-          }
-
-          if (logy) {
-            legy <- usr[4] - ((usr[4] - usr[3]) / 10)
-          } else {
-            legy <- usr[4] - yinch(0.1)
-          }
-
-          legend(legx, legy,
-            legend = legend.text, angle = angle, density = density,
-            fill = legend.col, xjust = 1, yjust = 1
-          )
-        }
-
-        title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
-
-        # if axis is to be plotted, adjust for grid "at" values
-        if (axes) {
-          if (plot.grid) {
-            axis(if (horiz) 1 else 2, at = grid, cex.axis = cex.axis, ...)
-          } else {
-            axis(if (horiz) 1 else 2, cex.axis = cex.axis, ...)
-          }
-        }
-
-        invisible(w.m)
-      } else {
+      invisible(w.m)
+    } else {
       w.m
     }
   }

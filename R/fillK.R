@@ -1,7 +1,6 @@
 "fillK" <- function(theta, kinscal, kmat, fixedkmat, kinscalspecial,
-                    kinscalspecialspec, nocolsums = FALSE)
-# fillK
-{
+                    kinscalspecialspec, nocolsums = FALSE) {
+  # fillK
   if (!fixedkmat) {
     if (length(kinscalspecialspec) > 0) {
       special <- TRUE

@@ -39,7 +39,9 @@
     }
     if (numV > 0) {
       if (numV == 1) {
-        subtr <- as.matrix(as.matrix(svdResid$left[, 1:numV]) * svdResid$value[1:numV]) %*% t(as.matrix(svdResid$right[1:numV, ]))
+        subtr <- as.matrix(
+          as.matrix(svdResid$left[, 1:numV]) * svdResid$value[1:numV]
+        ) %*% t(as.matrix(svdResid$right[1:numV, ]))
       } else {
         leftscaled <- svdResid$left[, 1:numV]
         for (i in 1:numV) {

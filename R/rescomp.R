@@ -77,8 +77,14 @@
         for (i in 1:nexp) {
           nocolsums <- length(m[[1]]@lightregimespec) > 0 # lightdiff (see compModel.R)
           eig <- fullKF(
-            currTheta[[i]]@kinpar, currTheta[[i]]@kinscal, m[[1]]@kmat, currTheta[[i]]@jvec, m[[1]]@fixedkmat, m[[1]]@kinscalspecial,
-            m[[1]]@kinscalspecialspec, nocolsums
+            currTheta[[i]]@kinpar,
+            currTheta[[i]]@kinscal,
+            m[[1]]@kmat,
+            currTheta[[i]]@jvec,
+            m[[1]]@fixedkmat,
+            m[[1]]@kinscalspecial,
+            m[[1]]@kinscalspecialspec,
+            nocolsums
           )
           currTheta[[i]]@eigenvaluesK <- eig$values
         }

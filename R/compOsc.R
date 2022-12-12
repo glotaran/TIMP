@@ -18,7 +18,11 @@
             w0 <- oscpar[3 + (i - 1) * 3] # w0 or omega_0 (frequency)
             heavyside <- rep(1, length(tt))
             heavyside[which(tt < 0)] <- 0
-            cohcols[, i] <- heavyside * Re((-exp(tt * (-g - sqrt(as.complex(g^2 - w0^2)))) + exp(tt * (-g + sqrt(as.complex(g^2 - w0^2))))) / (2 * sqrt(as.complex(g^2 - w0^2))))
+            cohcols[, i] <- heavyside * Re(
+              (-exp(tt * (-g - sqrt(as.complex(g^2 - w0^2)))) +
+                exp(tt * (-g + sqrt(as.complex(g^2 - w0^2)))))
+              / (2 * sqrt(as.complex(g^2 - w0^2)))
+            )
           }
         }
       } else {

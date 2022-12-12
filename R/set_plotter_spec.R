@@ -52,7 +52,16 @@ setMethod(
         xr <- rev(m[[i]]@x)
         x2lab <- xr[seq(1, length(xr), length = 10)]
         x2at <- m[[i]]@x[seq(1, length(xr), length = 10)]
-        image(x = m[[i]]@x2, y = m[[i]]@x, z = datarev, ylab = plotoptions@xlab, yaxt = "n", main = "Data", xlab = plotoptions@ylab, col = tim.colors())
+        image(
+          x = m[[i]]@x2,
+          y = m[[i]]@x,
+          z = datarev,
+          ylab = plotoptions@xlab,
+          yaxt = "n",
+          main = "Data",
+          xlab = plotoptions@ylab,
+          col = tim.colors()
+        )
         axis(2, at = x2at, labels = x2lab)
       }
     }

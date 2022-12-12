@@ -20,7 +20,7 @@
       kinscalspecialspec,
       nocolsums = TRUE
     )
-    eigenlijk1 <- eigen(K1, only.values = F)
+    eigenlijk1 <- eigen(K1, only.values = FALSE)
     V1 <- eigenlijk1$vectors
     gamma1 <- solve(V1)
     k1 <- -eigenlijk1$values
@@ -33,7 +33,7 @@
       kinscalspecialspec,
       nocolsums = TRUE
     )
-    eigenlijk2 <- eigen(K2, only.values = F)
+    eigenlijk2 <- eigen(K2, only.values = FALSE)
     V2 <- eigenlijk2$vectors
     gamma2 <- solve(V2)
     k2 <- -eigenlijk2$values

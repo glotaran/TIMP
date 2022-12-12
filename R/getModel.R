@@ -15,7 +15,9 @@
       slot(modellist[[i]], sl) <- slot(data[[i]], sl)
     } # TODO: avoid data duplication!
   }
-  # if ( (currModel@modelspec)[[1]]@dispmu && length((currModel@modelspec)[[1]]@parmu[[1]])>0 && length((currModel@modelspec)[[1]]@lambdac)==0){
+  # if ( (currModel@modelspec)[[1]]@dispmu &&
+  #     length((currModel@modelspec)[[1]]@parmu[[1]])>0 &&
+  #      length((currModel@modelspec)[[1]]@lambdac)==0){
   #  try(
   #    (currModel@modelspec)[[1]]@lambdac <- slot((currModel@data)[[1]],(currModel@modelspec)[[1]]@clpType)[[1]]
   #  )

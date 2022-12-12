@@ -22,19 +22,21 @@
 
     if (opt@algorithm == "nls") {
       if (lprogress) {
-        nlsprogress <- capture.output(currModel@fit@nlsres$onls <- nls(~ rescomp(theta = t, d = d, currModel = currModel),
-          data = list(d = vector(), currModel = currModel),
-          control =
-            nls.control(
-              maxiter = iter,
-              minFactor = opt@minFactor,
-              warnOnly = TRUE,
-              printEval = FALSE
-            ),
-          start = list(t = theta),
-          algorithm = opt@nlsalgorithm,
-          trace = TRUE
-        ))
+        nlsprogress <- capture.output(
+          currModel@fit@nlsres$onls <- nls(~ rescomp(theta = t, d = d, currModel = currModel),
+            data = list(d = vector(), currModel = currModel),
+            control =
+              nls.control(
+                maxiter = iter,
+                minFactor = opt@minFactor,
+                warnOnly = TRUE,
+                printEval = FALSE
+              ),
+            start = list(t = theta),
+            algorithm = opt@nlsalgorithm,
+            trace = TRUE
+          )
+        )
       } else {
         currModel@fit@nlsres$onls <- nls(~ rescomp(theta = t, d = d, currModel = currModel),
           data = list(d = vector(), currModel = currModel),

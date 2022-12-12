@@ -27,7 +27,7 @@
       cnt <- cnt + length(diffs$start)
     } else {
       if (diffs$rel == "multilin") {
-        newpar <- thetaClass@prel[cnt] + multiLin(thetaClass, diffs, thetaClass@prel[(cnt + 1):(cnt + length(diffs$start) - 1)])
+        newpar <- thetaClass@prel[cnt] + multiLin(thetaClass, diffs, thetaClass@prel[(cnt + 1):(cnt + length(diffs$start) - 1)]) # nolint: line_length_linter
         if (length(diffs$ind1) == 1) {
           slot(thetaClass, diffs$what1)[diffs$ind1] <- newpar
         }

@@ -122,7 +122,8 @@ breakdown = list(plot=c(643.50, 658.62, 677.5))))
 ##############################
 # This removes the files that were generated in this example
 # (do not run this code if you wish to inspect the output)
-file_list_cleanup = c('den1_paramEst.txt', 'den2_paramEst.txt', 'den3_paramEst.txt')
+file_list_cleanup = c('den1_paramEst.txt', 'den2_paramEst.txt', 'den3_paramEst.txt',
+  Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
 
 # Iterate over the files and delete them if they exist
 for (f in file_list_cleanup) {

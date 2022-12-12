@@ -350,9 +350,19 @@ matplot(wavelengths, specRes, type="b", col=1,pch=21, bg=1:5,
 ## see help(getResults) for how to get more results information from
 ## kinetic_fit
 
-## cleanup
-file.remove("_paramEst.txt")
-file.remove("Rplots.pdf")
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c(Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}
+
 }
 
 \references{

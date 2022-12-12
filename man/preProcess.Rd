@@ -243,7 +243,8 @@ file_list_cleanup = c('h20_paramEst.txt', 'h20_rawconcen_dataset_1.txt',
   'h20_std_err_clp_2.txt', 'h20_std_err_clp_3.txt',
   'err_paramEst.txt', 'err_spec_dataset_1.txt', 'err_spec_dataset_2.txt',
   'err_spec_dataset_3.txt', 'err_std_err_clp_1.txt',
-  'err_std_err_clp_2.txt', 'err_std_err_clp_3.txt')
+  'err_std_err_clp_2.txt', 'err_std_err_clp_3.txt',
+  Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
 
 # Iterate over the files and delete them if they exist
 for (f in file_list_cleanup) {

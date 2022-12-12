@@ -180,7 +180,8 @@ par(oldpar)
 # (do not run this code if you wish to inspect the output)
 file_list_cleanup = c('globalDA_paramEst.txt', 'globalDA_spec_dataset_1.txt',
   'globalDA_spec_dataset_2.txt', 'globalD_paramEst.txt',
-  'globalD_spec_dataset_1.txt', 'globalD_spec_dataset_2.txt')
+  'globalD_spec_dataset_1.txt', 'globalD_spec_dataset_2.txt',
+  Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
 
 # Iterate over the files and delete them if they exist
 for (f in file_list_cleanup) {

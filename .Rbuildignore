@@ -5,6 +5,7 @@
 ^\.vscode
 ^\.github$
 ^\.builds
+^\.lintr$
 README.md
 Rplots.pdf
 _paramEst.txt

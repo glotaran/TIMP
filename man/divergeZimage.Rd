@@ -1,7 +1,7 @@
 \name{divergeZimage}
 \alias{divergeZimage}
 \title{Plots a matrix with a diverging palette, with the center value of
-the palettle possible to set}
+the palette possible to set}
 \description{An image plot of a matrix is a way of visualizing data;
   when the data represents a quantity like transient absorption, where
   negative values represent a different phenomena than positive values,

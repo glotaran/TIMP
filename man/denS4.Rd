@@ -13,7 +13,7 @@ data("denS5")
   \code{denS4} is an object of class \code{dat} representing absorption
   data.
   \code{denS5} is an object of class \code{dat} representing absorption
-  data meausured at half the laser intensity as compared to the
+  data measured at half the laser intensity as compared to the
   intensity used to measure \code{denS4}.
 }
 \references{This data was described in

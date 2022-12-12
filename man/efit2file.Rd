@@ -16,7 +16,7 @@ efit2file(filename, skip = 2, numcol, nrows=vector())
   of spectra in the file; for instance \code{nrows = c(256,256,256)}
   would indicate that the file stores spectra associated with 3
   datasets, each of which contains 256 wavelengths.  If \code{nrows} is
-  not given, then a single file containing all data is writen. }
+  not given, then a single file containing all data is written. }
 }
 \value{No return value, called for side effects}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}

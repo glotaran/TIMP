@@ -86,3 +86,17 @@ makeps = "visible", xlab = "time (ps)",
 ylab = "wavelength", stderrclp = TRUE, 
 plotkinspec = TRUE, kinspecerr = TRUE,
 selectedtraces = seq(1,256,by=20)))
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c(Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}

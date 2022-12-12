@@ -1,43 +1,46 @@
 Package: TIMP
-Version: 1.13.6
 Title: Fitting Separable Nonlinear Models in Spectroscopy and Microscopy
-Authors@R: c(person(given="Katharine M.",
-                    family="Mullen",
-                    role = "aut",
-                    comment="Original package creator"
-                    ),
-             person(given="Joris",
-                    family="Snellenburg",
-                    role = c("cre","ctb"),
-                    email = "j.snellenburg@vu.nl",
-                    comment = c(ORCID = "0000-0002-1428-0221")
-                    ),
-             person(given="Sergey P.",
-                    family="Laptenok",
-                    role = "ctb"
-                    ),
-             person(given="David",
-                    family="Nicolaides",
-                    role = "ctb"
-                    ),
-             person(given="Ivo H.M.", "van Stokkum",
-                    role = "aut",
-                    email = "i.h.m.van.stokkum@vu.nl",
-                    comment = c(ORCID = "0000-0002-6143-2021")
-                    )
-             )
-Depends: R (>= 2.10.0), methods, fields (>= 4.1)
-Imports: colorspace, deSolve, gclus, nnls (>= 1.1), graphics, grDevices, gplots,
-    minpack.lm (>= 1.1-1), splines, stats, utils
-Description: A problem solving environment (PSE) for fitting separable nonlinear
-    models to measurements arising in physics and chemistry experiments,
-    as described by Mullen & van Stokkum (2007) <doi:10.18637/jss.v018.i03>
-    for its use in fitting time resolved spectroscopy data, and as described by
-    Laptenok et al. (2007) <doi:10.18637/jss.v018.i08> for its use in fitting
-    Fluorescence Lifetime Imaging Microscopy (FLIM) data,
-    in the study of Förster Resonance Energy Transfer (FRET).
+Version: 1.13.6
+Authors@R: c(
+    person("Katharine M.", "Mullen", role = "aut",
+           comment = "Original package creator"),
+    person("Joris", "Snellenburg", , "j.snellenburg@vu.nl", role = c("cre", "ctb"),
+           comment = c(ORCID = "0000-0002-1428-0221")),
+    person("Sergey P.", "Laptenok", role = "ctb"),
+    person("David", "Nicolaides", role = "ctb"),
+    person("Ivo H.M.", "van Stokkum", , "i.h.m.van.stokkum@vu.nl", role = "aut",
+           comment = c(ORCID = "0000-0002-6143-2021"))
+  )
+Description: A problem solving environment (PSE) for fitting separable
+    nonlinear models to measurements arising in physics and chemistry
+    experiments, as described by Mullen & van Stokkum (2007)
+    <doi:10.18637/jss.v018.i03> for its use in fitting time resolved
+    spectroscopy data, and as described by Laptenok et al. (2007)
+    <doi:10.18637/jss.v018.i08> for its use in fitting Fluorescence
+    Lifetime Imaging Microscopy (FLIM) data, in the study of Förster
+    Resonance Energy Transfer (FRET).  `TIMP` also serves as the
+    computation backend for the `GloTarAn` software, a graphical user
+    interface for the package, as described in Snellenburg et al. (2012)
+    <doi:10.18637/jss.v049.i03>.
 License: GPL (>= 2)
 URL: https://github.com/glotaran/TIMP
 BugReports: https://github.com/glotaran/TIMP/issues
+Depends:
+    fields (>= 4.1),
+    methods,
+    R (>= 2.10.0)
+Imports:
+    colorspace,
+    deSolve,
+    gclus,
+    gplots,
+    graphics,
+    grDevices,
+    minpack.lm (>= 1.1-1),
+    nnls (>= 1.1),
+    splines,
+    stats,
+    utils
 Encoding: UTF-8
+Language: en-US
 RoxygenNote: 7.2.3

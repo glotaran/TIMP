@@ -59,4 +59,18 @@ makeps = "explinked", stderrclp = TRUE,
 title = "Exponential parameterization of time dep., linked rates",
 plotkinspec = TRUE, kinspecerr = TRUE, superimpose = 1,
 selectedspectra = seq(1, psi_1_sampled@nt, by=7),
-xlab = "time", ylab = "wavelength")) 
+xlab = "time", ylab = "wavelength"))
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c( Sys.glob("*paramEst.txt"), Sys.glob("*.ps*"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}

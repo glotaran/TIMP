@@ -6,7 +6,7 @@ alongside a plot showing parameter estimates}
 \description{Makes a summary plot of spectra associated with kinetic components
 alongside a plot showing parameter estimates for, by default, kinetic
 parameters.  If the analysis had more parameters in the \code{addEst} slot
-of the arguement \code{opt}, then more parameters are displayed.
+of the argument \code{opt}, then more parameters are displayed.
 Note that this summary leaves out the spectra associated with coherent
 artifact or scatter.
 }

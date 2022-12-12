@@ -23,7 +23,7 @@ k <- c(kA = 0.5, k2C = 1)
 
 ## stoichiometry matrices as per
 ## Puxty, G., Maeder, M., and Hungerbuhler, K. (2006) Tutorial on the fitting
-## of kinetics models to mulivariate spectroscopic measurements with
+## of kinetics models to multivariate spectroscopic measurements with
 ## non-linear least-squares regression, Chemometrics and Intelligent
 ## Laboratory Systems 81, 149-164.
 
@@ -50,7 +50,7 @@ kinetic_data <- dat(psi.df=Psi_q , x = times, nt = length(times),
  x2 = wavelengths, nl = length(wavelengths))
 
 ##############################
-## DEFINE MODEL 
+## DEFINE MODEL
 ##############################
 
 ## starting values
@@ -59,12 +59,12 @@ kstart <- c(kA = 1, k2C = 0.5)
 ## model definition for 2nd order kinetics
 kinetic_model <- initModel(mod_type = "kin", seqmod = FALSE, kinpar = kstart,
                            numericalintegration = TRUE,
-                           initialvals = cstart, 
-                           reactantstoichiometrymatrix = rsmatrix, 
+                           initialvals = cstart,
+                           reactantstoichiometrymatrix = rsmatrix,
                            stoichiometrymatrix = smatrix )
 
 ##############################
-## FIT INITIAL MODEL 
+## FIT INITIAL MODEL
 ## adding constraints to non-negativity of the
 ## spectra via the opt option nnls=TRUE
 ##############################
@@ -79,15 +79,15 @@ parEst(kinetic_fit)
 
 ## make a png of various results
 
-## concentrations 
+## concentrations
 
 conRes <- getX(kinetic_fit)
 
 matplot(times, conRes, type="b", col=1,pch=21, bg=1:5, xlab="time (sec)",
         ylab="concentrations", main="Concentrations (2nd order kinetics)")
-                        
-                        
-## spectra 
+
+
+## spectra
 
 specRes <- getCLP(kinetic_fit)
 
@@ -98,3 +98,17 @@ matplot(wavelengths, specRes, type="b", col=1,pch=21, bg=1:5,
 
 ## see help(getResults) for how to get more results information from
 ## kinetic_fit
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c(Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}

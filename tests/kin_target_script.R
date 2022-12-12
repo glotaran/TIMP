@@ -95,3 +95,17 @@ opt=kinopt(iter=1, linrange = 20,
 makeps = "ser", plotkinspec = TRUE,
 selectedtraces = seq(1, delDatP@nl, by=20),
 xlab = "time (ps)", ylab = "wavelength"))
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c(Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
+}

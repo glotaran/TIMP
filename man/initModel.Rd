@@ -116,7 +116,24 @@ makeps = "den3", selectedtraces = c(1,5,10), plotkinspec =TRUE,
 stderrclp = TRUE, kinspecerr=TRUE, output="pdf",
 xlab = "time (ps)", ylab = "wavelength",
 breakdown = list(plot=c(643.50, 658.62, 677.5))))
+
+} # end donttest
+
+##############################
+## CLEANUP GENERATED FILES
+##############################
+# This removes the files that were generated in this example
+# (do not run this code if you wish to inspect the output)
+file_list_cleanup = c('den1_paramEst.txt', 'den2_paramEst.txt', 'den3_paramEst.txt',
+  Sys.glob("*paramEst.txt"), Sys.glob("*.ps"), Sys.glob("Rplots*.pdf"))
+
+# Iterate over the files and delete them if they exist
+for (f in file_list_cleanup) {
+  if (file.exists(f)) {
+    unlink(f)
+  }
 }
+
 }
 \details{For examples, see the help files for \code{\link{dat-class}} and
 \code{\link{fitModel}}}

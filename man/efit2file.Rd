@@ -22,4 +22,3 @@ efit2file(filename, skip = 2, numcol, nrows=vector())
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{readData}} }
 \keyword{file}
-

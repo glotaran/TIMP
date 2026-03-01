@@ -13,7 +13,7 @@ importFrom("stats", "IQR", "approxfun", "coef", "deviance", "dnorm",
              "numericDeriv", "optim", "predict", "printCoefmat", "pt",
              "quantile", "rnorm", "symnum")
 importFrom("utils", "capture.output", "read.table", "tail",
-             "write.table")             
+             "write.table")
 importFrom("fields","image.plot","tim.colors","two.colors")
 importFrom("nnls","nnls","nnnpls")
 importFrom("deSolve","lsoda")
@@ -32,7 +32,7 @@ exportClasses(dat, kin, spec, mass, amp,
 
 exportMethods(getClpindepX, residPart, plotter)
 
-export(readData, preProcess, baseIRF, initModel, 
+export(readData, preProcess, baseIRF, initModel,
        fitModel, examineFit, sumKinSpecEst)
 
 export(dat, kin, spec, mass, amp, theta, multimodel, res, multitheta,

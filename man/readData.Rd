@@ -23,4 +23,3 @@ an object of class \code{dat}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{preProcess}} }
 \keyword{file}
-

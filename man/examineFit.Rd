@@ -28,4 +28,3 @@ used to examine results.
 \seealso{ \code{\link{fitModel}}, \code{\link{opt} }}
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \keyword{file }
-

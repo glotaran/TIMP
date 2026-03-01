@@ -379,4 +379,3 @@ void r_ShiftCurve  (double *source, double *curve, double *shiftparam,
   }
 
 }
-

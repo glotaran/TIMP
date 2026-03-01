@@ -60,4 +60,3 @@ divergeZimage(exd, lin=10, title="plot linearly to 10")
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{dat}} }
 \keyword{hplot}
-

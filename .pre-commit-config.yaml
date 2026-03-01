@@ -1,0 +1,20 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: '\.(Rd|txt)$'
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-case-conflict
+      - id: check-added-large-files
+      - id: fix-byte-order-marker
+
+# Optional R linting (to be enabled some point in the future):
+# - repo: https://github.com/lorenzwalthert/precommit
+#   rev: v0.4.3
+#   hooks:
+#     - id: lintr

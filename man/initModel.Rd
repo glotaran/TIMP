@@ -142,4 +142,3 @@ for (f in file_list_cleanup) {
 \code{\link{fitModel}}}
 
 \keyword{file}
-

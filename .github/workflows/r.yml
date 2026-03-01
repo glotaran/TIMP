@@ -44,6 +44,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      # This workflow uses actions/checkout@v4; other workflows (e.g. lint) may still use @v3.
       - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2

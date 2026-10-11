@@ -18,7 +18,7 @@ Objects can be created by calls of the form \code{new("kinopt", ...)} or
      traces are desired under a kinetic model }
      \item{\code{breakdown}:}{Object of class \code{"list"} with the
 following elements:
-  \itemize{
+  \describe{
   \item{plot}{vector of \code{x2} values to plot the breakdown for.
   These values be specified in
   a fuzzy way:  an \code{x2} value within \code{abs(x2[1] - x2[2])/100}

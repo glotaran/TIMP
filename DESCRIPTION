@@ -1,6 +1,6 @@
 Package: TIMP
 Title: Fitting Separable Nonlinear Models in Spectroscopy and Microscopy
-Version: 1.13.6
+Version: 1.13.7
 Authors@R: c(
     person("Katharine M.", "Mullen", role = "aut",
            comment = "Original package creator"),

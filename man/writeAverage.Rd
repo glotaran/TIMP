@@ -32,4 +32,3 @@ writeAverage(filename, ntimes, nwave, scans,
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{readData}} }
 \keyword{file}
-

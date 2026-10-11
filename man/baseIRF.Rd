@@ -27,4 +27,3 @@ lines(irfvec_corrected, col=2)
 }
  
 \keyword{file}
-

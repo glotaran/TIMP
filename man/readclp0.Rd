@@ -29,4 +29,3 @@ constraint, e.g., \code{1 218.800000000000011 220.099999999999994}.
 \author{Katharine M. Mullen, Ivo H. M. van Stokkum}
 \seealso{ \code{\link{initModel}} }
 \keyword{file}
-

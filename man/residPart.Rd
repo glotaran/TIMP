@@ -42,4 +42,3 @@ conditionally linear parameters.
 \keyword{methods}
 \seealso{ \code{\link{dat-class}}, \code{\link{spec-class}},
 \code{\link{kin-class}} } 
-

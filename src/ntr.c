@@ -2,6 +2,13 @@
 #include <Rmath.h>
 #include <Rdefines.h>
 
+/* The code from here up to r_calcCirf (polevl, p1evl, erfc, erf, erfce and
+   the coefficient tables P-U, MAXLOG) is taken from the Cephes Math Library
+   by Stephen L. Moshier, netlib cprob/ndtr.c and cprob/polevl.c.
+   Copyright 1984, 1987, 1988, 1992, 2000 by Stephen L. Moshier.
+   Cephes terms: "What you see here may be used freely but it comes with no
+   support or guarantee." */
+
 /* Define this macro to suppress error propagation in exp(x^2)
    by using the expx2 function.  The tradeoff is that doing so
    generates two calls to the exponential function instead of one.  */

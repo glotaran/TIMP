@@ -1,6 +1,6 @@
-citEntry(
-  entry = "Article",
-  author = personList(
+bibentry(
+  bibtype = "Article",
+  author = c(
     as.person("Katharine M. Mullen"),
     as.person("Ivo H. M. van Stokkum")
   ),

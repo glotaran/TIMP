@@ -20,7 +20,7 @@ Objects can be created by calls of the form \code{new("fit", ...)}.
 	     that they were specified. }
 	   \item{\code{nlsres}:}{Object of class \code{"list"} containing 
 	     named elements 
-	     \itemize{ 
+	     \describe{ 
 	       \item{onls}{output of the call to \code{nls} used in model optimization.} 
 	       \item{sumonls}{result of call \code{summary(onls)}  }
 	       

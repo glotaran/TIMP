@@ -43,7 +43,7 @@ most are most often made by invoking another function such as
 	     \code{c(first_x, last_x, first_x2, last_x2, weight)},
   where each vector is of length 5 and
   specifies an interval in which to weight the data.
-  \itemize{
+  \describe{
   \item{first_x: }{first(absolute, not an index) \code{x} to weight}
   \item{last_x: }{last (absolute, not an index) \code{x} to weight}
   \item{first_x2: }{first (absolute, not an index)  \code{x2} to weight}
@@ -129,7 +129,7 @@ list(to=2, from=1, low=10000, high=100)})}
     parameters governing the clp equality constraints specified in \code{clpequspec}}
   \item{\code{prelspec}:}{*** Object of class \code{"list"}  list of lists to specify the functional
   relationship between parameters, each of which has elements
-  \itemize{
+  \describe{
   \item{what1}{character string describing the parameter type to relate,
   e.g., \code{"kinpar"}}
   \item{what2}{the parameter type on which the relation is based; usually

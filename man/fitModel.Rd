@@ -19,7 +19,7 @@ modeldiffs = list(), opt = opt(),lprogress=FALSE )
   use the first model given in \code{modspec}  }
   \item{modeldiffs}{ list whose elements specify any dataset-specific
   model differences.
-  \itemize{
+  \describe{
 \item{linkclp}{ list of vectors containing the indices of datasets.  If the
   two dataset indices are in the same vector, their conditionally linear
   parameters will be equated if they represent the same condition (e.g., a
@@ -70,7 +70,7 @@ list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}.
   parameters to remove from
   parameter groups for a given dataset. each sublist has
   named elements
-   \itemize{
+   \describe{
    \item{what}{ character string naming parameter type, e.g., "kinpar"}
    \item{dataset}{ dataset index in which parameter group is to be removed}
    \item{ind}{ vector of indices into parameter vector or list, e.g.,
@@ -80,7 +80,7 @@ list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}.
   \item{add}{ list of lists specifying individual
   parameters to add to parameter groups for a given dataset. each sublist has
   named elements
-   \itemize{
+   \describe{
    \item{what}{ character string naming parameter type, e.g., "kinpar"}
    \item{dataset}{ dataset index in which parameter group is to change}
    \item{start}{ starting value for added parameter}
@@ -91,7 +91,7 @@ list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}.
   \item{change}{list of lists specifying entire parameter groups to change
   for a given dataset.
   each sublist has named elements
-  \itemize{
+  \describe{
    \item{what}{ character string naming parameter type, e.g., "kinpar"}
    \item{dataset}{ dataset index in which parameter group is to change}
    \item{spec}{ new specification that in initModel would follow "what",
@@ -100,7 +100,7 @@ list(what = "kinpar", ind = 4, dataset = 2, start= .0159))}.
   \item{rel}{
   list of lists specifying parameters to relate between datasets
   each sublist has named elements
-  \itemize{
+  \describe{
     \item{what1}{ character string naming parameter type to be determined in
       relation to some other parameter type , e.g., "kinpar"}
     \item{what2}{ character string naming parameter type on which another
@@ -135,7 +135,6 @@ optimize nonlinear parameters and to solve for conditionally linear parameters
 (clp) via the partitioned variable projection algorithm.
 }
 \value{ A list is returned containing the following elements:
-\itemize{
   \item{currTheta}{ is a list of objects
     of class \code{theta} whose elements contain the parameter estimates
     associated with each dataset modeled.}
@@ -147,7 +146,7 @@ function; it is used to regenerate plots and other output by the
 \code{examineFit}  function}
 \item{nlsprogress}{ if lprogress = TRUE textual output of the fitting progress
 is returned as an array of strings}
-}}
+}
 
 \references{Mullen KM, van Stokkum IHM (2007).
 ``TIMP: an R package for modeling

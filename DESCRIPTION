@@ -9,7 +9,9 @@ Authors@R: c(
     person("Sergey P.", "Laptenok", role = "ctb"),
     person("David", "Nicolaides", role = "ctb"),
     person("Ivo H.M.", "van Stokkum", , "i.h.m.van.stokkum@vu.nl", role = "aut",
-           comment = c(ORCID = "0000-0002-6143-2021"))
+           comment = c(ORCID = "0000-0002-6143-2021")),
+    person("Stephen L.", "Moshier", role = c("ctb", "cph"),
+           comment = "Cephes routines in src/ntr.c")
   )
 Description: A problem solving environment (PSE) for fitting separable
     nonlinear models to measurements arising in physics and chemistry
